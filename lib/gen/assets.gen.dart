@@ -34,6 +34,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/upcoming_schadule_arrow.png
+  AssetGenImage get upcomingSchaduleArrow =>
+      const AssetGenImage('assets/images/upcoming_schadule_arrow.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     alarm,
@@ -42,6 +46,7 @@ class $AssetsImagesGen {
     bottomHome,
     bottomMy,
     logo,
+    upcomingSchaduleArrow,
   ];
 }
 
