@@ -63,7 +63,8 @@ class MyStudyBox extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: AppTypography.b0L12, // OtherStudyBox와 동일
+                    style: AppTypography.b0L12.copyWith(
+                        color: AppColors.grayscale100), // OtherStudyBox와 동일
                   ),
                   const SizedBox(height: 8), // OtherStudyBox와 동일
                   Row(

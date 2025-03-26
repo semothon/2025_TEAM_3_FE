@@ -64,7 +64,8 @@ class OtherStudyBox extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: AppTypography.b0L12,
+                    style: AppTypography.b0L12
+                        .copyWith(color: AppColors.grayscale100),
                   ),
                   const SizedBox(height: 8),
                   Row(
