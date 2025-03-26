@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
+import 'box.dart';
 
 class MyStudyBox extends StatelessWidget {
   final String title;
@@ -24,7 +25,7 @@ class MyStudyBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF8), // Fill 색상
+        color: const Color(0xFFFFF8F8), // Fill 색상
         border: Border.all(
           color: AppColors.box1, // Stroke 색상 (#FFBDDB)
           width: 1,
@@ -34,12 +35,11 @@ class MyStudyBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 왼쪽 이미지 (카메라 아이콘)
             Container(
-              width: 48,
-              height: 48,
+              width: 82, // OtherStudyBox와 동일하게 변경
+              height: 82,
               decoration: BoxDecoration(
                 color: AppColors.grayscale0,
                 borderRadius: BorderRadius.circular(8),
@@ -58,56 +58,41 @@ class MyStudyBox extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: AppTypography.t0B24,
+                    style: AppTypography.t3SB16, // OtherStudyBox와 동일
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: AppTypography.b1R14,
+                    style: AppTypography.b0L12, // OtherStudyBox와 동일
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8), // OtherStudyBox와 동일
                   Row(
                     children: [
-                      // 승인 참여 버튼
-                      ElevatedButton(
-                        onPressed: onJoinPressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.point,
-                          foregroundColor: AppColors.grayscale0,
+                      Box(
+                        fillColor: AppColors.point,
+                        strokeColor: AppColors.point,
+                        child: Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: Text(
-                          '승인 참여',
-                          style: AppTypography.b6SB14.copyWith(
-                            color: AppColors.grayscale0,
+                              horizontal: 8.0, vertical: 4),
+                          child: Text(
+                            '승인 참여',
+                            style: AppTypography.b3R12.copyWith(
+                              color: AppColors.grayscale0,
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      // 자율 출석 버튼
-                      OutlinedButton(
-                        onPressed: onAttendancePressed,
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: AppColors.box1),
-                          backgroundColor: AppColors.grayscale0,
-                          foregroundColor: AppColors.grayscale100,
+                      const SizedBox(width: 12),
+                      Box(
+                        child: Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
+                              horizontal: 8.0, vertical: 4),
+                          child: Text(
+                            '자율 출석',
+                            style: AppTypography.b3R12.copyWith(
+                              color: AppColors.point,
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: Text(
-                          '자율 출석',
-                          style: AppTypography.b6SB14,
                         ),
                       ),
                     ],
@@ -115,30 +100,19 @@ class MyStudyBox extends StatelessWidget {
                 ],
               ),
             ),
-            // 오른쪽 멤버 수 및 신고 버튼
-            Column(
+            // 오른쪽 멤버 수 및 더보기 아이콘
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      size: 16,
-                      color: AppColors.grayscale100,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      memberCount,
-                      style: AppTypography.b3R12,
-                    ),
-                  ],
+                Icon(
+                  Icons.person,
+                  size: 16,
+                  color: AppColors.grayscale100,
                 ),
-                const SizedBox(height: 8),
-                TextButton(
-                  onPressed: onReportPressed,
-                  child: Text(
-                    '신고',
-                    style: AppTypography.b3R12,
-                  ),
+                const SizedBox(width: 4),
+                Text(
+                  memberCount,
+                  style: AppTypography.b3R12,
                 ),
               ],
             ),
