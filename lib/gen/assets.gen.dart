@@ -9,29 +9,46 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/alarm.png
+  AssetGenImage get alarm => const AssetGenImage('assets/images/alarm.png');
+
+  /// File path: assets/images/bottom_community.png
+  AssetGenImage get bottomCommunity =>
+      const AssetGenImage('assets/images/bottom_community.png');
+
+  /// File path: assets/images/bottom_explore.png
+  AssetGenImage get bottomExplore =>
+      const AssetGenImage('assets/images/bottom_explore.png');
+
+  /// File path: assets/images/bottom_home.png
+  AssetGenImage get bottomHome =>
+      const AssetGenImage('assets/images/bottom_home.png');
+
+  /// File path: assets/images/bottom_my.png
+  AssetGenImage get bottomMy =>
+      const AssetGenImage('assets/images/bottom_my.png');
+
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    alarm,
+    bottomCommunity,
+    bottomExplore,
+    bottomHome,
+    bottomMy,
+    logo,
+  ];
+}
+
 class Assets {
   const Assets._();
 
-  static const AssetGenImage bottomChat = AssetGenImage(
-    'assets/bottom_chat.png',
-  );
-  static const AssetGenImage bottomHome = AssetGenImage(
-    'assets/bottom_home.png',
-  );
-  static const AssetGenImage bottomMatch = AssetGenImage(
-    'assets/bottom_match.png',
-  );
-  static const AssetGenImage bottomWepick = AssetGenImage(
-    'assets/bottom_wepick.png',
-  );
-
-  /// List of all assets
-  static List<AssetGenImage> get values => [
-    bottomChat,
-    bottomHome,
-    bottomMatch,
-    bottomWepick,
-  ];
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

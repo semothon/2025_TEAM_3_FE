@@ -9,99 +9,90 @@ class AppTheme {
     return ThemeData(
       fontFamily: FontFamily.pretendard,
       useMaterial3: true,
-      primaryColor: AppColors.primaryColor,
-      scaffoldBackgroundColor: Colors.white,
-      dialogBackgroundColor: Colors.white,
-      indicatorColor: AppColors.primaryColor,
+      primaryColor: AppColors.point,
+      scaffoldBackgroundColor: AppColors.background,
+      dialogBackgroundColor: AppColors.background,
+      indicatorColor: AppColors.point,
       appBarTheme: AppBarTheme(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.background,
         elevation: 0,
         centerTitle: true,
         scrolledUnderElevation: 0,
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(
-          circularTrackColor: AppColors.primaryColor,
-          refreshBackgroundColor: AppColors.lightColor),
+          circularTrackColor: AppColors.point,
+          refreshBackgroundColor: AppColors.background),
       textTheme: TextTheme(
-        displayLarge: AppTypography.heading1.copyWith(color: AppColors.grey100),
-        displayMedium:
-            AppTypography.heading2.copyWith(color: AppColors.grey100),
-        displaySmall: AppTypography.heading3.copyWith(color: AppColors.grey100),
-        headlineLarge:
-            AppTypography.heading1.copyWith(color: AppColors.grey100),
-        headlineMedium:
-            AppTypography.heading2.copyWith(color: AppColors.grey100),
-        headlineSmall:
-            AppTypography.heading3.copyWith(color: AppColors.grey100),
-        titleLarge: AppTypography.bodyLargeB.copyWith(color: AppColors.grey100),
-        titleMedium:
-            AppTypography.bodyLargeM.copyWith(color: AppColors.grey100),
-        titleSmall:
-            AppTypography.bodyMediumM.copyWith(color: AppColors.grey100),
-        bodyLarge: AppTypography.bodyLargeB.copyWith(color: AppColors.grey100),
-        bodyMedium:
-            AppTypography.bodyMediumM.copyWith(color: AppColors.grey100),
-        bodySmall: AppTypography.bodySmallR.copyWith(color: AppColors.grey100),
-        labelLarge: AppTypography.bodySmallB.copyWith(color: AppColors.grey100),
-        labelMedium:
-            AppTypography.bodyMediumR.copyWith(color: AppColors.grey100),
-        labelSmall:
-            AppTypography.bodyXSmallB.copyWith(color: AppColors.grey100),
+        displayLarge: AppTypography.t0B24,
+        displayMedium: AppTypography.t1B20,
+        displaySmall: AppTypography.t2SB18,
+        headlineLarge: AppTypography.t0B24,
+        headlineMedium: AppTypography.t1B20,
+        headlineSmall: AppTypography.t2SB18,
+        titleLarge: AppTypography.t0B24,
+        titleMedium: AppTypography.t0B24,
+        titleSmall: AppTypography.t0B24,
+        bodyLarge: AppTypography.t0B24,
+        bodyMedium: AppTypography.t0B24,
+        bodySmall: AppTypography.t0B24,
+        labelLarge: AppTypography.t0B24,
+        labelMedium: AppTypography.t0B24,
+        labelSmall: AppTypography.t0B24,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 16)),
-          backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
-          foregroundColor: WidgetStatePropertyAll(Colors.white),
+          backgroundColor: WidgetStatePropertyAll(AppColors.point),
+          foregroundColor: WidgetStatePropertyAll(AppColors.background),
           elevation: WidgetStatePropertyAll(0),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          textStyle: WidgetStatePropertyAll(AppTypography.bodyLargeB),
+          textStyle: WidgetStatePropertyAll(AppTypography.t0B24),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: WidgetStatePropertyAll(AppColors.grey100),
-          textStyle: WidgetStatePropertyAll(AppTypography.bodyMediumM),
+          foregroundColor: WidgetStatePropertyAll(Colors.black),
+          textStyle: WidgetStatePropertyAll(AppTypography.t0B24),
         ),
       ),
       dialogTheme: DialogTheme(
-        backgroundColor: AppColors.lightColor, // 원하는 배경색 설정
+        backgroundColor: AppColors.background, // 원하는 배경색 설정
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16), // 모서리 둥글게
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.grey17,
+        fillColor: AppColors.grayscale100,
         hintStyle: TextStyle(
-          color: AppColors.grey50,
+          color: AppColors.grayscale50,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
           borderSide: BorderSide(
-            color: AppColors.grey33,
+            color: AppColors.grayscale50,
             width: 1.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
           borderSide: BorderSide(
-            color: AppColors.grey33,
+            color: AppColors.grayscale50,
             width: 1.0,
           ),
         ),
         labelStyle: TextStyle(
-          color: AppColors.grey100,
+          color: Colors.black,
         ),
       ),
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: AppColors.grey100,
-        selectionColor: AppColors.primaryColor.withAlpha(64),
-        selectionHandleColor: AppColors.primaryColor.withAlpha(64),
+        cursorColor: Colors.black,
+        selectionColor: AppColors.point.withAlpha(64),
+        selectionHandleColor: AppColors.point.withAlpha(64),
       ),
     );
   }

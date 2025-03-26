@@ -15,40 +15,40 @@ class MainPage extends GetView<MainController> {
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.background,
           items: [
             BottomNavigationBarItem(
-                icon: Assets.bottomHome.image(
+                icon: Assets.images.bottomHome.image(
                     height: 24,
                     color: controller.selectedBottomIndex.value == 0
-                        ? AppColors.grey100
-                        : AppColors.grey50),
+                        ? AppColors.point
+                        : AppColors.grayscale50),
                 label: '홈'),
             BottomNavigationBarItem(
-                icon: Assets.bottomWepick.image(
+                icon: Assets.images.bottomExplore.image(
                     height: 24,
                     color: controller.selectedBottomIndex.value == 1
-                        ? AppColors.grey100
-                        : AppColors.grey50),
+                        ? AppColors.point
+                        : AppColors.grayscale50),
                 label: '탐색'),
             BottomNavigationBarItem(
-                icon: Assets.bottomMatch.image(
+                icon: Assets.images.bottomCommunity.image(
                     height: 24,
                     color: controller.selectedBottomIndex.value == 2
-                        ? AppColors.grey100
-                        : AppColors.grey50),
+                        ? AppColors.point
+                        : AppColors.grayscale50),
                 label: '커뮤니티'),
             BottomNavigationBarItem(
-                icon: Assets.bottomChat.image(
+                icon: Assets.images.bottomMy.image(
                     height: 24,
                     color: controller.selectedBottomIndex.value == 3
-                        ? AppColors.grey100
-                        : AppColors.grey50),
+                        ? AppColors.point
+                        : AppColors.grayscale50),
                 label: '마이'),
           ],
           currentIndex: controller.selectedBottomIndex.value,
-          selectedItemColor: AppColors.grey100,
-          unselectedItemColor: AppColors.grey50,
+          selectedItemColor: AppColors.point,
+          unselectedItemColor: AppColors.grayscale50,
           selectedFontSize: 14,
           unselectedFontSize: 14,
           onTap: controller.onItemTapped,

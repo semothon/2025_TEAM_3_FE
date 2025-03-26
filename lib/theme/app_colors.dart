@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary
-  static const Color primaryColor = Color(0xFFDE3382);
-  static const Color lightColor = Color(0xFFFFF2F8);
+  // Main
+  static const Color point = Color(0xFF6F2626); // point
+  static const Color background = Color(0xFFFDFDFD); // background
+  static const Color box1 = Color(0xFFFFDBDB); // box1
+  static const Color box2 = Color(0xFFFFFFFF); // box2
+  static const Color box2Border = Color(0xFFDFDFDF); // box2 border
 
-  // Greyscale
-  static const Color grey0 = Color(0xFFFFFFFF);
-  static const Color grey17 = Color(0xFFFAFAFA);
-  static const Color grey33 = Color(0xFFF3F3F3);
-  static const Color grey50 = Color(0xFFBCB7BA);
-  static const Color grey67 = Color(0xFF82787B);
-  static const Color grey83 = Color(0xFFE3E3E3);
-  static const Color grey100 = Color(0xFF1F1C1D);
+  // Grayscale
+  static const Color grayscale0 = Color(0xFFFFFFFF); // 0
+  static const Color grayscale25 = Color(0xFFF0F0F0); // 25
+  static const Color grayscale50 = Color(0xFFD4D4D4); // 50
+  static const Color grayscale75 = Color(0xFFBCBCBC); // 75
+  static const Color grayscale100 = Color(0xFF949494); // 100
 }
