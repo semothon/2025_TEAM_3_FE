@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: '소모임 앱',
-      initialRoute: Routes.main,
+      initialRoute: Routes.login,
       getPages: AppRoutes.routes,
       theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,

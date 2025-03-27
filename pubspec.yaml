@@ -24,6 +24,8 @@ dev_dependencies:
   # 이미지 관리 패키지
   build_runner: ^2.4.6
   flutter_gen_runner:
+  flutter_svg:
+  vector_graphics:
 
   # 모델 관리 패키지
   freezed: ^2.4.1
