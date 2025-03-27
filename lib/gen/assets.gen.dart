@@ -1,6 +1,6 @@
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
-///  FlutterGen
+///  FlutterGen (Modified for SVG)
 /// *****************************************************
 
 // coverage:ignore-file
@@ -8,38 +8,20 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/alarm.png
-  AssetGenImage get alarm => const AssetGenImage('assets/images/alarm.png');
+  SvgGenImage get alarm => const SvgGenImage('assets/icons/notification.svg');
+  SvgGenImage get bottomCommunity => const SvgGenImage('assets/icons/bottom_community.svg');
+  SvgGenImage get bottomExplore => const SvgGenImage('assets/icons/bottom_explore.svg');
+  SvgGenImage get bottomHome => const SvgGenImage('assets/icons/bottom_home.svg');
+  SvgGenImage get bottomMy => const SvgGenImage('assets/icons/bottom_my.svg');
+  SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
+  SvgGenImage get upcomingSchaduleArrow => const SvgGenImage('assets/icons/upcoming_schedule_arrow.svg');
 
-  /// File path: assets/images/bottom_community.png
-  AssetGenImage get bottomCommunity =>
-      const AssetGenImage('assets/images/bottom_community.png');
-
-  /// File path: assets/images/bottom_explore.png
-  AssetGenImage get bottomExplore =>
-      const AssetGenImage('assets/images/bottom_explore.png');
-
-  /// File path: assets/images/bottom_home.png
-  AssetGenImage get bottomHome =>
-      const AssetGenImage('assets/images/bottom_home.png');
-
-  /// File path: assets/images/bottom_my.png
-  AssetGenImage get bottomMy =>
-      const AssetGenImage('assets/images/bottom_my.png');
-
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
-
-  /// File path: assets/images/upcoming_schadule_arrow.png
-  AssetGenImage get upcomingSchaduleArrow =>
-      const AssetGenImage('assets/images/upcoming_schadule_arrow.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [
+  List<SvgGenImage> get values => [
     alarm,
     bottomCommunity,
     bottomExplore,
@@ -56,72 +38,30 @@ class Assets {
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
-class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
+class SvgGenImage {
+  const SvgGenImage(this._assetName);
 
   final String _assetName;
 
-  final Size? size;
-  final Set<String> flavors;
-
-  Image image({
+  SvgPicture svg({
     Key? key,
-    AssetBundle? bundle,
-    ImageFrameBuilder? frameBuilder,
-    ImageErrorWidgetBuilder? errorBuilder,
-    String? semanticLabel,
-    bool excludeFromSemantics = false,
-    double? scale,
     double? width,
     double? height,
+    BoxFit fit = BoxFit.contain,
     Color? color,
-    Animation<double>? opacity,
-    BlendMode? colorBlendMode,
-    BoxFit? fit,
-    AlignmentGeometry alignment = Alignment.center,
-    ImageRepeat repeat = ImageRepeat.noRepeat,
-    Rect? centerSlice,
-    bool matchTextDirection = false,
-    bool gaplessPlayback = true,
-    bool isAntiAlias = false,
-    String? package,
-    FilterQuality filterQuality = FilterQuality.medium,
-    int? cacheWidth,
-    int? cacheHeight,
+    Alignment alignment = Alignment.center,
   }) {
-    return Image.asset(
+    return SvgPicture.asset(
       _assetName,
       key: key,
-      bundle: bundle,
-      frameBuilder: frameBuilder,
-      errorBuilder: errorBuilder,
-      semanticLabel: semanticLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       width: width,
       height: height,
-      color: color,
-      opacity: opacity,
-      colorBlendMode: colorBlendMode,
       fit: fit,
+      color: color,
       alignment: alignment,
-      repeat: repeat,
-      centerSlice: centerSlice,
-      matchTextDirection: matchTextDirection,
-      gaplessPlayback: gaplessPlayback,
-      isAntiAlias: isAntiAlias,
-      package: package,
-      filterQuality: filterQuality,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
-  }
-
   String get path => _assetName;
-
   String get keyName => _assetName;
 }

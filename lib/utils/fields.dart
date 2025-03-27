@@ -1,3 +1,3 @@
 class Fields {
-  static const String images = 'images';
+  static const String images = 'icons';
 }

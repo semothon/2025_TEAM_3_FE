@@ -4,8 +4,9 @@ class AppColors {
   // Main
   static const Color point = Color(0xFF6F2626); // point
   static const Color background = Color(0xFFFDFDFD); // background
-  static const Color box1 = Color(0xFFFFDBDB); // box1
+  static const Color box1 = Color(0xFFFDF6F6); // box1
   static const Color box2 = Color(0xFFFFFFFF); // box2
+  static const Color box1Border = Color(0xFFFFDBDB); // box1 border
   static const Color box2Border = Color(0xFFDFDFDF); // box2 border
 
   // Grayscale

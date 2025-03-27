@@ -9,7 +9,7 @@ class Box extends StatelessWidget {
   const Box({
     super.key,
     this.child,
-    this.fillColor = const Color(0xFFFFFF8F8),
+    this.fillColor = const Color(0xFFFFF8F8),
     this.strokeColor = AppColors.box1,
   });
 

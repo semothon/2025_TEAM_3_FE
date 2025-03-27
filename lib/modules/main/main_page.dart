@@ -25,28 +25,28 @@ class MainPage extends GetView<MainController> {
             backgroundColor: AppColors.background,
             items: [
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomHome.image(
+                  icon: Assets.images.bottomHome.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 0
                           ? AppColors.point
                           : AppColors.grayscale50),
                   label: '홈'),
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomExplore.image(
+                  icon: Assets.images.bottomExplore.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 1
                           ? AppColors.point
                           : AppColors.grayscale50),
                   label: '탐색'),
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomCommunity.image(
+                  icon: Assets.images.bottomCommunity.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 2
                           ? AppColors.point
                           : AppColors.grayscale50),
                   label: '커뮤니티'),
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomMy.image(
+                  icon: Assets.images.bottomMy.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 3
                           ? AppColors.point

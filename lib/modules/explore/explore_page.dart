@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
 import 'package:team_3_frontend/widgets/box.dart';
 import 'package:team_3_frontend/modules/explore/explore_controller.dart';
 import 'package:team_3_frontend/widgets/other_study_box.dart';
+import 'search/search_page.dart';
+import 'search/search_controller.dart';
 
 class ExplorePage extends GetView<ExploreController> {
   const ExplorePage({super.key});
@@ -40,24 +43,25 @@ class ExplorePage extends GetView<ExploreController> {
       titleSpacing: 20,
       title: Row(
         children: [
-          Image.asset(
-            'assets/images/logo.png',
+          SvgPicture.asset(
+            'assets/icons/logo.svg',
             height: 50,
           ),
           const Spacer(),
           IconButton(
-            icon: Image.asset(
-              'assets/images/explore.png',
+            icon: SvgPicture.asset(
+              'assets/icons/search.svg',
               width: 24,
               height: 24,
             ),
             onPressed: () {
-              // 검색창 이동 or 팝업
+              Get.put(Ex_SearchController());
+              Get.to(() => const SearchPage());
             },
           ),
           IconButton(
-            icon: Image.asset(
-              'assets/images/alarm.png',
+            icon: SvgPicture.asset(
+              'assets/icons/notification.svg',
               width: 24,
               height: 24,
             ),
@@ -119,8 +123,8 @@ class ExplorePage extends GetView<ExploreController> {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
             child: Row(
               children: [
-                Image.asset(
-                  'assets/images/group.png',
+                SvgPicture.asset(
+                  'assets/icons/group.svg',
                   width: 18,
                   height: 18,
                 ),
@@ -128,8 +132,8 @@ class ExplorePage extends GetView<ExploreController> {
                 Expanded(
                   child: Text("내 모임 만들기", style: AppTypography.t3SB16),
                 ),
-                Image.asset(
-                  'assets/images/arrow.png',
+                SvgPicture.asset(
+                  'assets/icons/arrow_right.svg',
                   width: 22,
                   height: 22,
                 ),
@@ -156,8 +160,8 @@ class ExplorePage extends GetView<ExploreController> {
             },
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Image.asset(
-                'assets/images/filter.png',
+              child: SvgPicture.asset(
+                'assets/icons/filter.svg',
                 width: 16,
                 height: 16,
               ),
