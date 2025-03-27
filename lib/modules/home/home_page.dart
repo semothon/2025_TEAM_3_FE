@@ -25,7 +25,7 @@ class HomePage extends GetView<HomeController> {
         ),
         leadingWidth: 64,
         actions: [
-          Assets.images.alarm.svg(height: 24),
+          Assets.images.notification.svg(height: 24),
           const SizedBox(width: 16),
         ],
       ),

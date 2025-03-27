@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:team_3_frontend/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
@@ -60,11 +61,7 @@ class ExplorePage extends GetView<ExploreController> {
             },
           ),
           IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/notification.svg',
-              width: 24,
-              height: 24,
-            ),
+            icon:Assets.images.notification.svg(height: 24),
             onPressed: () {
               // 알림
             },

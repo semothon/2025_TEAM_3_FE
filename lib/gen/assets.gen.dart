@@ -14,7 +14,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  SvgGenImage get alarm => const SvgGenImage('assets/icons/notification.svg');
+  SvgGenImage get notification => const SvgGenImage('assets/icons/notification.svg');
   SvgGenImage get bottomCommunity => const SvgGenImage('assets/icons/bottom_community.svg');
   SvgGenImage get bottomExplore => const SvgGenImage('assets/icons/bottom_explore.svg');
   SvgGenImage get bottomHome => const SvgGenImage('assets/icons/bottom_home.svg');
@@ -24,7 +24,7 @@ class $AssetsImagesGen {
   SvgGenImage get upcomingSchaduleArrow => const SvgGenImage('assets/icons/upcoming_schedule_arrow.svg');
 
   List<SvgGenImage> get values => [
-    alarm,
+    notification,
     bottomCommunity,
     bottomExplore,
     bottomHome,
