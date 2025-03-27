@@ -34,14 +34,11 @@ class SearchPage extends GetView<Ex_SearchController> {
               ),
             ),
 
-            // 검색창
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
               child: TextField(
                 onChanged: controller.onSearchTextChanged,
-                style: AppTypography.b1R14.copyWith(
-                  color: Colors.black
-                ),
+                style: AppTypography.b1R14.copyWith(color: Colors.black),
                 decoration: InputDecoration(
                   hintText: '키워드를 검색해보세요.',
                   hintStyle: AppTypography.b1R14.copyWith(color: AppColors.grayscale50),
@@ -61,7 +58,16 @@ class SearchPage extends GetView<Ex_SearchController> {
                     maxWidth: 32,
                     maxHeight: 32,
                   ),
+                  // 🔽 테두리 모두 동일하게 설정
                   border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: AppColors.box1Border),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: AppColors.box1Border),
+                  ),
+                  focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: AppColors.box1Border),
                   ),
@@ -69,7 +75,7 @@ class SearchPage extends GetView<Ex_SearchController> {
                   fillColor: AppColors.box1,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
-              )
+              ),
             ),
 
             // 선택된 필터 표시
@@ -138,7 +144,7 @@ class SearchPage extends GetView<Ex_SearchController> {
 
   Widget _buildFilterSection(String title, List<String> options, double buttonWidth) {
     return Padding(
-      padding: const EdgeInsets.only(top: 6, bottom: 12),
+      padding: const EdgeInsets.only(top: 10, bottom: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
