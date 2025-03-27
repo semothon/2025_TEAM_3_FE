@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:team_3_frontend/data/models/study_group.dart';
 import 'package:team_3_frontend/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
@@ -9,6 +10,7 @@ import 'package:team_3_frontend/modules/explore/explore_controller.dart';
 import 'package:team_3_frontend/widgets/other_study_box.dart';
 import 'search/search_page.dart';
 import 'search/search_controller.dart';
+import 'package:team_3_frontend/widgets/apply_study.dart';
 
 class ExplorePage extends GetView<ExploreController> {
   const ExplorePage({super.key});
@@ -113,7 +115,7 @@ class ExplorePage extends GetView<ExploreController> {
         },
         child: Ink(
           decoration: BoxDecoration(
-            color: AppColors.grayscale0,
+            color: AppColors.background, // 여기 색상만 변경
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(
@@ -176,13 +178,16 @@ class ExplorePage extends GetView<ExploreController> {
       separatorBuilder: (_, __) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
         final group = controller.filteredList[index];
-        return OtherStudyBox(
-          title: group.title,
-          subtitle: group.description,
-          memberCount: '${group.numMembers}/${group.maxMembers}',
-          onJoinPressed: () {},
-          onAttendancePressed: () {},
-          onReportPressed: () {},
+        return GestureDetector(
+          onTap: () => showStudyDetailDialog(context, group),
+          child: OtherStudyBox(
+            title: group.title,
+            subtitle: group.description,
+            memberCount: '${group.numMembers}/${group.maxMembers}',
+            onJoinPressed: () {},
+            onAttendancePressed: () {},
+            onReportPressed: () {},
+          ),
         );
       },
     ));
