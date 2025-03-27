@@ -6,7 +6,7 @@ import 'package:team_3_frontend/widgets/my_study_box.dart';
 import '../../data/models/study_member.dart';
 import '../../gen/assets.gen.dart';
 import '../../widgets/other_study_box.dart';
-import '../../widgets/upcoming_schadule_box.dart';
+import '../../widgets/upcoming_schedule_box.dart';
 import './home_controller.dart';
 
 class HomePage extends GetView<HomeController> {

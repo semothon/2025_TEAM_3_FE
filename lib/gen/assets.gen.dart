@@ -9,8 +9,7 @@
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart' as _svg;
-import 'package:vector_graphics/vector_graphics.dart' as _vg;
+import 'package:flutter_svg/flutter_svg.dart';
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
@@ -20,6 +19,7 @@ class $AssetsImagesGen {
   SvgGenImage get bottomExplore => const SvgGenImage('assets/icons/bottom_explore.svg');
   SvgGenImage get bottomHome => const SvgGenImage('assets/icons/bottom_home.svg');
   SvgGenImage get bottomMy => const SvgGenImage('assets/icons/bottom_my.svg');
+  SvgGenImage get loginLogo => const SvgGenImage('assets/icons/login_logo.svg');
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
   SvgGenImage get upcomingSchaduleArrow => const SvgGenImage('assets/icons/upcoming_schedule_arrow.svg');
 
