@@ -64,7 +64,7 @@ class ExplorePage extends GetView<ExploreController> {
             },
           ),
           IconButton(
-            icon: Assets.images.notification.svg(height: 24),
+            icon: Assets.icons.notification.svg(height: 24),
             onPressed: () {
               // 알림
             },

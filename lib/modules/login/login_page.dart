@@ -20,7 +20,7 @@ class LoginPage extends GetView<LoginController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Assets.images.loginLogo.svg(width: 83),
+                    Assets.icons.loginLogo.svg(width: 83),
                     SizedBox(height: 109),
                     TextField(
                       controller: controller.id,

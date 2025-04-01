@@ -22,11 +22,11 @@ class HomePage extends GetView<HomeController> {
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(left: 16.0),
-          child: Assets.images.logo.svg(height: 48),
+          child: Assets.icons.logo.svg(height: 48),
         ),
         leadingWidth: 64,
         actions: [
-          Assets.images.notification.svg(height: 24),
+          Assets.icons.notification.svg(height: 24),
           const SizedBox(width: 16),
         ],
       ),

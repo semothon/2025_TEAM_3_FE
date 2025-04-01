@@ -59,7 +59,7 @@ class UpcomingScheduleBox extends StatelessWidget {
                 ),
               ],
             ),
-            Assets.images.upcomingSchaduleArrow.svg(height: 20),
+            Assets.icons.upcomingScheduleArrow.svg(height: 20),
           ],
         ),
       ),

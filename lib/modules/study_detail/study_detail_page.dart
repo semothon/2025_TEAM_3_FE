@@ -41,7 +41,7 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                   actions: [
                     GestureDetector(
                       onTap: () {},
-                      child: Assets.images.studyDetailChat.svg(width: 24),
+                      child: Assets.icons.studyDetailChat.svg(width: 24),
                     ),
                     const SizedBox(width: 16),
                   ],
@@ -192,7 +192,7 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
                 child: Row(
                   children: [
-                    Assets.images.studyDetailPin.svg(width: 10),
+                    Assets.icons.studyDetailPin.svg(width: 10),
                     SizedBox(width: 15),
                     Text(
                       study.goal,

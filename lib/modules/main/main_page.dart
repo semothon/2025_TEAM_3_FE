@@ -9,11 +9,11 @@ class MainPage extends GetView<MainController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() => IndexedStack(
-        index: controller.selectedBottomIndex.value,
-        children: controller.pages,
-      )),
+            index: controller.selectedBottomIndex.value,
+            children: controller.pages,
+          )),
       bottomNavigationBar: Obx(
-            () => Theme(
+        () => Theme(
           data: Theme.of(context).copyWith(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
@@ -25,28 +25,28 @@ class MainPage extends GetView<MainController> {
             backgroundColor: AppColors.background,
             items: [
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomHome.svg(
+                  icon: Assets.icons.bottomHome.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 0
                           ? AppColors.point
                           : AppColors.grayscale50),
                   label: '홈'),
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomExplore.svg(
+                  icon: Assets.icons.bottomExplore.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 1
                           ? AppColors.point
                           : AppColors.grayscale50),
                   label: '탐색'),
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomCommunity.svg(
+                  icon: Assets.icons.bottomCommunity.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 2
                           ? AppColors.point
                           : AppColors.grayscale50),
                   label: '커뮤니티'),
               BottomNavigationBarItem(
-                  icon: Assets.images.bottomMy.svg(
+                  icon: Assets.icons.bottomMy.svg(
                       height: 24,
                       color: controller.selectedBottomIndex.value == 3
                           ? AppColors.point

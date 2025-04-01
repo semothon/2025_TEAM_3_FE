@@ -25,7 +25,7 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Assets.images.logo.svg(width: 49),
+                    Assets.icons.logo.svg(width: 49),
                     SizedBox(height: 30),
                     Text.rich(
                       TextSpan(
