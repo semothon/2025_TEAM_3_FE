@@ -14,25 +14,36 @@ import 'package:flutter_svg/flutter_svg.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  SvgGenImage get notification => const SvgGenImage('assets/icons/notification.svg');
-  SvgGenImage get bottomCommunity => const SvgGenImage('assets/icons/bottom_community.svg');
-  SvgGenImage get bottomExplore => const SvgGenImage('assets/icons/bottom_explore.svg');
-  SvgGenImage get bottomHome => const SvgGenImage('assets/icons/bottom_home.svg');
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/icons/notification.svg');
+  SvgGenImage get bottomCommunity =>
+      const SvgGenImage('assets/icons/bottom_community.svg');
+  SvgGenImage get bottomExplore =>
+      const SvgGenImage('assets/icons/bottom_explore.svg');
+  SvgGenImage get bottomHome =>
+      const SvgGenImage('assets/icons/bottom_home.svg');
   SvgGenImage get bottomMy => const SvgGenImage('assets/icons/bottom_my.svg');
   SvgGenImage get loginLogo => const SvgGenImage('assets/icons/login_logo.svg');
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
-  SvgGenImage get upcomingSchaduleArrow => const SvgGenImage('assets/icons/upcoming_schedule_arrow.svg');
+  SvgGenImage get upcomingSchaduleArrow =>
+      const SvgGenImage('assets/icons/upcoming_schedule_arrow.svg');
+  SvgGenImage get studyDetailChat =>
+      const SvgGenImage('assets/icons/study_detail_chat.svg');
+  SvgGenImage get studyDetailPin =>
+      const SvgGenImage('assets/icons/study_detail_pin.svg');
 
   List<SvgGenImage> get values => [
-    notification,
-    bottomCommunity,
-    bottomExplore,
-    bottomHome,
-    bottomMy,
-    loginLogo,
-    logo,
-    upcomingSchaduleArrow,
-  ];
+        notification,
+        bottomCommunity,
+        bottomExplore,
+        bottomHome,
+        bottomMy,
+        loginLogo,
+        logo,
+        studyDetailChat,
+        studyDetailPin,
+        upcomingSchaduleArrow,
+      ];
 }
 
 class Assets {

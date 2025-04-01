@@ -12,7 +12,9 @@ _$RecordImpl _$$RecordImplFromJson(Map<String, dynamic> json) => _$RecordImpl(
       groupId: (json['group_id'] as num).toInt(),
       isPublic: json['is_public'] as bool,
       isShared: json['is_shared'] as bool,
+      title: json['title'] as String,
       content: json['content'] as String,
+      imageUrls: json['imageUrls'] as List<dynamic>,
       fileUrl: json['file_url'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
     );
@@ -24,7 +26,9 @@ Map<String, dynamic> _$$RecordImplToJson(_$RecordImpl instance) =>
       'group_id': instance.groupId,
       'is_public': instance.isPublic,
       'is_shared': instance.isShared,
+      'title': instance.title,
       'content': instance.content,
+      'imageUrls': instance.imageUrls,
       'file_url': instance.fileUrl,
       'created_at': instance.createdAt.toIso8601String(),
     };

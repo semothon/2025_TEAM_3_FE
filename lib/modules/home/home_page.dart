@@ -5,6 +5,7 @@ import 'package:team_3_frontend/theme/app_typography.dart';
 import 'package:team_3_frontend/widgets/my_study_box.dart';
 import '../../data/models/study_member.dart';
 import '../../gen/assets.gen.dart';
+import '../../routes/app_routes.dart';
 import '../../widgets/other_study_box.dart';
 import '../../widgets/upcoming_schedule_box.dart';
 import './home_controller.dart';
@@ -220,29 +221,19 @@ class HomePage extends GetView<HomeController> {
                                 title: group.title,
                                 subtitle: group.description,
                                 memberCount: '$memberCount/$maxMembers',
-                                onJoinPressed: () {
-                                  print('승인 참여 클릭: ${group.title}');
-                                },
-                                onAttendancePressed: () {
-                                  print('자율 출석 클릭: ${group.title}');
-                                },
-                                onReportPressed: () {
-                                  print('신고 클릭: ${group.title}');
-                                },
+                                thumbnail: group.thumbnail,
+                                onPressed: () => Get.toNamed(
+                                  Routes.studyDetail,
+                                  arguments: group,
+                                ),
                               )
                             : OtherStudyBox(
                                 title: group.title,
                                 subtitle: group.description,
                                 memberCount: '$memberCount/$maxMembers',
-                                onJoinPressed: () {
-                                  print('승인 참여 클릭: ${group.title}');
-                                },
-                                onAttendancePressed: () {
-                                  print('매일 출석 클릭: ${group.title}');
-                                },
-                                onReportPressed: () {
-                                  print('신고 클릭: ${group.title}');
-                                },
+                                thumbnail: group.thumbnail,
+                                onPressed: () => Get.toNamed(Routes.studyDetail,
+                                    arguments: group),
                               ),
                         const SizedBox(height: 12),
                       ],

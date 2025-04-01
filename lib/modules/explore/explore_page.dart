@@ -26,8 +26,11 @@ class ExplorePage extends GetView<ExploreController> {
             _buildFilterTabs(),
             _buildCreateGroupButton(),
             Divider(
-                color: AppColors.grayscale50, thickness: 1, indent: 16, endIndent: 16, height: 24
-            ),
+                color: AppColors.grayscale50,
+                thickness: 1,
+                indent: 16,
+                endIndent: 16,
+                height: 24),
             _buildSectionTitle(),
             Expanded(child: _buildStudyListView()),
           ],
@@ -61,7 +64,7 @@ class ExplorePage extends GetView<ExploreController> {
             },
           ),
           IconButton(
-            icon:Assets.images.notification.svg(height: 24),
+            icon: Assets.images.notification.svg(height: 24),
             onPressed: () {
               // 알림
             },
@@ -75,16 +78,21 @@ class ExplorePage extends GetView<ExploreController> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       child: Obx(() => Row(
-        children: [
-          _buildTabButton("스터디", isSelected: controller.selectedCategory.value == "스터디", onTap: () => controller.selectCategory("스터디")),
-          const SizedBox(width: 8),
-          _buildTabButton("소모임", isSelected: controller.selectedCategory.value == "소모임", onTap: () => controller.selectCategory("소모임")),
-        ],
-      )),
+            children: [
+              _buildTabButton("스터디",
+                  isSelected: controller.selectedCategory.value == "스터디",
+                  onTap: () => controller.selectCategory("스터디")),
+              const SizedBox(width: 8),
+              _buildTabButton("소모임",
+                  isSelected: controller.selectedCategory.value == "소모임",
+                  onTap: () => controller.selectCategory("소모임")),
+            ],
+          )),
     );
   }
 
-  Widget _buildTabButton(String label, {required bool isSelected, required VoidCallback onTap}) {
+  Widget _buildTabButton(String label,
+      {required bool isSelected, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Box(
@@ -171,20 +179,19 @@ class ExplorePage extends GetView<ExploreController> {
 
   Widget _buildStudyListView() {
     return Obx(() => ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      itemCount: controller.filteredList.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 12),
-      itemBuilder: (context, index) {
-        final group = controller.filteredList[index];
-        return OtherStudyBox(
-          title: group.title,
-          subtitle: group.description,
-          memberCount: '${group.numMembers}/${group.maxMembers}',
-          onJoinPressed: () {},
-          onAttendancePressed: () {},
-          onReportPressed: () {},
-        );
-      },
-    ));
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          itemCount: controller.filteredList.length,
+          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          itemBuilder: (context, index) {
+            final group = controller.filteredList[index];
+            return OtherStudyBox(
+              title: group.title,
+              subtitle: group.description,
+              memberCount: '${group.numMembers}/${group.maxMembers}',
+              thumbnail: '',
+              onPressed: () {},
+            );
+          },
+        ));
   }
 }

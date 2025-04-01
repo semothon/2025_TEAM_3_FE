@@ -32,10 +32,10 @@ class AppTheme {
           elevation: WidgetStatePropertyAll(0),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
-          textStyle: WidgetStatePropertyAll(AppTypography.t0B24),
+          textStyle: WidgetStatePropertyAll(AppTypography.t3SB16),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -63,7 +63,7 @@ class AppTheme {
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
           borderSide: BorderSide(
             color: AppColors.grayscale50,
             width: 1.0,

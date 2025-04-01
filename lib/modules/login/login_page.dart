@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:team_3_frontend/gen/assets.gen.dart';
+import 'package:team_3_frontend/routes/app_routes.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
 import 'login_controller.dart';
@@ -37,7 +38,7 @@ class LoginPage extends GetView<LoginController> {
                         hintText: '비밀번호를 입력해주세요.',
                       ),
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 10),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -49,6 +50,7 @@ class LoginPage extends GetView<LoginController> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -66,7 +68,7 @@ class LoginPage extends GetView<LoginController> {
                           color: AppColors.grayscale75,
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () => Get.toNamed(Routes.register),
                           child: Text(
                             '회원가입',
                             style: AppTypography.b1R14
