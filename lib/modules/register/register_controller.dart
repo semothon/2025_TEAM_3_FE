@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_routes.dart';
+
 class RegisterController extends GetxController {
+  RxBool isLoading = false.obs;
+
   // 첫번째 페이지
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController id = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController e = TextEditingController();
-
-  RxBool isLoading = false.obs;
 
   // 두번째 페이지
   final List<String> hobbies = [
@@ -44,7 +46,7 @@ class RegisterController extends GetxController {
   ];
   RxList<bool> selectedInterests = List.generate(9, (_) => false).obs;
 
-  final List<String> majors = ['문과', '이과', '예체능'];
+  final List<String> majors = ['소프트웨어융합학과', '산업경영공학과', '시각디자인학과', '컴퓨터공학과'];
   RxInt selectedMajorIndex = (-1).obs;
 
   void toggleHobby(int index) {
@@ -72,5 +74,25 @@ class RegisterController extends GetxController {
   String? get selectedMajorName =>
       selectedMajorIndex.value >= 0 ? majors[selectedMajorIndex.value] : null;
 
-  void register() {}
+  RxList<String> courses = <String>[].obs;
+  TextEditingController course = TextEditingController();
+
+  void entercourse() {
+    courses.add(course.text);
+    course.text = '';
+  }
+
+  register() async {
+    isLoading.value = true;
+
+    // 회원가입 로직
+    try {
+      await Future.delayed(const Duration(seconds: 1));
+
+      Get.offAllNamed(Routes.main);
+    } catch (e) {
+      isLoading.value = false;
+      Get.snackbar('오류', e.toString());
+    }
+  }
 }

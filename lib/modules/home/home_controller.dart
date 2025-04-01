@@ -34,11 +34,13 @@ class HomeController extends GetxController {
       mood: MoodType.focus, // 추가 (분위기)
       approve: true, // 추가 (승인 여부)
       leaderId: 1,
-      thumbnail: 'https://example.com/thumbnail1.jpg',
+      thumbnail: 'https://media.dongwon.com/assets/_temp/post/191205/01.jpg',
       schedule: '매주 월요일 15:00',
       location: '카페 칸나',
       goal: '900점 달성', // 추가 (목표)
-      memo: '열심히 하자!', // 추가 (메모)
+      memo:
+          '900점대 이상 목표로 하는 빡공 스터디입니다.\n매일 스터디 인증샷 올려주셔야 합니다. 일주일 이상 올리지 않으시면 강퇴합니다~\n주말 제외 주 3회 이상 오프라인 만남 지향합니다. 국캠 앞 카페\n에서 주로 모여요!', // 추가 (메모)
+
       createdAt: DateTime(2025, 3, 20),
     ),
     StudyGroup(
@@ -59,7 +61,8 @@ class HomeController extends GetxController {
       schedule: '매주 화요일 18:00',
       location: '미정',
       goal: '작품 완성', // 추가 (목표)
-      memo: '즐겁게 하자!', // 추가 (메모)
+      memo:
+          '900점대 이상 목표로 하는 빡공 스터디입니다.\n매일 스터디 인증샷 올려주셔야 합니다. 일주일 이상 올리지 않으시면 강퇴합니다~\n주말 제외 주 3회 이상 오프라인 만남 지향합니다. 국캠 앞 카페\n에서 주로 모여요!', // 추가 (메모)
       createdAt: DateTime(2025, 3, 21),
     ),
     StudyGroup(
@@ -80,7 +83,8 @@ class HomeController extends GetxController {
       schedule: '매주 수요일 14:00',
       location: '도서관',
       goal: 'A+ 받기', // 추가 (목표)
-      memo: '집중해서 공부하자!', // 추가 (메모)
+      memo:
+          '900점대 이상 목표로 하는 빡공 스터디입니다.\n매일 스터디 인증샷 올려주셔야 합니다. 일주일 이상 올리지 않으시면 강퇴합니다~\n주말 제외 주 3회 이상 오프라인 만남 지향합니다. 국캠 앞 카페\n에서 주로 모여요!', // 추가 (메모)
       createdAt: DateTime(2025, 3, 22),
     ),
   ];

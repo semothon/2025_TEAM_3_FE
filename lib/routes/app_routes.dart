@@ -11,4 +11,5 @@ class Routes {
   static const match = '/match';
   static const friend = '/friend';
   static const gift = '/gift';
+  static const studyDetail = '/study-detail';
 }

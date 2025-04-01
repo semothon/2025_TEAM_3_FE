@@ -41,6 +41,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/study_detail_chat.svg
+  SvgGenImage get studyDetailChat =>
+      const SvgGenImage('assets/images/study_detail_chat.svg');
+
+  /// File path: assets/images/study_detail_pin.svg
+  SvgGenImage get studyDetailPin =>
+      const SvgGenImage('assets/images/study_detail_pin.svg');
+
   /// File path: assets/images/upcoming_schadule_arrow.png
   AssetGenImage get upcomingSchaduleArrow =>
       const AssetGenImage('assets/images/upcoming_schadule_arrow.png');
@@ -54,6 +62,8 @@ class $AssetsImagesGen {
     bottomMy,
     loginLogo,
     logo,
+    studyDetailChat,
+    studyDetailPin,
     upcomingSchaduleArrow,
   ];
 }

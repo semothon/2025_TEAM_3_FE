@@ -213,6 +213,82 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                       ),
                     ),
                     SizedBox(height: 20),
+                    Text(
+                      '시간표 입력',
+                      style: AppTypography.b5M14
+                          .copyWith(color: AppColors.grayscale100),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Flexible(
+                          flex: 5,
+                          child: TextField(
+                            controller: controller.course,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: '과목명을 적어주세요.',
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Flexible(
+                          flex: 1,
+                          child: ElevatedButton(
+                            child: Text('추가'),
+                            onPressed: controller.entercourse,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Obx(
+                      () => Wrap(
+                        spacing: 8.0,
+                        runSpacing: 8.0,
+                        children: List.generate(
+                          controller.courses.length,
+                          (index) {
+                            final double screenWidth =
+                                MediaQuery.of(Get.context!).size.width;
+                            const double horizontalPadding = 32.0;
+                            const double chipSpacing = 8.0;
+                            final double chipWidth = (screenWidth -
+                                    horizontalPadding -
+                                    (chipSpacing * 2)) /
+                                3;
+                            return Container(
+                              width: chipWidth,
+                              child: Chip(
+                                label: Center(
+                                  child: Text(
+                                    controller.courses[index],
+                                    style: TextStyle(
+                                      color: AppColors.grayscale100,
+                                      fontSize: 14,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                backgroundColor: Colors.white,
+                                side: BorderSide(
+                                  color: AppColors.grayscale100,
+                                  width: 1,
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8.0,
+                                  vertical: 8.0,
+                                ),
+                                labelPadding: EdgeInsets.zero,
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(

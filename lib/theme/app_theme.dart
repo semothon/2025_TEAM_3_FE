@@ -35,7 +35,7 @@ class AppTheme {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          textStyle: WidgetStatePropertyAll(AppTypography.t0B24),
+          textStyle: WidgetStatePropertyAll(AppTypography.t3SB16),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
