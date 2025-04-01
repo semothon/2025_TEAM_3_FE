@@ -1,7 +1,7 @@
 class Routes {
   static const login = '/login';
-  static const resetPassword = '/reset-password';
   static const register = '/register';
+  static const registerInput = '/register-input';
   static const inquiry = '/inquiry';
   static const main = '/main';
   static const profile = '/profile';
