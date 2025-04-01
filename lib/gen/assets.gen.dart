@@ -40,6 +40,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/filter.svg
   SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
 
+  /// File path: assets/icons/friend_table.svg
+  SvgGenImage get friendTable =>
+      const SvgGenImage('assets/icons/friend_table.svg');
+
   /// File path: assets/icons/group.svg
   SvgGenImage get group => const SvgGenImage('assets/icons/group.svg');
 
@@ -77,6 +81,7 @@ class $AssetsIconsGen {
     bottomHome,
     bottomMy,
     filter,
+    friendTable,
     group,
     loginLogo,
     logo,

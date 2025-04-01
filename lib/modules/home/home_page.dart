@@ -19,17 +19,7 @@ class HomePage extends GetView<HomeController> {
     Get.put(HomeController());
 
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: Assets.icons.logo.svg(height: 48),
-        ),
-        leadingWidth: 64,
-        actions: [
-          Assets.icons.notification.svg(height: 24),
-          const SizedBox(width: 16),
-        ],
-      ),
+      appBar: _buildAppBar(),
       body: CustomScrollView(
         slivers: [
           // OO님, 오늘은 O개의 일정이 있어요!
@@ -243,6 +233,27 @@ class HomePage extends GetView<HomeController> {
                 childCount: controller.filteredGroups.length,
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors.background,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      titleSpacing: 20,
+      title: Row(
+        children: [
+          Assets.icons.logo.svg(height: 50),
+          const Spacer(),
+          IconButton(
+            icon: Assets.icons.notification.svg(height: 24),
+            onPressed: () {
+              // 알림
+            },
           ),
         ],
       ),
