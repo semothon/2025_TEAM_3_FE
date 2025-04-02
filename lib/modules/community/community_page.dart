@@ -29,40 +29,28 @@ class CommunityPage extends GetView<CommunityController> {
               dividerColor: Colors.transparent,
               controller: controller.tabController,
               tabs: [
-                // "채팅방" 탭
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
-                    child: Center(
-                      child: Obx(
-                        () => Text(
-                          '채팅방',
-                          style: controller.currentTabIndex.value == 0
-                              ? AppTypography.b6SB14
-                                  .copyWith(color: AppColors.point)
-                              : AppTypography.b5M14
-                                  .copyWith(color: AppColors.grayscale75),
-                        ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Center(
+                    child: Obx(
+                          () => Text(
+                        '채팅방',
+                        style: controller.currentTabIndex.value == 0
+                            ? AppTypography.b6SB14.copyWith(color: AppColors.point)
+                            : AppTypography.b5M14.copyWith(color: AppColors.grayscale75),
                       ),
                     ),
                   ),
                 ),
-                // "친구" 탭
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Center(
                     child: Obx(
-                      () => Center(
-                        child: Text(
-                          '친구',
-                          style: controller.currentTabIndex.value == 1
-                              ? AppTypography.b6SB14
-                                  .copyWith(color: AppColors.point)
-                              : AppTypography.b5M14
-                                  .copyWith(color: AppColors.grayscale75),
-                        ),
+                          () => Text(
+                        '친구',
+                        style: controller.currentTabIndex.value == 1
+                            ? AppTypography.b6SB14.copyWith(color: AppColors.point)
+                            : AppTypography.b5M14.copyWith(color: AppColors.grayscale75),
                       ),
                     ),
                   ),

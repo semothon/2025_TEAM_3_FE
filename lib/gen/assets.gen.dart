@@ -60,6 +60,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
+  /// File path: assets/icons/setting.svg
+  SvgGenImage get setting => const SvgGenImage('assets/icons/setting.svg');
+
   /// File path: assets/icons/study_detail_chat.svg
   SvgGenImage get studyDetailChat =>
       const SvgGenImage('assets/icons/study_detail_chat.svg');
@@ -67,6 +70,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/study_detail_pin.svg
   SvgGenImage get studyDetailPin =>
       const SvgGenImage('assets/icons/study_detail_pin.svg');
+
+  /// File path: assets/icons/timetable.svg
+  SvgGenImage get timetable => const SvgGenImage('assets/icons/timetable.svg');
 
   /// File path: assets/icons/upcoming_schedule_arrow.svg
   SvgGenImage get upcomingScheduleArrow =>
@@ -87,8 +93,10 @@ class $AssetsIconsGen {
     logo,
     notification,
     search,
+    setting,
     studyDetailChat,
     studyDetailPin,
+    timetable,
     upcomingScheduleArrow,
   ];
 }
