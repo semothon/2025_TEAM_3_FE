@@ -24,7 +24,7 @@ class HomePage extends GetView<HomeController> {
               ? const Center(child: CircularProgressIndicator())
               : CustomScrollView(
                   slivers: [
-                    // 1. 사용자 인사 및 일정 요약
+                    // 사용자 인사 및 일정 요약
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -64,7 +64,7 @@ class HomePage extends GetView<HomeController> {
                       ),
                     ),
 
-                    // 2. 다가오는 일정
+                    // 다가오는 일정
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -98,15 +98,16 @@ class HomePage extends GetView<HomeController> {
                                               ? const EdgeInsets.only(right: 12)
                                               : EdgeInsets.zero,
                                           child: UpcomingScheduleBox(
-                                            hoursLeft: (schedule.secondsLeft ~/
-                                                    3600)
-                                                .toString(), // Convert seconds to hours
+                                            hoursLeft:
+                                                (schedule.secondsLeft ~/ 3600)
+                                                    .toString(),
+                                            // Convert seconds to hours
                                             meetingName: schedule.title,
                                             time: schedule.startDatetime
                                                 .toLocal()
                                                 .toString()
-                                                .substring(
-                                                    11, 16), // HH:MM format
+                                                .substring(11, 16),
+                                            // HH:MM format
                                             location: schedule.location,
                                           ),
                                         ),
@@ -119,7 +120,7 @@ class HomePage extends GetView<HomeController> {
                       ),
                     ),
 
-                    // 3. 참여 중인 모임 탭 (스터디 / 소모임)
+                    // 참여 중인 모임 탭
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -145,7 +146,7 @@ class HomePage extends GetView<HomeController> {
                       ),
                     ),
 
-                    // 4. 스터디/소모임 리스트
+                    // 참여 모임 리스트
                     Obx(() => SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
@@ -171,11 +172,16 @@ class HomePage extends GetView<HomeController> {
                                     isMyStudy
                                         ? MyStudyBox(
                                             title: group.title,
-                                            subtitle: group.description,
+                                            subtitle: group.description ?? '',
                                             memberCount:
                                                 '$numMembers/$maxMembers',
-                                            thumbnail: group
-                                                .thumbnail, // No thumbnail in new model; use placeholder or remove
+                                            thumbnail: group.thumbnail ?? '',
+                                            approve: group.approve ?? true,
+                                            field: group.field ?? '기타',
+                                            attendance:
+                                                group.attendance ?? '자율',
+                                            meet: group.meet ?? '온라인',
+                                            mood: group.mood ?? '자유',
                                             onPressed: () => Get.toNamed(
                                               Routes.studyDetail,
                                               arguments: group.id,
@@ -183,11 +189,16 @@ class HomePage extends GetView<HomeController> {
                                           )
                                         : OtherStudyBox(
                                             title: group.title,
-                                            subtitle: group.description,
+                                            subtitle: group.description ?? '',
                                             memberCount:
                                                 '$numMembers/$maxMembers',
-                                            thumbnail: group
-                                                .thumbnail, // No thumbnail in new model; use placeholder or remove
+                                            thumbnail: group.thumbnail ?? '',
+                                            approve: group.approve ?? true,
+                                            field: group.field ?? '기타',
+                                            attendance:
+                                                group.attendance ?? '자율',
+                                            meet: group.meet ?? '온라인',
+                                            mood: group.mood ?? '자유',
                                             onPressed: () => Get.toNamed(
                                               Routes.studyDetail,
                                               arguments: group.id,
@@ -208,14 +219,13 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-  // 카테고리 탭 버튼 위젯
   Widget _buildCategoryTab(String label, String value) {
     return GestureDetector(
       onTap: () => controller.setCategory(value),
       child: Obx(() {
         final isSelected = controller.selectedCategory.value == value;
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
           decoration: BoxDecoration(
             color: isSelected ? AppColors.point : AppColors.grayscale0,
             border: Border.all(

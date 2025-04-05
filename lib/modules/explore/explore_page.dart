@@ -4,10 +4,13 @@ import 'package:team_3_frontend/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
+import 'package:team_3_frontend/widgets/apply_study.dart';
 import 'package:team_3_frontend/widgets/box.dart';
 import 'package:team_3_frontend/modules/explore/explore_controller.dart';
+import 'package:team_3_frontend/widgets/other_study_box.dart';
 import 'search/search_page.dart';
 import 'search/search_controller.dart';
+
 
 class ExplorePage extends GetView<ExploreController> {
   const ExplorePage({super.key});
@@ -31,7 +34,7 @@ class ExplorePage extends GetView<ExploreController> {
                 endIndent: 16,
                 height: 24),
             _buildSectionTitle(),
-            // Expanded(child: _buildStudyListView()),
+            Expanded(child: _buildStudyListView()),
           ],
         ),
       ),
@@ -123,7 +126,7 @@ class ExplorePage extends GetView<ExploreController> {
         },
         child: Ink(
           decoration: BoxDecoration(
-            color: AppColors.grayscale0,
+            color: AppColors.background,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(
@@ -178,24 +181,51 @@ class ExplorePage extends GetView<ExploreController> {
       ),
     );
   }
+  Widget _buildStudyListView() {
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
 
-  // Widget _buildStudyListView() {
-  //   return Obx(() => ListView.separated(
-  //         padding: const EdgeInsets.symmetric(horizontal: 20),
-  //         itemCount: controller.filteredList.length,
-  //         separatorBuilder: (_, __) => const SizedBox(height: 12),
-  //         itemBuilder: (context, index) {
-  //           final group = controller.filteredList[index];
-  //           return OtherStudyBox(
-  //             title: group.title,
-  //             subtitle: group.description,
-  //             memberCount: '${group.numMembers}/${group.maxMembers}',
-  //             thumbnail: '',
-  //             onPressed: () {
-  //               showStudyDetailDialog(context, group);
-  //             },
-  //           );
-  //         },
-  //       ));
-  // }
+      // ✅ 선택된 카테고리에 따라 필터링
+      final filteredList = controller.studyList.where((group) {
+        final selected = controller.selectedCategory.value;
+        return selected == '스터디'
+            ? group.category == 'study'
+            : group.category == 'club';
+      }).toList();
+
+      return ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        itemCount: filteredList.length,
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
+        itemBuilder: (context, index) {
+          final group = filteredList[index];
+          return OtherStudyBox(
+            title: group.title,
+            subtitle: group.description,
+            memberCount: '${group.numMembers}/${group.maxMembers}',
+            thumbnail: group.thumbnail,
+            approve: group.approve,
+            field: group.field,
+            attendance: group.attendance,
+            meet: group.meet,
+            mood: group.mood,
+            onPressed: () {
+              showStudyDetailDialog(context, {
+                'title': group.title,
+                'description': group.description,
+                'thumbnail': group.thumbnail,
+                'num_members': group.numMembers,
+                'max_members': group.maxMembers,
+                'attendance': group.attendance,
+                'meet': group.meet,
+                'approve': group.approve,
+              });
+            },
+          );
+        },
+      );
+    });
+  }
 }

@@ -81,21 +81,22 @@ _$StudyGroupImpl _$$StudyGroupImplFromJson(Map<String, dynamic> json) =>
     _$StudyGroupImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
-      thumbnail: json['thumbnail'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       category: json['category'] as String,
       maxMembers: (json['max_members'] as num).toInt(),
       numMembers: (json['num_members'] as num).toInt(),
-      attendance: json['attendance'] as String,
-      meet: json['meet'] as String,
-      mood: json['mood'] as String,
+      attendance: json['attendance'] as String?,
+      meet: json['meet'] as String?,
+      mood: json['mood'] as String?,
+      thumbnail: json['thumbnail'] as String?,
+      approve: json['approve'] as bool?,
+      field: json['field'] as String?,
     );
 
 Map<String, dynamic> _$$StudyGroupImplToJson(_$StudyGroupImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'thumbnail': instance.thumbnail,
       'description': instance.description,
       'category': instance.category,
       'max_members': instance.maxMembers,
@@ -103,4 +104,7 @@ Map<String, dynamic> _$$StudyGroupImplToJson(_$StudyGroupImpl instance) =>
       'attendance': instance.attendance,
       'meet': instance.meet,
       'mood': instance.mood,
+      'thumbnail': instance.thumbnail,
+      'approve': instance.approve,
+      'field': instance.field,
     };

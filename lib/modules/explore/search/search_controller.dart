@@ -1,20 +1,24 @@
-// search_controller.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:team_3_frontend/data/models/study_group.dart';
+import 'package:team_3_frontend/data/services/api_service.dart';
 
 class Ex_SearchController extends GetxController {
   final searchText = ''.obs;
   final searching = false.obs;
   final selectedFilters = <String>[].obs;
-  final allGroups = [].obs;
-  RxList filteredGroups = [].obs;
-  late TextEditingController textController;
+
+  final allGroups = <RecommendedGroup>[].obs;
+  final filteredGroups = <RecommendedGroup>[].obs;
 
   final categories = ['스터디', '소모임'];
   final fields = ['영어', '외국어', '자격증', '학교 공부', '자기개발', '독서', '토론', '토익', '코딩'];
   final attendances = ['매일 출석', '자율 출석'];
   final meets = ['오프라인', '온라인', '모임 내 협의'];
   final moods = ['친목', '집중', '친목 금지', '자율'];
+
+  late TextEditingController textController;
+  final ApiService _apiService = ApiService();
 
   @override
   void onInit() {
@@ -24,19 +28,18 @@ class Ex_SearchController extends GetxController {
 
   void onSearchTextChanged(String text) {
     searchText.value = text;
-    _filterGroups();
   }
 
   void setSearchActive(bool value) {
     searching.value = value;
-    _filterGroups();
+    performServerSearch();
   }
 
   void clearSearch() {
     searchText.value = '';
     textController.clear();
     searching.value = false;
-    filteredGroups.value = allGroups;
+    filteredGroups.clear();
   }
 
   void toggleFilter(String value) {
@@ -45,29 +48,7 @@ class Ex_SearchController extends GetxController {
     } else {
       selectedFilters.add(value);
     }
-    _filterGroups();
-  }
-
-  void _filterGroups() {
-    final query = searchText.value.toLowerCase();
-
-    filteredGroups.value = allGroups.where((group) {
-      final matchesTitle = group.title.toLowerCase().contains(query);
-      final matchesFilters = selectedFilters.every((filter) {
-        return group.title.contains(filter) ||
-            group.description.contains(filter) ||
-            group.field.contains(filter) ||
-            group.attendance.name.contains(filter) ||
-            group.mood.name.contains(filter) ||
-            group.meet.name.contains(filter);
-      });
-      return matchesTitle && matchesFilters;
-    }).toList();
-  }
-
-  void loadInitialData(List groups) {
-    allGroups.value = groups;
-    filteredGroups.value = groups;
+    performServerSearch();
   }
 
   void resetAll() {
@@ -75,7 +56,42 @@ class Ex_SearchController extends GetxController {
     textController.clear();
     searching.value = false;
     selectedFilters.clear();
-    filteredGroups.value = allGroups;
+    filteredGroups.clear();
+  }
+
+  Future<void> performServerSearch() async {
+    try {
+      final params = _buildSearchQuery();
+      final result = await _apiService.searchGroups(params);
+      allGroups.value = result;
+      filteredGroups.value = result;
+    } catch (e) {
+      print('🔴 검색 실패: $e');
+    }
+  }
+
+  Map<String, String> _buildSearchQuery() {
+    final Map<String, String> query = {};
+
+    for (final filter in selectedFilters) {
+      if (categories.contains(filter)) {
+        query['category'] = filter == '스터디' ? 'study' : 'club';
+      } else if (fields.contains(filter)) {
+        query['field'] = filter;
+      } else if (attendances.contains(filter)) {
+        query['attendance'] = filter == '매일 출석' ? 'every' : 'free';
+      } else if (meets.contains(filter)) {
+        query['meet'] = filter;
+      } else if (moods.contains(filter)) {
+        query['mood'] = filter;
+      }
+    }
+
+    if (searchText.value.isNotEmpty) {
+      query['keyword'] = searchText.value;
+    }
+
+    return query;
   }
 
   @override

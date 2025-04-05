@@ -19,7 +19,8 @@ class CommunityPage extends GetView<CommunityController> {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            width: double.infinity,
+            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             decoration: BoxDecoration(
               color: AppColors.grayscale25,
               borderRadius: BorderRadius.circular(10.0),
@@ -140,6 +141,8 @@ class ChatRoomTab extends StatelessWidget {
         color: AppColors.grayscale25,
         height: 1,
         thickness: 1,
+        indent: 16,
+        endIndent: 16,
       ),
       itemBuilder: (context, index) {
         final chatRoom = chatRooms[index];
@@ -254,10 +257,10 @@ class FriendsTab extends StatelessWidget {
           final friend = friends.first;
           return Column(
             children: [
-              Divider(thickness: 0.5, color: AppColors.grayscale50),
+              Divider(thickness: 0.5, color: AppColors.grayscale50, indent: 16, endIndent: 16),
               ListTile(
                 leading: CircleAvatar(
-                  radius: 24,
+                  radius: 26,
                   backgroundImage: friend['imageUrl'] != null
                       ? NetworkImage(friend['imageUrl'])
                       : null,
@@ -271,7 +274,7 @@ class FriendsTab extends StatelessWidget {
                 ),
                 subtitle: Text(
                   friend['status'],
-                  style: AppTypography.b1R14,
+                  style: AppTypography.b2R13.copyWith(color: AppColors.grayscale100),
                 ),
                 trailing: IconButton(
                   icon:
@@ -284,7 +287,7 @@ class FriendsTab extends StatelessWidget {
                   // 친구 클릭 시 동작 (미구현)
                 },
               ),
-              Divider(thickness: 0.5, color: AppColors.grayscale50),
+              Divider(thickness: 0.5, color: AppColors.grayscale50, indent: 16, endIndent: 16,),
             ],
           );
         } else if (index == 2) {
@@ -303,7 +306,7 @@ class FriendsTab extends StatelessWidget {
         final friend = friends[index - 3];
         return ListTile(
           leading: CircleAvatar(
-            radius: 24,
+            radius: 26,
             backgroundImage: friend['imageUrl'] != null
                 ? NetworkImage(friend['imageUrl'])
                 : null,
@@ -317,7 +320,7 @@ class FriendsTab extends StatelessWidget {
           ),
           subtitle: Text(
             friend['status'],
-            style: AppTypography.b1R14,
+            style: AppTypography.b2R13.copyWith(color: AppColors.grayscale100),
           ),
           trailing: IconButton(
             icon: Assets.icons.friendTable.svg(width: 17),
@@ -343,7 +346,7 @@ class FriendsTab extends StatelessWidget {
         },
         child: Ink(
           decoration: BoxDecoration(
-            color: AppColors.grayscale0,
+            color: AppColors.background,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(

@@ -8,6 +8,7 @@ import '../../utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:http_parser/http_parser.dart';
+import 'package:team_3_frontend/data/models/study_group.dart';
 
 import '../models/user.dart';
 
@@ -182,7 +183,7 @@ class ApiService {
     final request = http.MultipartRequest("POST", url);
     request.headers.addAll(_authHeaders(accessToken!));
 
-    request.fields["isShared"] = isShared.toString();
+    request.fields["is_shared"] = isShared.toString();
     request.fields["title"] = title;
     request.fields["content"] = content;
 
@@ -210,6 +211,48 @@ class ApiService {
         throw data['error'];
       }
       throw '서버와의 연결이 원활하지 않습니다.';
+    }
+  }
+
+  Future<List<RecommendedGroup>> fetchDiscoverGroups() async {
+    final url = Uri.parse("$baseUrl/discover");
+    final token = Get.find<AuthService>().token;
+
+    final response = await http.get(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final List groups = data['groups'];
+      return groups.map((e) => RecommendedGroup.fromJson(e)).toList(); // ✅ 타입 맞춤
+    } else {
+      throw Exception("추천 스터디 불러오기 실패");
+    }
+  }
+
+  Future<List<RecommendedGroup>> searchGroups(Map<String, String> query) async {
+    final token = Get.find<AuthService>().token;
+    final uri = Uri.parse("$baseUrl/search").replace(queryParameters: query);
+
+    final response = await http.get(
+      uri,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final List groups = data['groups'];
+      return groups.map((e) => RecommendedGroup.fromJson(e)).toList();
+    } else {
+      throw Exception("검색 실패");
     }
   }
 

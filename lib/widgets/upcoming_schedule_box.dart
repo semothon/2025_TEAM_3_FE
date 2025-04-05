@@ -22,43 +22,43 @@ class UpcomingScheduleBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Box(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // 왼쪽 정보
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // 몇 시간 후
                 Text(
                   '$hoursLeft시간 후',
                   style: AppTypography.t4SB12.copyWith(
-                    color: Color(0xFFFF4040),
+                    color: const Color(0xFFFF4040),
                   ),
                 ),
-                const SizedBox(height: 4),
-                // 모임 이름
+                const SizedBox(height: 2),
                 Text(
                   meetingName,
                   style: AppTypography.t3SB16,
                 ),
-                const SizedBox(height: 15),
-                // 일시
+                const SizedBox(height: 8),
                 Text(
                   '일시: $time',
-                  style: AppTypography.b0L12
-                      .copyWith(color: AppColors.grayscale100),
+                  style: AppTypography.b0L12.copyWith(
+                    color: AppColors.grayscale100,
+                  ),
                 ),
-                const SizedBox(height: 4),
-                // 장소
                 Text(
                   '장소: $location',
-                  style: AppTypography.b0L12
-                      .copyWith(color: AppColors.grayscale100),
+                  style: AppTypography.b0L12.copyWith(
+                    color: AppColors.grayscale100,
+                  ),
                 ),
               ],
             ),
+
+            // 오른쪽 아이콘
             Assets.icons.upcomingScheduleArrow.svg(height: 20),
           ],
         ),

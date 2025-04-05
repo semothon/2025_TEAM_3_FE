@@ -124,7 +124,6 @@ class SearchPage extends GetView<Ex_SearchController> {
                         .toList(),
                   ),
                 )),
-
             Obx(() {
               final isSearching = controller.searching.value;
               final groups = controller.filteredGroups;
@@ -163,20 +162,32 @@ class SearchPage extends GetView<Ex_SearchController> {
                             ],
                           ),
                         ),
-                        // ...groups.map(
-                        //   (group) => Padding(
-                        //     padding: const EdgeInsets.only(bottom: 12),
-                        //     child: OtherStudyBox(
-                        //       title: group.title,
-                        //       subtitle: group.description,
-                        //       memberCount:
-                        //           '${group.numMembers}/${group.maxMembers}',
-                        //       thumbnail: group.thumbnail,
-                        //       onPressed: () =>
-                        //           showStudyDetailDialog(context, group),
-                        //     ),
-                        //   ),
-                        // ),
+                        if (groups.isEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Text("검색 결과가 없습니다."),
+                          )
+                        else
+                          ...groups.map(
+                            (group) => Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: OtherStudyBox(
+                                title: group.title,
+                                subtitle: group.description,
+                                memberCount:
+                                    '${group.numMembers}/${group.maxMembers}',
+                                thumbnail: group.thumbnail,
+                                approve: group.approve,
+                                field: group.field,
+                                attendance: group.attendance,
+                                meet: group.meet,
+                                mood: group.mood,
+                                onPressed: () {
+                                  // TODO: 상세 페이지 이동 또는 팝업
+                                },
+                              ),
+                            ),
+                          ),
                       ]
                     ],
                   ),
@@ -242,15 +253,15 @@ class SearchPage extends GetView<Ex_SearchController> {
     );
   }
 
-  // String _getAttendanceText(AttendanceType type) {
-  //   switch (type) {
-  //     case AttendanceType.every:
-  //       return '매일 출석';
-  //     case AttendanceType.free:
-  //       return '자율 출석';
-  //     case AttendanceType.TBD:
-  //     default:
-  //       return '모임 내 협의';
-  //   }
-  // }
+// String _getAttendanceText(AttendanceType type) {
+//   switch (type) {
+//     case AttendanceType.every:
+//       return '매일 출석';
+//     case AttendanceType.free:
+//       return '자율 출석';
+//     case AttendanceType.TBD:
+//     default:
+//       return '모임 내 협의';
+//   }
+// }
 }

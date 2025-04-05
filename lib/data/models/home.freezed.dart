@@ -20,11 +20,10 @@ Home _$HomeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Home {
-  String get name => throw _privateConstructorUsedError; // 사용자 이름
-  TodaySchedule get todaySchedule =>
-      throw _privateConstructorUsedError; // 오늘의 일정 정보
+  String get name => throw _privateConstructorUsedError;
+  TodaySchedule get todaySchedule => throw _privateConstructorUsedError;
   List<UpcomingSchedule> get upcomingSchedules =>
-      throw _privateConstructorUsedError; // 다가오는 일정 리스트
+      throw _privateConstructorUsedError;
   JoinedGroups get joinedGroups => throw _privateConstructorUsedError;
 
   /// Serializes this Home to a JSON map.
@@ -184,12 +183,9 @@ class _$HomeImpl implements _Home {
 
   @override
   final String name;
-// 사용자 이름
   @override
   final TodaySchedule todaySchedule;
-// 오늘의 일정 정보
   final List<UpcomingSchedule> _upcomingSchedules;
-// 오늘의 일정 정보
   @override
   List<UpcomingSchedule> get upcomingSchedules {
     if (_upcomingSchedules is EqualUnmodifiableListView)
@@ -198,7 +194,6 @@ class _$HomeImpl implements _Home {
     return EqualUnmodifiableListView(_upcomingSchedules);
   }
 
-// 다가오는 일정 리스트
   @override
   final JoinedGroups joinedGroups;
 
@@ -252,11 +247,11 @@ abstract class _Home implements Home {
   factory _Home.fromJson(Map<String, dynamic> json) = _$HomeImpl.fromJson;
 
   @override
-  String get name; // 사용자 이름
+  String get name;
   @override
-  TodaySchedule get todaySchedule; // 오늘의 일정 정보
+  TodaySchedule get todaySchedule;
   @override
-  List<UpcomingSchedule> get upcomingSchedules; // 다가오는 일정 리스트
+  List<UpcomingSchedule> get upcomingSchedules;
   @override
   JoinedGroups get joinedGroups;
 
@@ -274,7 +269,7 @@ TodaySchedule _$TodayScheduleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TodaySchedule {
-  int get count => throw _privateConstructorUsedError; // 오늘의 일정 수
+  int get count => throw _privateConstructorUsedError;
   List<String> get groupNames => throw _privateConstructorUsedError;
 
   /// Serializes this TodaySchedule to a JSON map.
@@ -379,9 +374,7 @@ class _$TodayScheduleImpl implements _TodaySchedule {
 
   @override
   final int count;
-// 오늘의 일정 수
   final List<String> _groupNames;
-// 오늘의 일정 수
   @override
   List<String> get groupNames {
     if (_groupNames is EqualUnmodifiableListView) return _groupNames;
@@ -434,7 +427,7 @@ abstract class _TodaySchedule implements TodaySchedule {
       _$TodayScheduleImpl.fromJson;
 
   @override
-  int get count; // 오늘의 일정 수
+  int get count;
   @override
   List<String> get groupNames;
 
@@ -452,12 +445,12 @@ UpcomingSchedule _$UpcomingScheduleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UpcomingSchedule {
-  int get id => throw _privateConstructorUsedError; // 일정 ID
-  String get title => throw _privateConstructorUsedError; // 일정 제목
-  String get memo => throw _privateConstructorUsedError; // 일정 메모
+  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get memo => throw _privateConstructorUsedError;
   @JsonKey(name: 'start_datetime')
-  DateTime get startDatetime => throw _privateConstructorUsedError; // 시작 시간
-  String get location => throw _privateConstructorUsedError; // 장소
+  DateTime get startDatetime => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'seconds_left')
   int get secondsLeft => throw _privateConstructorUsedError;
 
@@ -619,20 +612,15 @@ class _$UpcomingScheduleImpl implements _UpcomingSchedule {
 
   @override
   final int id;
-// 일정 ID
   @override
   final String title;
-// 일정 제목
   @override
   final String memo;
-// 일정 메모
   @override
   @JsonKey(name: 'start_datetime')
   final DateTime startDatetime;
-// 시작 시간
   @override
   final String location;
-// 장소
   @override
   @JsonKey(name: 'seconds_left')
   final int secondsLeft;
@@ -694,16 +682,16 @@ abstract class _UpcomingSchedule implements UpcomingSchedule {
       _$UpcomingScheduleImpl.fromJson;
 
   @override
-  int get id; // 일정 ID
+  int get id;
   @override
-  String get title; // 일정 제목
+  String get title;
   @override
-  String get memo; // 일정 메모
+  String get memo;
   @override
   @JsonKey(name: 'start_datetime')
-  DateTime get startDatetime; // 시작 시간
+  DateTime get startDatetime;
   @override
-  String get location; // 장소
+  String get location;
   @override
   @JsonKey(name: 'seconds_left')
   int get secondsLeft;
@@ -722,8 +710,7 @@ JoinedGroups _$JoinedGroupsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$JoinedGroups {
-  List<StudyGroup> get study =>
-      throw _privateConstructorUsedError; // 스터디 모임 리스트
+  List<StudyGroup> get study => throw _privateConstructorUsedError;
   List<StudyGroup> get club => throw _privateConstructorUsedError;
 
   /// Serializes this JoinedGroups to a JSON map.
@@ -836,9 +823,7 @@ class _$JoinedGroupsImpl implements _JoinedGroups {
     return EqualUnmodifiableListView(_study);
   }
 
-// 스터디 모임 리스트
   final List<StudyGroup> _club;
-// 스터디 모임 리스트
   @override
   List<StudyGroup> get club {
     if (_club is EqualUnmodifiableListView) return _club;
@@ -892,7 +877,7 @@ abstract class _JoinedGroups implements JoinedGroups {
       _$JoinedGroupsImpl.fromJson;
 
   @override
-  List<StudyGroup> get study; // 스터디 모임 리스트
+  List<StudyGroup> get study;
   @override
   List<StudyGroup> get club;
 
@@ -910,19 +895,20 @@ StudyGroup _$StudyGroupFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StudyGroup {
-  int get id => throw _privateConstructorUsedError; // 모임 ID
-  String get title => throw _privateConstructorUsedError; // 모임 제목
-  String get thumbnail => throw _privateConstructorUsedError; // 모임 이미지 URL
-  String get description => throw _privateConstructorUsedError; // 모임 설명
-  String get category =>
-      throw _privateConstructorUsedError; // 카테고리 (study/club)
+  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'max_members')
-  int get maxMembers => throw _privateConstructorUsedError; // 최대 인원
+  int get maxMembers => throw _privateConstructorUsedError;
   @JsonKey(name: 'num_members')
-  int get numMembers => throw _privateConstructorUsedError; // 현재 인원
-  String get attendance => throw _privateConstructorUsedError; // 출석 방식
-  String get meet => throw _privateConstructorUsedError; // 모임 방식
-  String get mood => throw _privateConstructorUsedError;
+  int get numMembers => throw _privateConstructorUsedError;
+  String? get attendance => throw _privateConstructorUsedError;
+  String? get meet => throw _privateConstructorUsedError;
+  String? get mood => throw _privateConstructorUsedError;
+  String? get thumbnail => throw _privateConstructorUsedError;
+  bool? get approve => throw _privateConstructorUsedError;
+  String? get field => throw _privateConstructorUsedError;
 
   /// Serializes this StudyGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -943,14 +929,16 @@ abstract class $StudyGroupCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
-      String thumbnail,
-      String description,
+      String? description,
       String category,
       @JsonKey(name: 'max_members') int maxMembers,
       @JsonKey(name: 'num_members') int numMembers,
-      String attendance,
-      String meet,
-      String mood});
+      String? attendance,
+      String? meet,
+      String? mood,
+      String? thumbnail,
+      bool? approve,
+      String? field});
 }
 
 /// @nodoc
@@ -970,14 +958,16 @@ class _$StudyGroupCopyWithImpl<$Res, $Val extends StudyGroup>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? thumbnail = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? category = null,
     Object? maxMembers = null,
     Object? numMembers = null,
-    Object? attendance = null,
-    Object? meet = null,
-    Object? mood = null,
+    Object? attendance = freezed,
+    Object? meet = freezed,
+    Object? mood = freezed,
+    Object? thumbnail = freezed,
+    Object? approve = freezed,
+    Object? field = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -988,14 +978,10 @@ class _$StudyGroupCopyWithImpl<$Res, $Val extends StudyGroup>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -1008,18 +994,30 @@ class _$StudyGroupCopyWithImpl<$Res, $Val extends StudyGroup>
           ? _value.numMembers
           : numMembers // ignore: cast_nullable_to_non_nullable
               as int,
-      attendance: null == attendance
+      attendance: freezed == attendance
           ? _value.attendance
           : attendance // ignore: cast_nullable_to_non_nullable
-              as String,
-      meet: null == meet
+              as String?,
+      meet: freezed == meet
           ? _value.meet
           : meet // ignore: cast_nullable_to_non_nullable
-              as String,
-      mood: null == mood
+              as String?,
+      mood: freezed == mood
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      thumbnail: freezed == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approve: freezed == approve
+          ? _value.approve
+          : approve // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      field: freezed == field
+          ? _value.field
+          : field // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -1035,14 +1033,16 @@ abstract class _$$StudyGroupImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
-      String thumbnail,
-      String description,
+      String? description,
       String category,
       @JsonKey(name: 'max_members') int maxMembers,
       @JsonKey(name: 'num_members') int numMembers,
-      String attendance,
-      String meet,
-      String mood});
+      String? attendance,
+      String? meet,
+      String? mood,
+      String? thumbnail,
+      bool? approve,
+      String? field});
 }
 
 /// @nodoc
@@ -1060,14 +1060,16 @@ class __$$StudyGroupImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? thumbnail = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? category = null,
     Object? maxMembers = null,
     Object? numMembers = null,
-    Object? attendance = null,
-    Object? meet = null,
-    Object? mood = null,
+    Object? attendance = freezed,
+    Object? meet = freezed,
+    Object? mood = freezed,
+    Object? thumbnail = freezed,
+    Object? approve = freezed,
+    Object? field = freezed,
   }) {
     return _then(_$StudyGroupImpl(
       id: null == id
@@ -1078,14 +1080,10 @@ class __$$StudyGroupImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: null == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -1098,18 +1096,30 @@ class __$$StudyGroupImplCopyWithImpl<$Res>
           ? _value.numMembers
           : numMembers // ignore: cast_nullable_to_non_nullable
               as int,
-      attendance: null == attendance
+      attendance: freezed == attendance
           ? _value.attendance
           : attendance // ignore: cast_nullable_to_non_nullable
-              as String,
-      meet: null == meet
+              as String?,
+      meet: freezed == meet
           ? _value.meet
           : meet // ignore: cast_nullable_to_non_nullable
-              as String,
-      mood: null == mood
+              as String?,
+      mood: freezed == mood
           ? _value.mood
           : mood // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      thumbnail: freezed == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      approve: freezed == approve
+          ? _value.approve
+          : approve // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      field: freezed == field
+          ? _value.field
+          : field // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1120,53 +1130,50 @@ class _$StudyGroupImpl implements _StudyGroup {
   const _$StudyGroupImpl(
       {required this.id,
       required this.title,
-      required this.thumbnail,
-      required this.description,
+      this.description,
       required this.category,
       @JsonKey(name: 'max_members') required this.maxMembers,
       @JsonKey(name: 'num_members') required this.numMembers,
-      required this.attendance,
-      required this.meet,
-      required this.mood});
+      this.attendance,
+      this.meet,
+      this.mood,
+      this.thumbnail,
+      this.approve,
+      this.field});
 
   factory _$StudyGroupImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudyGroupImplFromJson(json);
 
   @override
   final int id;
-// 모임 ID
   @override
   final String title;
-// 모임 제목
   @override
-  final String thumbnail;
-// 모임 이미지 URL
-  @override
-  final String description;
-// 모임 설명
+  final String? description;
   @override
   final String category;
-// 카테고리 (study/club)
   @override
   @JsonKey(name: 'max_members')
   final int maxMembers;
-// 최대 인원
   @override
   @JsonKey(name: 'num_members')
   final int numMembers;
-// 현재 인원
   @override
-  final String attendance;
-// 출석 방식
+  final String? attendance;
   @override
-  final String meet;
-// 모임 방식
+  final String? meet;
   @override
-  final String mood;
+  final String? mood;
+  @override
+  final String? thumbnail;
+  @override
+  final bool? approve;
+  @override
+  final String? field;
 
   @override
   String toString() {
-    return 'StudyGroup(id: $id, title: $title, thumbnail: $thumbnail, description: $description, category: $category, maxMembers: $maxMembers, numMembers: $numMembers, attendance: $attendance, meet: $meet, mood: $mood)';
+    return 'StudyGroup(id: $id, title: $title, description: $description, category: $category, maxMembers: $maxMembers, numMembers: $numMembers, attendance: $attendance, meet: $meet, mood: $mood, thumbnail: $thumbnail, approve: $approve, field: $field)';
   }
 
   @override
@@ -1176,8 +1183,6 @@ class _$StudyGroupImpl implements _StudyGroup {
             other is _$StudyGroupImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.category, category) ||
@@ -1189,13 +1194,29 @@ class _$StudyGroupImpl implements _StudyGroup {
             (identical(other.attendance, attendance) ||
                 other.attendance == attendance) &&
             (identical(other.meet, meet) || other.meet == meet) &&
-            (identical(other.mood, mood) || other.mood == mood));
+            (identical(other.mood, mood) || other.mood == mood) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
+            (identical(other.approve, approve) || other.approve == approve) &&
+            (identical(other.field, field) || other.field == field));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, thumbnail,
-      description, category, maxMembers, numMembers, attendance, meet, mood);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      category,
+      maxMembers,
+      numMembers,
+      attendance,
+      meet,
+      mood,
+      thumbnail,
+      approve,
+      field);
 
   /// Create a copy of StudyGroup
   /// with the given fields replaced by the non-null parameter values.
@@ -1217,40 +1238,46 @@ abstract class _StudyGroup implements StudyGroup {
   const factory _StudyGroup(
       {required final int id,
       required final String title,
-      required final String thumbnail,
-      required final String description,
+      final String? description,
       required final String category,
       @JsonKey(name: 'max_members') required final int maxMembers,
       @JsonKey(name: 'num_members') required final int numMembers,
-      required final String attendance,
-      required final String meet,
-      required final String mood}) = _$StudyGroupImpl;
+      final String? attendance,
+      final String? meet,
+      final String? mood,
+      final String? thumbnail,
+      final bool? approve,
+      final String? field}) = _$StudyGroupImpl;
 
   factory _StudyGroup.fromJson(Map<String, dynamic> json) =
       _$StudyGroupImpl.fromJson;
 
   @override
-  int get id; // 모임 ID
+  int get id;
   @override
-  String get title; // 모임 제목
+  String get title;
   @override
-  String get thumbnail; // 모임 이미지 URL
+  String? get description;
   @override
-  String get description; // 모임 설명
-  @override
-  String get category; // 카테고리 (study/club)
+  String get category;
   @override
   @JsonKey(name: 'max_members')
-  int get maxMembers; // 최대 인원
+  int get maxMembers;
   @override
   @JsonKey(name: 'num_members')
-  int get numMembers; // 현재 인원
+  int get numMembers;
   @override
-  String get attendance; // 출석 방식
+  String? get attendance;
   @override
-  String get meet; // 모임 방식
+  String? get meet;
   @override
-  String get mood;
+  String? get mood;
+  @override
+  String? get thumbnail;
+  @override
+  bool? get approve;
+  @override
+  String? get field;
 
   /// Create a copy of StudyGroup
   /// with the given fields replaced by the non-null parameter values.

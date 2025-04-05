@@ -81,6 +81,21 @@ class $AssetsIconsGen {
   /// File path: assets/icons/timetable.svg
   SvgGenImage get timetable => const SvgGenImage('assets/icons/timetable.svg');
 
+  /// File path: assets/icons/tree_0.svg
+  SvgGenImage get tree0 => const SvgGenImage('assets/icons/tree_0.svg');
+
+  /// File path: assets/icons/tree_1.svg
+  SvgGenImage get tree1 => const SvgGenImage('assets/icons/tree_1.svg');
+
+  /// File path: assets/icons/tree_2.svg
+  SvgGenImage get tree2 => const SvgGenImage('assets/icons/tree_2.svg');
+
+  /// File path: assets/icons/tree_3.svg
+  SvgGenImage get tree3 => const SvgGenImage('assets/icons/tree_3.svg');
+
+  /// File path: assets/icons/tree_4.svg
+  SvgGenImage get tree4 => const SvgGenImage('assets/icons/tree_4.svg');
+
   /// File path: assets/icons/upcoming_schedule_arrow.svg
   SvgGenImage get upcomingScheduleArrow =>
       const SvgGenImage('assets/icons/upcoming_schedule_arrow.svg');
@@ -106,6 +121,11 @@ class $AssetsIconsGen {
     studyDetailChat,
     studyDetailPin,
     timetable,
+    tree0,
+    tree1,
+    tree2,
+    tree3,
+    tree4,
     upcomingScheduleArrow,
   ];
 }
