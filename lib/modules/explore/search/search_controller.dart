@@ -10,7 +10,7 @@ class Ex_SearchController extends GetxController {
   // 필터 옵션
   final categories = ['스터디', '소모임'];
   final fields = ['영어', '외국어', '자격증', '학교 공부', '자기개발', '독서', '토론', '토익', '코딩'];
-  final attendances = ['매일 출석', '자율 출석', '모임 내 협의'];
+  final attendances = ['매일 출석', '자율 출석'];
   final meets = ['오프라인', '온라인', '모임 내 협의'];
   final moods = ['친목', '집중', '친목 금지', '자율'];
 
