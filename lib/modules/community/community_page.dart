@@ -89,7 +89,7 @@ class CommunityPage extends GetView<CommunityController> {
       titleSpacing: 20,
       title: Row(
         children: [
-          Assets.icons.logo.svg(height: 50),
+          Assets.icons.logo.svg(height: 45),
           const Spacer(),
           IconButton(
             icon: Assets.icons.notification.svg(height: 24),
@@ -112,14 +112,14 @@ class ChatRoomTab extends StatelessWidget {
     {
       'title': '토익 스터디',
       'memberCount': 14,
-      'unreadCount': 2,
+      'unreadCount': 1,
       'lastMessage': '저 오늘 스터디 가요!! 만나서 가실분...',
       'imageUrl': 'https://img.hankyung.com/photo/202406/01.37074220.1.jpg',
     },
     {
       'title': '우쿨렐레 소모임',
       'memberCount': 8,
-      'unreadCount': 0,
+      'unreadCount': 2,
       'lastMessage': '전 다이소에서 샀어요!',
       'imageUrl': 'https://cdn.eroun.net/news/photo/201904/5248_19828_3216.jpg',
     },
@@ -261,6 +261,7 @@ class FriendsTab extends StatelessWidget {
               ListTile(
                 leading: CircleAvatar(
                   radius: 26,
+                  backgroundColor: AppColors.grayscale25,
                   backgroundImage: friend['imageUrl'] != null
                       ? NetworkImage(friend['imageUrl'])
                       : null,
@@ -307,11 +308,12 @@ class FriendsTab extends StatelessWidget {
         return ListTile(
           leading: CircleAvatar(
             radius: 26,
+            backgroundColor: AppColors.grayscale25,
             backgroundImage: friend['imageUrl'] != null
                 ? NetworkImage(friend['imageUrl'])
                 : null,
             child: friend['imageUrl'] == null
-                ? const Icon(Icons.person, size: 24, color: Colors.grey)
+                ? const Icon(Icons.person, size: 32, color: Colors.grey)
                 : null,
           ),
           title: Text(

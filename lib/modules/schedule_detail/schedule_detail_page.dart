@@ -67,7 +67,7 @@ class ScheduleDetailPage extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   '${schedule.startDatetime.year}/${schedule.startDatetime.month.toString().padLeft(2, '0')}/${schedule.startDatetime.day.toString().padLeft(2, '0')}, ${schedule.startDatetime.hour.toString().padLeft(2, '0')}:${schedule.startDatetime.minute.toString().padLeft(2, '0')}',
-                  style: AppTypography.b3R12,
+                  style: AppTypography.b1R14,
                 ),
 
                 const SizedBox(height: 16),
@@ -79,7 +79,7 @@ class ScheduleDetailPage extends StatelessWidget {
                       .copyWith(color: AppColors.grayscale100),
                 ),
                 const SizedBox(height: 4),
-                Text(schedule.location, style: AppTypography.b3R12),
+                Text(schedule.location, style: AppTypography.b1R14),
                 const SizedBox(height: 12),
                 Row(
                   children: [
@@ -87,8 +87,8 @@ class ScheduleDetailPage extends StatelessWidget {
                       backgroundColor: Colors.green,
                       radius: 14,
                       child: Text('N',
-                          style: AppTypography.b3R12
-                              .copyWith(color: Colors.white)),
+                          style: AppTypography.b1R14
+                              .copyWith(color: Colors.white, fontWeight: FontWeight.w900)),
                     ),
                     const SizedBox(width: 8),
                     CircleAvatar(
@@ -109,7 +109,7 @@ class ScheduleDetailPage extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   schedule.memo,
-                  style: AppTypography.b3R12,
+                  style: AppTypography.b1R14,
                 ),
               ],
             ),

@@ -49,15 +49,11 @@ class ExplorePage extends GetView<ExploreController> {
       titleSpacing: 20,
       title: Row(
         children: [
-          SvgPicture.asset(
-            'assets/icons/logo.svg',
-            height: 50,
-          ),
+          Assets.icons.logo.svg(height: 45),
           const Spacer(),
           IconButton(
               icon: SvgPicture.asset(
                 'assets/icons/search.svg',
-                width: 24,
                 height: 24,
               ),
               onPressed: () {

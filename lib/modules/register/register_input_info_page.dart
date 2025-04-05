@@ -25,7 +25,7 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Assets.icons.logo.svg(width: 49),
+                    Assets.icons.logo.svg(height: 45),
                     SizedBox(height: 30),
                     Text.rich(
                       TextSpan(
@@ -89,7 +89,7 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                               selectedColor: AppColors.point,
                               backgroundColor: Colors.white,
                               side: BorderSide(
-                                color: AppColors.grayscale100,
+                                color: AppColors.grayscale50,
                                 width: 1,
                               ),
                               padding: EdgeInsets.symmetric(
@@ -141,7 +141,7 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                               selectedColor: AppColors.point,
                               backgroundColor: Colors.white,
                               side: BorderSide(
-                                color: AppColors.grayscale100,
+                                color: AppColors.grayscale50,
                                 width: 1,
                               ),
                               padding: EdgeInsets.symmetric(
@@ -196,7 +196,7 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                               selectedColor: AppColors.point,
                               backgroundColor: Colors.white,
                               side: BorderSide(
-                                color: AppColors.grayscale100,
+                                color: AppColors.grayscale50,
                                 width: 1,
                               ),
                               padding: EdgeInsets.symmetric(
@@ -272,7 +272,7 @@ class RegisterInputInfoPage extends GetView<RegisterController> {
                                 ),
                                 backgroundColor: Colors.white,
                                 side: BorderSide(
-                                  color: AppColors.grayscale100,
+                                  color: AppColors.grayscale50,
                                   width: 1,
                                 ),
                                 padding: EdgeInsets.symmetric(

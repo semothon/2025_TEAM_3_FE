@@ -20,7 +20,7 @@ class RegisterPage extends GetView<RegisterController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Assets.icons.logo.svg(width: 49),
+                    Assets.icons.logo.svg(height: 45),
                     SizedBox(height: 30),
                     Text(
                       '회원가입',

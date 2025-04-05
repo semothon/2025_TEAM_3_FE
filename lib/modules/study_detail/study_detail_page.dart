@@ -34,17 +34,25 @@ class StudyDetailPage extends GetView<StudyDetailController> {
           ),
           const SizedBox(width: 16),
         ],
-        bottom: TabBar(
-          controller: controller.tabController,
-          tabs: [
-            Tab(text: '정보'),
-            Tab(text: '공유 기록'),
-            Tab(text: '개인 기록'),
-          ],
-          labelColor: AppColors.point,
-          unselectedLabelColor: AppColors.grayscale75,
-          indicatorColor: AppColors.point,
-          indicatorWeight: 3,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashFactory: NoSplash.splashFactory,
+            ),
+            child: TabBar(
+              controller: controller.tabController,
+              tabs: const [
+                Tab(text: '정보'),
+                Tab(text: '공유 기록'),
+                Tab(text: '개인 기록'),
+              ],
+              labelColor: AppColors.point,
+              unselectedLabelColor: AppColors.grayscale75,
+              indicatorColor: AppColors.point,
+              indicatorWeight: 3,
+            ),
+          ),
         ),
       ),
       body: Obx(
@@ -131,9 +139,11 @@ class StudyDetailPage extends GetView<StudyDetailController> {
             // 모임 방식 및 출석 방식 태그
             Row(
               children: [
-                _buildTag(group.meet),
+                _buildTag(_translateApprove(group.approve)),
                 const SizedBox(width: 8),
-                _buildTag(group.attendance),
+                _buildTag(_translateMeet(group.meet)),
+                const SizedBox(width: 8),
+                _buildTag(_translateAttendance(group.attendance)),
               ],
             ),
             const SizedBox(height: 20),
@@ -175,7 +185,8 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                                     schedule.title, // Fallback if title is null
                                     style: AppTypography.b1R14,
                                   ),
-                                  const Spacer(), // Use Spacer instead of Expanded with SizedBox
+                                  const Spacer(),
+                                  // Use Spacer instead of Expanded with SizedBox
                                   Text(
                                     '${DateFormat('M/d HH:mm').format(schedule.startDatetime)}, ${schedule.location}',
                                     style: AppTypography.b1R14.copyWith(
@@ -282,6 +293,35 @@ class StudyDetailPage extends GetView<StudyDetailController> {
         ),
       ),
     );
+  }
+
+  String _translateApprove(bool value) {
+    return value ? '승인 참여' : '자율 참여';
+  }
+
+  String _translateMeet(String value) {
+    switch (value) {
+      case 'offline':
+        return '오프라인';
+      case 'online':
+        return '온라인';
+      case 'TBD':
+      case 'both':
+      default:
+        return '모임 내 협의';
+    }
+  }
+
+  String _translateAttendance(String value) {
+    switch (value) {
+      case 'every':
+        return '매일 출석';
+      case 'free':
+        return '자율 출석';
+      case 'TBD':
+      default:
+        return '모임 내 협의';
+    }
   }
 
   // 공유 기록 탭 UI
@@ -407,32 +447,23 @@ class StudyDetailPage extends GetView<StudyDetailController> {
 
   // 태그 스타일 위젯
   Widget _buildTag(String label) {
-    if (label == '승인 참여') {
-      return Box(
-        fillColor: AppColors.point,
-        strokeColor: AppColors.point,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-          child: Text(
-            label,
-            style: AppTypography.b3R12.copyWith(
-              color: AppColors.grayscale0,
-            ),
-          ),
+    final isApproveTag = label == '승인 참여' || label == '자율 참여';
+
+    return Container(
+      decoration: BoxDecoration(
+        color: isApproveTag ? AppColors.point : AppColors.box1,
+        border: Border.all(
+          color: isApproveTag ? AppColors.point : AppColors.box1Border,
         ),
-      );
-    } else {
-      return Box(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-          child: Text(
-            label,
-            style: AppTypography.b3R12.copyWith(
-              color: AppColors.point,
-            ),
-          ),
+        borderRadius: BorderRadius.circular(isApproveTag ? 10 : 20), // ✅ 둥글기 차이
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+      child: Text(
+        label,
+        style: AppTypography.b3R12.copyWith(
+          color: isApproveTag ? AppColors.grayscale0 : AppColors.point,
         ),
-      );
-    }
+      ),
+    );
   }
 }
