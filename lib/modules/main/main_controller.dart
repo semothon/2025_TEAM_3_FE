@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:team_3_frontend/modules/ranking/ranking_page.dart';
 
 import '../community/community_page.dart';
 import '../explore/explore_page.dart';
@@ -11,6 +12,7 @@ class MainController extends GetxController {
   final pages = [
     HomePage(),
     ExplorePage(),
+    RankingPage(),
     CommunityPage(),
     MyPage(),
   ];

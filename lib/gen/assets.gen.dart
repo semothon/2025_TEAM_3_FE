@@ -64,6 +64,15 @@ class $AssetsIconsGen {
   SvgGenImage get notification =>
       const SvgGenImage('assets/icons/notification.svg');
 
+  /// File path: assets/icons/rank_1.svg
+  SvgGenImage get rank1 => const SvgGenImage('assets/icons/rank_1.svg');
+
+  /// File path: assets/icons/rank_2.svg
+  SvgGenImage get rank2 => const SvgGenImage('assets/icons/rank_2.svg');
+
+  /// File path: assets/icons/rank_3.svg
+  SvgGenImage get rank3 => const SvgGenImage('assets/icons/rank_3.svg');
+
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
@@ -116,6 +125,9 @@ class $AssetsIconsGen {
     loginLogo,
     logo,
     notification,
+    rank1,
+    rank2,
+    rank3,
     search,
     setting,
     studyDetailChat,

@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'package:http_parser/http_parser.dart';
 import 'package:team_3_frontend/data/models/study_group.dart';
 
+import '../models/rank.dart';
 import '../models/user.dart';
 
 class ApiService {
@@ -204,8 +205,31 @@ class ApiService {
 
     final data = jsonDecode(response.body);
 
-    if (response.statusCode == 201) {
-      return data;
+    if (data['error'] != null) {
+      throw data['error'];
+    }
+  }
+
+  Future<Map<String, List<Rank>>> fetchRanking() async {
+    final url = Uri.parse("$baseUrl/ranking");
+    String? accessToken = Get.find<AuthService>().token;
+
+    final response = await http.get(
+      url,
+      headers: _authHeaders(accessToken!),
+    );
+
+    final data = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      return {
+        'myGroups':
+            List<Rank>.from(data['myGroups'].map((g) => Rank.fromJson(g))),
+        'studyRanking':
+            List<Rank>.from(data['studyRanking'].map((g) => Rank.fromJson(g))),
+        'clubRanking':
+            List<Rank>.from(data['clubRanking'].map((g) => Rank.fromJson(g))),
+      };
     } else {
       if (data['error'] != null) {
         throw data['error'];

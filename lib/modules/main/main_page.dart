@@ -57,9 +57,19 @@ class MainPage extends GetView<MainController> {
                 BottomNavigationBarItem(
                     icon: Padding(
                       padding: const EdgeInsets.only(top: 6),
-                      child: Assets.icons.bottomCommunity.svg(
+                      child: Assets.icons.bottomRanking.svg(
                           height: 24,
                           color: controller.selectedBottomIndex.value == 2
+                              ? AppColors.point
+                              : AppColors.grayscale50),
+                    ),
+                    label: '랭킹'),
+                BottomNavigationBarItem(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(top: 6),
+                      child: Assets.icons.bottomCommunity.svg(
+                          height: 24,
+                          color: controller.selectedBottomIndex.value == 3
                               ? AppColors.point
                               : AppColors.grayscale50),
                     ),
@@ -69,7 +79,7 @@ class MainPage extends GetView<MainController> {
                       padding: const EdgeInsets.only(top: 6),
                       child: Assets.icons.bottomMy.svg(
                           height: 24,
-                          color: controller.selectedBottomIndex.value == 3
+                          color: controller.selectedBottomIndex.value == 4
                               ? AppColors.point
                               : AppColors.grayscale50),
                     ),
