@@ -8,6 +8,8 @@ class GroupDetail with _$GroupDetail {
   const factory GroupDetail({
     required Group group, // 모임 정보
     required List<Schedule> schedule, // 일정 리스트
+    required List<SharedRecord> sharedRecords, // 공유 기록
+    required List<PersonalRecord> personalRecords, // 개인 기록
   }) = _GroupDetail;
 
   factory GroupDetail.fromJson(Map<String, dynamic> json) =>
@@ -17,17 +19,16 @@ class GroupDetail with _$GroupDetail {
 @freezed
 class Group with _$Group {
   const factory Group({
-    required String title, // 모임 제목
-    required bool approve, // 승인 여부
-    required String meet, // 모임 방식
-    required String attendance, // 출석 방식
-    @JsonKey(name: 'max_members') required int maxMembers, // 최대 인원
-    @JsonKey(name: 'num_members') required int numMembers, // 현재 인원
-    @JsonKey(name: 'onelineDescription')
-    String? onelineDescription, // 한 줄 설명 (nullable)
-    required String description, // 모임 설명
-    String? memo, // 메모 (nullable)
-    required String thumbnail, // 썸네일 URL
+    required String title,
+    required bool approve,
+    required String meet,
+    required String attendance,
+    @JsonKey(name: 'max_members') required int maxMembers,
+    @JsonKey(name: 'num_members') required int numMembers,
+    @JsonKey(name: 'onelineDescription') String? onelineDescription,
+    required String description,
+    String? memo,
+    required String thumbnail,
   }) = _Group;
 
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
@@ -36,16 +37,43 @@ class Group with _$Group {
 @freezed
 class Schedule with _$Schedule {
   const factory Schedule({
-    required int id, // 일정 ID
-    @JsonKey(name: 'group_id') required int groupId, // 모임 ID
-    required String title, // 일정 제목
-    @JsonKey(name: 'start_datetime') required DateTime startDatetime, // 시작 시간
-    required String memo, // 일정 메모
-    required String location, // 장소
-    @JsonKey(name: 'created_at') required DateTime createdAt, // 생성일
-    @JsonKey(name: 'updated_at') required DateTime updatedAt, // 수정일
+    required int id,
+    @JsonKey(name: 'group_id') required int groupId,
+    required String title,
+    @JsonKey(name: 'start_datetime') required DateTime startDatetime,
+    required String memo,
+    required String location,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'updated_at') required DateTime updatedAt,
   }) = _Schedule;
 
   factory Schedule.fromJson(Map<String, dynamic> json) =>
       _$ScheduleFromJson(json);
+}
+
+@freezed
+class SharedRecord with _$SharedRecord {
+  const factory SharedRecord({
+    required String title,
+    required String content,
+    @JsonKey(name: 'file_url') List? fileUrl,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
+  }) = _SharedRecord;
+
+  factory SharedRecord.fromJson(Map<String, dynamic> json) =>
+      _$SharedRecordFromJson(json);
+}
+
+@freezed
+class PersonalRecord with _$PersonalRecord {
+  const factory PersonalRecord({
+    required String title,
+    required String content,
+    @JsonKey(name: 'is_public') required bool isPublic,
+    @JsonKey(name: 'file_url') List? fileUrl,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
+  }) = _PersonalRecord;
+
+  factory PersonalRecord.fromJson(Map<String, dynamic> json) =>
+      _$PersonalRecordFromJson(json);
 }

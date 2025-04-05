@@ -21,7 +21,11 @@ GroupDetail _$GroupDetailFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GroupDetail {
   Group get group => throw _privateConstructorUsedError; // 모임 정보
-  List<Schedule> get schedule => throw _privateConstructorUsedError;
+  List<Schedule> get schedule => throw _privateConstructorUsedError; // 일정 리스트
+  List<SharedRecord> get sharedRecords =>
+      throw _privateConstructorUsedError; // 공유 기록
+  List<PersonalRecord> get personalRecords =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this GroupDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +43,11 @@ abstract class $GroupDetailCopyWith<$Res> {
           GroupDetail value, $Res Function(GroupDetail) then) =
       _$GroupDetailCopyWithImpl<$Res, GroupDetail>;
   @useResult
-  $Res call({Group group, List<Schedule> schedule});
+  $Res call(
+      {Group group,
+      List<Schedule> schedule,
+      List<SharedRecord> sharedRecords,
+      List<PersonalRecord> personalRecords});
 
   $GroupCopyWith<$Res> get group;
 }
@@ -61,6 +69,8 @@ class _$GroupDetailCopyWithImpl<$Res, $Val extends GroupDetail>
   $Res call({
     Object? group = null,
     Object? schedule = null,
+    Object? sharedRecords = null,
+    Object? personalRecords = null,
   }) {
     return _then(_value.copyWith(
       group: null == group
@@ -71,6 +81,14 @@ class _$GroupDetailCopyWithImpl<$Res, $Val extends GroupDetail>
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      sharedRecords: null == sharedRecords
+          ? _value.sharedRecords
+          : sharedRecords // ignore: cast_nullable_to_non_nullable
+              as List<SharedRecord>,
+      personalRecords: null == personalRecords
+          ? _value.personalRecords
+          : personalRecords // ignore: cast_nullable_to_non_nullable
+              as List<PersonalRecord>,
     ) as $Val);
   }
 
@@ -93,7 +111,11 @@ abstract class _$$GroupDetailImplCopyWith<$Res>
       __$$GroupDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Group group, List<Schedule> schedule});
+  $Res call(
+      {Group group,
+      List<Schedule> schedule,
+      List<SharedRecord> sharedRecords,
+      List<PersonalRecord> personalRecords});
 
   @override
   $GroupCopyWith<$Res> get group;
@@ -114,6 +136,8 @@ class __$$GroupDetailImplCopyWithImpl<$Res>
   $Res call({
     Object? group = null,
     Object? schedule = null,
+    Object? sharedRecords = null,
+    Object? personalRecords = null,
   }) {
     return _then(_$GroupDetailImpl(
       group: null == group
@@ -124,6 +148,14 @@ class __$$GroupDetailImplCopyWithImpl<$Res>
           ? _value._schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as List<Schedule>,
+      sharedRecords: null == sharedRecords
+          ? _value._sharedRecords
+          : sharedRecords // ignore: cast_nullable_to_non_nullable
+              as List<SharedRecord>,
+      personalRecords: null == personalRecords
+          ? _value._personalRecords
+          : personalRecords // ignore: cast_nullable_to_non_nullable
+              as List<PersonalRecord>,
     ));
   }
 }
@@ -132,8 +164,13 @@ class __$$GroupDetailImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GroupDetailImpl implements _GroupDetail {
   const _$GroupDetailImpl(
-      {required this.group, required final List<Schedule> schedule})
-      : _schedule = schedule;
+      {required this.group,
+      required final List<Schedule> schedule,
+      required final List<SharedRecord> sharedRecords,
+      required final List<PersonalRecord> personalRecords})
+      : _schedule = schedule,
+        _sharedRecords = sharedRecords,
+        _personalRecords = personalRecords;
 
   factory _$GroupDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$GroupDetailImplFromJson(json);
@@ -150,9 +187,29 @@ class _$GroupDetailImpl implements _GroupDetail {
     return EqualUnmodifiableListView(_schedule);
   }
 
+// 일정 리스트
+  final List<SharedRecord> _sharedRecords;
+// 일정 리스트
+  @override
+  List<SharedRecord> get sharedRecords {
+    if (_sharedRecords is EqualUnmodifiableListView) return _sharedRecords;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sharedRecords);
+  }
+
+// 공유 기록
+  final List<PersonalRecord> _personalRecords;
+// 공유 기록
+  @override
+  List<PersonalRecord> get personalRecords {
+    if (_personalRecords is EqualUnmodifiableListView) return _personalRecords;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_personalRecords);
+  }
+
   @override
   String toString() {
-    return 'GroupDetail(group: $group, schedule: $schedule)';
+    return 'GroupDetail(group: $group, schedule: $schedule, sharedRecords: $sharedRecords, personalRecords: $personalRecords)';
   }
 
   @override
@@ -161,13 +218,21 @@ class _$GroupDetailImpl implements _GroupDetail {
         (other.runtimeType == runtimeType &&
             other is _$GroupDetailImpl &&
             (identical(other.group, group) || other.group == group) &&
-            const DeepCollectionEquality().equals(other._schedule, _schedule));
+            const DeepCollectionEquality().equals(other._schedule, _schedule) &&
+            const DeepCollectionEquality()
+                .equals(other._sharedRecords, _sharedRecords) &&
+            const DeepCollectionEquality()
+                .equals(other._personalRecords, _personalRecords));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, group, const DeepCollectionEquality().hash(_schedule));
+      runtimeType,
+      group,
+      const DeepCollectionEquality().hash(_schedule),
+      const DeepCollectionEquality().hash(_sharedRecords),
+      const DeepCollectionEquality().hash(_personalRecords));
 
   /// Create a copy of GroupDetail
   /// with the given fields replaced by the non-null parameter values.
@@ -188,7 +253,9 @@ class _$GroupDetailImpl implements _GroupDetail {
 abstract class _GroupDetail implements GroupDetail {
   const factory _GroupDetail(
       {required final Group group,
-      required final List<Schedule> schedule}) = _$GroupDetailImpl;
+      required final List<Schedule> schedule,
+      required final List<SharedRecord> sharedRecords,
+      required final List<PersonalRecord> personalRecords}) = _$GroupDetailImpl;
 
   factory _GroupDetail.fromJson(Map<String, dynamic> json) =
       _$GroupDetailImpl.fromJson;
@@ -196,7 +263,11 @@ abstract class _GroupDetail implements GroupDetail {
   @override
   Group get group; // 모임 정보
   @override
-  List<Schedule> get schedule;
+  List<Schedule> get schedule; // 일정 리스트
+  @override
+  List<SharedRecord> get sharedRecords; // 공유 기록
+  @override
+  List<PersonalRecord> get personalRecords;
 
   /// Create a copy of GroupDetail
   /// with the given fields replaced by the non-null parameter values.
@@ -212,19 +283,18 @@ Group _$GroupFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Group {
-  String get title => throw _privateConstructorUsedError; // 모임 제목
-  bool get approve => throw _privateConstructorUsedError; // 승인 여부
-  String get meet => throw _privateConstructorUsedError; // 모임 방식
-  String get attendance => throw _privateConstructorUsedError; // 출석 방식
+  String get title => throw _privateConstructorUsedError;
+  bool get approve => throw _privateConstructorUsedError;
+  String get meet => throw _privateConstructorUsedError;
+  String get attendance => throw _privateConstructorUsedError;
   @JsonKey(name: 'max_members')
-  int get maxMembers => throw _privateConstructorUsedError; // 최대 인원
+  int get maxMembers => throw _privateConstructorUsedError;
   @JsonKey(name: 'num_members')
-  int get numMembers => throw _privateConstructorUsedError; // 현재 인원
+  int get numMembers => throw _privateConstructorUsedError;
   @JsonKey(name: 'onelineDescription')
-  String? get onelineDescription =>
-      throw _privateConstructorUsedError; // 한 줄 설명 (nullable)
-  String get description => throw _privateConstructorUsedError; // 모임 설명
-  String? get memo => throw _privateConstructorUsedError; // 메모 (nullable)
+  String? get onelineDescription => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String? get memo => throw _privateConstructorUsedError;
   String get thumbnail => throw _privateConstructorUsedError;
 
   /// Serializes this Group to a JSON map.
@@ -434,34 +504,25 @@ class _$GroupImpl implements _Group {
 
   @override
   final String title;
-// 모임 제목
   @override
   final bool approve;
-// 승인 여부
   @override
   final String meet;
-// 모임 방식
   @override
   final String attendance;
-// 출석 방식
   @override
   @JsonKey(name: 'max_members')
   final int maxMembers;
-// 최대 인원
   @override
   @JsonKey(name: 'num_members')
   final int numMembers;
-// 현재 인원
   @override
   @JsonKey(name: 'onelineDescription')
   final String? onelineDescription;
-// 한 줄 설명 (nullable)
   @override
   final String description;
-// 모임 설명
   @override
   final String? memo;
-// 메모 (nullable)
   @override
   final String thumbnail;
 
@@ -530,26 +591,26 @@ abstract class _Group implements Group {
   factory _Group.fromJson(Map<String, dynamic> json) = _$GroupImpl.fromJson;
 
   @override
-  String get title; // 모임 제목
+  String get title;
   @override
-  bool get approve; // 승인 여부
+  bool get approve;
   @override
-  String get meet; // 모임 방식
+  String get meet;
   @override
-  String get attendance; // 출석 방식
+  String get attendance;
   @override
   @JsonKey(name: 'max_members')
-  int get maxMembers; // 최대 인원
+  int get maxMembers;
   @override
   @JsonKey(name: 'num_members')
-  int get numMembers; // 현재 인원
+  int get numMembers;
   @override
   @JsonKey(name: 'onelineDescription')
-  String? get onelineDescription; // 한 줄 설명 (nullable)
+  String? get onelineDescription;
   @override
-  String get description; // 모임 설명
+  String get description;
   @override
-  String? get memo; // 메모 (nullable)
+  String? get memo;
   @override
   String get thumbnail;
 
@@ -567,16 +628,16 @@ Schedule _$ScheduleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Schedule {
-  int get id => throw _privateConstructorUsedError; // 일정 ID
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'group_id')
-  int get groupId => throw _privateConstructorUsedError; // 모임 ID
-  String get title => throw _privateConstructorUsedError; // 일정 제목
+  int get groupId => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'start_datetime')
-  DateTime get startDatetime => throw _privateConstructorUsedError; // 시작 시간
-  String get memo => throw _privateConstructorUsedError; // 일정 메모
-  String get location => throw _privateConstructorUsedError; // 장소
+  DateTime get startDatetime => throw _privateConstructorUsedError;
+  String get memo => throw _privateConstructorUsedError;
+  String get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError; // 생성일
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -763,28 +824,21 @@ class _$ScheduleImpl implements _Schedule {
 
   @override
   final int id;
-// 일정 ID
   @override
   @JsonKey(name: 'group_id')
   final int groupId;
-// 모임 ID
   @override
   final String title;
-// 일정 제목
   @override
   @JsonKey(name: 'start_datetime')
   final DateTime startDatetime;
-// 시작 시간
   @override
   final String memo;
-// 일정 메모
   @override
   final String location;
-// 장소
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
-// 생성일
   @override
   @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
@@ -850,22 +904,22 @@ abstract class _Schedule implements Schedule {
       _$ScheduleImpl.fromJson;
 
   @override
-  int get id; // 일정 ID
+  int get id;
   @override
   @JsonKey(name: 'group_id')
-  int get groupId; // 모임 ID
+  int get groupId;
   @override
-  String get title; // 일정 제목
+  String get title;
   @override
   @JsonKey(name: 'start_datetime')
-  DateTime get startDatetime; // 시작 시간
+  DateTime get startDatetime;
   @override
-  String get memo; // 일정 메모
+  String get memo;
   @override
-  String get location; // 장소
+  String get location;
   @override
   @JsonKey(name: 'created_at')
-  DateTime get createdAt; // 생성일
+  DateTime get createdAt;
   @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
@@ -875,5 +929,492 @@ abstract class _Schedule implements Schedule {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScheduleImplCopyWith<_$ScheduleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SharedRecord _$SharedRecordFromJson(Map<String, dynamic> json) {
+  return _SharedRecord.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SharedRecord {
+  String get title => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'file_url')
+  List<dynamic>? get fileUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+
+  /// Serializes this SharedRecord to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of SharedRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SharedRecordCopyWith<SharedRecord> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SharedRecordCopyWith<$Res> {
+  factory $SharedRecordCopyWith(
+          SharedRecord value, $Res Function(SharedRecord) then) =
+      _$SharedRecordCopyWithImpl<$Res, SharedRecord>;
+  @useResult
+  $Res call(
+      {String title,
+      String content,
+      @JsonKey(name: 'file_url') List<dynamic>? fileUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt});
+}
+
+/// @nodoc
+class _$SharedRecordCopyWithImpl<$Res, $Val extends SharedRecord>
+    implements $SharedRecordCopyWith<$Res> {
+  _$SharedRecordCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SharedRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? content = null,
+    Object? fileUrl = freezed,
+    Object? createdAt = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileUrl: freezed == fileUrl
+          ? _value.fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SharedRecordImplCopyWith<$Res>
+    implements $SharedRecordCopyWith<$Res> {
+  factory _$$SharedRecordImplCopyWith(
+          _$SharedRecordImpl value, $Res Function(_$SharedRecordImpl) then) =
+      __$$SharedRecordImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String title,
+      String content,
+      @JsonKey(name: 'file_url') List<dynamic>? fileUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt});
+}
+
+/// @nodoc
+class __$$SharedRecordImplCopyWithImpl<$Res>
+    extends _$SharedRecordCopyWithImpl<$Res, _$SharedRecordImpl>
+    implements _$$SharedRecordImplCopyWith<$Res> {
+  __$$SharedRecordImplCopyWithImpl(
+      _$SharedRecordImpl _value, $Res Function(_$SharedRecordImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SharedRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? content = null,
+    Object? fileUrl = freezed,
+    Object? createdAt = null,
+  }) {
+    return _then(_$SharedRecordImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileUrl: freezed == fileUrl
+          ? _value._fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SharedRecordImpl implements _SharedRecord {
+  const _$SharedRecordImpl(
+      {required this.title,
+      required this.content,
+      @JsonKey(name: 'file_url') final List<dynamic>? fileUrl,
+      @JsonKey(name: 'created_at') required this.createdAt})
+      : _fileUrl = fileUrl;
+
+  factory _$SharedRecordImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SharedRecordImplFromJson(json);
+
+  @override
+  final String title;
+  @override
+  final String content;
+  final List<dynamic>? _fileUrl;
+  @override
+  @JsonKey(name: 'file_url')
+  List<dynamic>? get fileUrl {
+    final value = _fileUrl;
+    if (value == null) return null;
+    if (_fileUrl is EqualUnmodifiableListView) return _fileUrl;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+
+  @override
+  String toString() {
+    return 'SharedRecord(title: $title, content: $content, fileUrl: $fileUrl, createdAt: $createdAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SharedRecordImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.content, content) || other.content == content) &&
+            const DeepCollectionEquality().equals(other._fileUrl, _fileUrl) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, content,
+      const DeepCollectionEquality().hash(_fileUrl), createdAt);
+
+  /// Create a copy of SharedRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SharedRecordImplCopyWith<_$SharedRecordImpl> get copyWith =>
+      __$$SharedRecordImplCopyWithImpl<_$SharedRecordImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SharedRecordImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SharedRecord implements SharedRecord {
+  const factory _SharedRecord(
+          {required final String title,
+          required final String content,
+          @JsonKey(name: 'file_url') final List<dynamic>? fileUrl,
+          @JsonKey(name: 'created_at') required final DateTime createdAt}) =
+      _$SharedRecordImpl;
+
+  factory _SharedRecord.fromJson(Map<String, dynamic> json) =
+      _$SharedRecordImpl.fromJson;
+
+  @override
+  String get title;
+  @override
+  String get content;
+  @override
+  @JsonKey(name: 'file_url')
+  List<dynamic>? get fileUrl;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
+
+  /// Create a copy of SharedRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SharedRecordImplCopyWith<_$SharedRecordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PersonalRecord _$PersonalRecordFromJson(Map<String, dynamic> json) {
+  return _PersonalRecord.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PersonalRecord {
+  String get title => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_public')
+  bool get isPublic => throw _privateConstructorUsedError;
+  @JsonKey(name: 'file_url')
+  List<dynamic>? get fileUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+
+  /// Serializes this PersonalRecord to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PersonalRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PersonalRecordCopyWith<PersonalRecord> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PersonalRecordCopyWith<$Res> {
+  factory $PersonalRecordCopyWith(
+          PersonalRecord value, $Res Function(PersonalRecord) then) =
+      _$PersonalRecordCopyWithImpl<$Res, PersonalRecord>;
+  @useResult
+  $Res call(
+      {String title,
+      String content,
+      @JsonKey(name: 'is_public') bool isPublic,
+      @JsonKey(name: 'file_url') List<dynamic>? fileUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt});
+}
+
+/// @nodoc
+class _$PersonalRecordCopyWithImpl<$Res, $Val extends PersonalRecord>
+    implements $PersonalRecordCopyWith<$Res> {
+  _$PersonalRecordCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PersonalRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? content = null,
+    Object? isPublic = null,
+    Object? fileUrl = freezed,
+    Object? createdAt = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPublic: null == isPublic
+          ? _value.isPublic
+          : isPublic // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fileUrl: freezed == fileUrl
+          ? _value.fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PersonalRecordImplCopyWith<$Res>
+    implements $PersonalRecordCopyWith<$Res> {
+  factory _$$PersonalRecordImplCopyWith(_$PersonalRecordImpl value,
+          $Res Function(_$PersonalRecordImpl) then) =
+      __$$PersonalRecordImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String title,
+      String content,
+      @JsonKey(name: 'is_public') bool isPublic,
+      @JsonKey(name: 'file_url') List<dynamic>? fileUrl,
+      @JsonKey(name: 'created_at') DateTime createdAt});
+}
+
+/// @nodoc
+class __$$PersonalRecordImplCopyWithImpl<$Res>
+    extends _$PersonalRecordCopyWithImpl<$Res, _$PersonalRecordImpl>
+    implements _$$PersonalRecordImplCopyWith<$Res> {
+  __$$PersonalRecordImplCopyWithImpl(
+      _$PersonalRecordImpl _value, $Res Function(_$PersonalRecordImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PersonalRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? content = null,
+    Object? isPublic = null,
+    Object? fileUrl = freezed,
+    Object? createdAt = null,
+  }) {
+    return _then(_$PersonalRecordImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      isPublic: null == isPublic
+          ? _value.isPublic
+          : isPublic // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fileUrl: freezed == fileUrl
+          ? _value._fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PersonalRecordImpl implements _PersonalRecord {
+  const _$PersonalRecordImpl(
+      {required this.title,
+      required this.content,
+      @JsonKey(name: 'is_public') required this.isPublic,
+      @JsonKey(name: 'file_url') final List<dynamic>? fileUrl,
+      @JsonKey(name: 'created_at') required this.createdAt})
+      : _fileUrl = fileUrl;
+
+  factory _$PersonalRecordImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PersonalRecordImplFromJson(json);
+
+  @override
+  final String title;
+  @override
+  final String content;
+  @override
+  @JsonKey(name: 'is_public')
+  final bool isPublic;
+  final List<dynamic>? _fileUrl;
+  @override
+  @JsonKey(name: 'file_url')
+  List<dynamic>? get fileUrl {
+    final value = _fileUrl;
+    if (value == null) return null;
+    if (_fileUrl is EqualUnmodifiableListView) return _fileUrl;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
+
+  @override
+  String toString() {
+    return 'PersonalRecord(title: $title, content: $content, isPublic: $isPublic, fileUrl: $fileUrl, createdAt: $createdAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PersonalRecordImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.isPublic, isPublic) ||
+                other.isPublic == isPublic) &&
+            const DeepCollectionEquality().equals(other._fileUrl, _fileUrl) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, content, isPublic,
+      const DeepCollectionEquality().hash(_fileUrl), createdAt);
+
+  /// Create a copy of PersonalRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PersonalRecordImplCopyWith<_$PersonalRecordImpl> get copyWith =>
+      __$$PersonalRecordImplCopyWithImpl<_$PersonalRecordImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PersonalRecordImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PersonalRecord implements PersonalRecord {
+  const factory _PersonalRecord(
+          {required final String title,
+          required final String content,
+          @JsonKey(name: 'is_public') required final bool isPublic,
+          @JsonKey(name: 'file_url') final List<dynamic>? fileUrl,
+          @JsonKey(name: 'created_at') required final DateTime createdAt}) =
+      _$PersonalRecordImpl;
+
+  factory _PersonalRecord.fromJson(Map<String, dynamic> json) =
+      _$PersonalRecordImpl.fromJson;
+
+  @override
+  String get title;
+  @override
+  String get content;
+  @override
+  @JsonKey(name: 'is_public')
+  bool get isPublic;
+  @override
+  @JsonKey(name: 'file_url')
+  List<dynamic>? get fileUrl;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
+
+  /// Create a copy of PersonalRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PersonalRecordImplCopyWith<_$PersonalRecordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

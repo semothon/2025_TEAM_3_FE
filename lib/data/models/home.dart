@@ -31,6 +31,7 @@ class UpcomingSchedule with _$UpcomingSchedule {
   const factory UpcomingSchedule({
     required int id, // 일정 ID
     required String title, // 일정 제목
+    required String memo, // 일정 메모
     @JsonKey(name: 'start_datetime') required DateTime startDatetime, // 시작 시간
     required String location, // 장소
     @JsonKey(name: 'seconds_left') required int secondsLeft, // 남은 초
@@ -56,6 +57,7 @@ class StudyGroup with _$StudyGroup {
   const factory StudyGroup({
     required int id, // 모임 ID
     required String title, // 모임 제목
+    required String thumbnail, // 모임 이미지 URL
     required String description, // 모임 설명
     required String category, // 카테고리 (study/club)
     @JsonKey(name: 'max_members') required int maxMembers, // 최대 인원

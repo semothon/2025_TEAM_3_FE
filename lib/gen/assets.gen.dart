@@ -37,6 +37,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bottom_my.svg
   SvgGenImage get bottomMy => const SvgGenImage('assets/icons/bottom_my.svg');
 
+  /// File path: assets/icons/bottom_ranking.svg
+  SvgGenImage get bottomRanking =>
+      const SvgGenImage('assets/icons/bottom_ranking.svg');
+
   /// File path: assets/icons/chat_send.svg
   SvgGenImage get chatSend => const SvgGenImage('assets/icons/chat_send.svg');
 
@@ -89,6 +93,7 @@ class $AssetsIconsGen {
     bottomExplore,
     bottomHome,
     bottomMy,
+    bottomRanking,
     chatSend,
     filter,
     friendTable,

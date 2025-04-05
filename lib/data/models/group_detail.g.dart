@@ -12,12 +12,20 @@ _$GroupDetailImpl _$$GroupDetailImplFromJson(Map<String, dynamic> json) =>
       schedule: (json['schedule'] as List<dynamic>)
           .map((e) => Schedule.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sharedRecords: (json['sharedRecords'] as List<dynamic>)
+          .map((e) => SharedRecord.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      personalRecords: (json['personalRecords'] as List<dynamic>)
+          .map((e) => PersonalRecord.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$GroupDetailImplToJson(_$GroupDetailImpl instance) =>
     <String, dynamic>{
       'group': instance.group,
       'schedule': instance.schedule,
+      'sharedRecords': instance.sharedRecords,
+      'personalRecords': instance.personalRecords,
     };
 
 _$GroupImpl _$$GroupImplFromJson(Map<String, dynamic> json) => _$GroupImpl(
@@ -69,4 +77,39 @@ Map<String, dynamic> _$$ScheduleImplToJson(_$ScheduleImpl instance) =>
       'location': instance.location,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
+    };
+
+_$SharedRecordImpl _$$SharedRecordImplFromJson(Map<String, dynamic> json) =>
+    _$SharedRecordImpl(
+      title: json['title'] as String,
+      content: json['content'] as String,
+      fileUrl: json['file_url'] as List<dynamic>?,
+      createdAt: DateTime.parse(json['created_at'] as String),
+    );
+
+Map<String, dynamic> _$$SharedRecordImplToJson(_$SharedRecordImpl instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'content': instance.content,
+      'file_url': instance.fileUrl,
+      'created_at': instance.createdAt.toIso8601String(),
+    };
+
+_$PersonalRecordImpl _$$PersonalRecordImplFromJson(Map<String, dynamic> json) =>
+    _$PersonalRecordImpl(
+      title: json['title'] as String,
+      content: json['content'] as String,
+      isPublic: json['is_public'] as bool,
+      fileUrl: json['file_url'] as List<dynamic>?,
+      createdAt: DateTime.parse(json['created_at'] as String),
+    );
+
+Map<String, dynamic> _$$PersonalRecordImplToJson(
+        _$PersonalRecordImpl instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'content': instance.content,
+      'is_public': instance.isPublic,
+      'file_url': instance.fileUrl,
+      'created_at': instance.createdAt.toIso8601String(),
     };

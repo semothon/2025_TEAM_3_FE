@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:team_3_frontend/data/models/group_detail.dart';
 import 'package:team_3_frontend/data/models/home.dart';
@@ -5,6 +7,7 @@ import 'package:team_3_frontend/data/services/auth_service.dart';
 import '../../utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http_parser/http_parser.dart';
 
 import '../models/user.dart';
 
@@ -132,6 +135,7 @@ class ApiService {
     final data = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
+      print(data);
       return Home.fromJson(data);
     } else {
       if (data['error'] != null) {
@@ -156,6 +160,51 @@ class ApiService {
 
     if (response.statusCode == 200) {
       return GroupDetail.fromJson(data);
+    } else {
+      if (data['error'] != null) {
+        throw data['error'];
+      }
+      throw '서버와의 연결이 원활하지 않습니다.';
+    }
+  }
+
+  /// ✅ 기록 생성
+  Future<dynamic> createRecord({
+    required String groupId,
+    required bool isShared,
+    required String title,
+    required String content,
+    required List<File> images,
+  }) async {
+    final url = Uri.parse("$baseUrl/records/$groupId/createRecord");
+    String? accessToken = Get.find<AuthService>().token;
+
+    final request = http.MultipartRequest("POST", url);
+    request.headers.addAll(_authHeaders(accessToken!));
+
+    request.fields["isShared"] = isShared.toString();
+    request.fields["title"] = title;
+    request.fields["content"] = content;
+
+    for (File image in images) {
+      final stream = http.ByteStream(image.openRead());
+      final length = await image.length();
+      final mimeType = "image/${image.path.split('.').last}";
+      request.files.add(http.MultipartFile(
+        "files",
+        stream,
+        length,
+        filename: image.path.split("/").last,
+        contentType: MediaType.parse(mimeType),
+      ));
+    }
+
+    final response = await http.Response.fromStream(await request.send());
+
+    final data = jsonDecode(response.body);
+
+    if (response.statusCode == 201) {
+      return data;
     } else {
       if (data['error'] != null) {
         throw data['error'];

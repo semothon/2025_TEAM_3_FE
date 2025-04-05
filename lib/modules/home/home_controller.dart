@@ -70,7 +70,6 @@ class HomeController extends GetxController {
         ];
         todayScheduleCount.value = home.value!.todaySchedule.count;
       }
-      print(home.value);
     } catch (e) {
       Get.snackbar('오류', e.toString());
     }

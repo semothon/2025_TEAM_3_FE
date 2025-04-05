@@ -454,6 +454,7 @@ UpcomingSchedule _$UpcomingScheduleFromJson(Map<String, dynamic> json) {
 mixin _$UpcomingSchedule {
   int get id => throw _privateConstructorUsedError; // 일정 ID
   String get title => throw _privateConstructorUsedError; // 일정 제목
+  String get memo => throw _privateConstructorUsedError; // 일정 메모
   @JsonKey(name: 'start_datetime')
   DateTime get startDatetime => throw _privateConstructorUsedError; // 시작 시간
   String get location => throw _privateConstructorUsedError; // 장소
@@ -479,6 +480,7 @@ abstract class $UpcomingScheduleCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
+      String memo,
       @JsonKey(name: 'start_datetime') DateTime startDatetime,
       String location,
       @JsonKey(name: 'seconds_left') int secondsLeft});
@@ -501,6 +503,7 @@ class _$UpcomingScheduleCopyWithImpl<$Res, $Val extends UpcomingSchedule>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? memo = null,
     Object? startDatetime = null,
     Object? location = null,
     Object? secondsLeft = null,
@@ -513,6 +516,10 @@ class _$UpcomingScheduleCopyWithImpl<$Res, $Val extends UpcomingSchedule>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
               as String,
       startDatetime: null == startDatetime
           ? _value.startDatetime
@@ -541,6 +548,7 @@ abstract class _$$UpcomingScheduleImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
+      String memo,
       @JsonKey(name: 'start_datetime') DateTime startDatetime,
       String location,
       @JsonKey(name: 'seconds_left') int secondsLeft});
@@ -561,6 +569,7 @@ class __$$UpcomingScheduleImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? memo = null,
     Object? startDatetime = null,
     Object? location = null,
     Object? secondsLeft = null,
@@ -573,6 +582,10 @@ class __$$UpcomingScheduleImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
               as String,
       startDatetime: null == startDatetime
           ? _value.startDatetime
@@ -596,6 +609,7 @@ class _$UpcomingScheduleImpl implements _UpcomingSchedule {
   const _$UpcomingScheduleImpl(
       {required this.id,
       required this.title,
+      required this.memo,
       @JsonKey(name: 'start_datetime') required this.startDatetime,
       required this.location,
       @JsonKey(name: 'seconds_left') required this.secondsLeft});
@@ -610,6 +624,9 @@ class _$UpcomingScheduleImpl implements _UpcomingSchedule {
   final String title;
 // 일정 제목
   @override
+  final String memo;
+// 일정 메모
+  @override
   @JsonKey(name: 'start_datetime')
   final DateTime startDatetime;
 // 시작 시간
@@ -622,7 +639,7 @@ class _$UpcomingScheduleImpl implements _UpcomingSchedule {
 
   @override
   String toString() {
-    return 'UpcomingSchedule(id: $id, title: $title, startDatetime: $startDatetime, location: $location, secondsLeft: $secondsLeft)';
+    return 'UpcomingSchedule(id: $id, title: $title, memo: $memo, startDatetime: $startDatetime, location: $location, secondsLeft: $secondsLeft)';
   }
 
   @override
@@ -632,6 +649,7 @@ class _$UpcomingScheduleImpl implements _UpcomingSchedule {
             other is _$UpcomingScheduleImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.memo, memo) || other.memo == memo) &&
             (identical(other.startDatetime, startDatetime) ||
                 other.startDatetime == startDatetime) &&
             (identical(other.location, location) ||
@@ -642,8 +660,8 @@ class _$UpcomingScheduleImpl implements _UpcomingSchedule {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, startDatetime, location, secondsLeft);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, memo, startDatetime, location, secondsLeft);
 
   /// Create a copy of UpcomingSchedule
   /// with the given fields replaced by the non-null parameter values.
@@ -666,6 +684,7 @@ abstract class _UpcomingSchedule implements UpcomingSchedule {
   const factory _UpcomingSchedule(
       {required final int id,
       required final String title,
+      required final String memo,
       @JsonKey(name: 'start_datetime') required final DateTime startDatetime,
       required final String location,
       @JsonKey(name: 'seconds_left')
@@ -678,6 +697,8 @@ abstract class _UpcomingSchedule implements UpcomingSchedule {
   int get id; // 일정 ID
   @override
   String get title; // 일정 제목
+  @override
+  String get memo; // 일정 메모
   @override
   @JsonKey(name: 'start_datetime')
   DateTime get startDatetime; // 시작 시간
@@ -891,6 +912,7 @@ StudyGroup _$StudyGroupFromJson(Map<String, dynamic> json) {
 mixin _$StudyGroup {
   int get id => throw _privateConstructorUsedError; // 모임 ID
   String get title => throw _privateConstructorUsedError; // 모임 제목
+  String get thumbnail => throw _privateConstructorUsedError; // 모임 이미지 URL
   String get description => throw _privateConstructorUsedError; // 모임 설명
   String get category =>
       throw _privateConstructorUsedError; // 카테고리 (study/club)
@@ -921,6 +943,7 @@ abstract class $StudyGroupCopyWith<$Res> {
   $Res call(
       {int id,
       String title,
+      String thumbnail,
       String description,
       String category,
       @JsonKey(name: 'max_members') int maxMembers,
@@ -947,6 +970,7 @@ class _$StudyGroupCopyWithImpl<$Res, $Val extends StudyGroup>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? thumbnail = null,
     Object? description = null,
     Object? category = null,
     Object? maxMembers = null,
@@ -963,6 +987,10 @@ class _$StudyGroupCopyWithImpl<$Res, $Val extends StudyGroup>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -1007,6 +1035,7 @@ abstract class _$$StudyGroupImplCopyWith<$Res>
   $Res call(
       {int id,
       String title,
+      String thumbnail,
       String description,
       String category,
       @JsonKey(name: 'max_members') int maxMembers,
@@ -1031,6 +1060,7 @@ class __$$StudyGroupImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? thumbnail = null,
     Object? description = null,
     Object? category = null,
     Object? maxMembers = null,
@@ -1047,6 +1077,10 @@ class __$$StudyGroupImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -1086,6 +1120,7 @@ class _$StudyGroupImpl implements _StudyGroup {
   const _$StudyGroupImpl(
       {required this.id,
       required this.title,
+      required this.thumbnail,
       required this.description,
       required this.category,
       @JsonKey(name: 'max_members') required this.maxMembers,
@@ -1103,6 +1138,9 @@ class _$StudyGroupImpl implements _StudyGroup {
   @override
   final String title;
 // 모임 제목
+  @override
+  final String thumbnail;
+// 모임 이미지 URL
   @override
   final String description;
 // 모임 설명
@@ -1128,7 +1166,7 @@ class _$StudyGroupImpl implements _StudyGroup {
 
   @override
   String toString() {
-    return 'StudyGroup(id: $id, title: $title, description: $description, category: $category, maxMembers: $maxMembers, numMembers: $numMembers, attendance: $attendance, meet: $meet, mood: $mood)';
+    return 'StudyGroup(id: $id, title: $title, thumbnail: $thumbnail, description: $description, category: $category, maxMembers: $maxMembers, numMembers: $numMembers, attendance: $attendance, meet: $meet, mood: $mood)';
   }
 
   @override
@@ -1138,6 +1176,8 @@ class _$StudyGroupImpl implements _StudyGroup {
             other is _$StudyGroupImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.category, category) ||
@@ -1154,8 +1194,8 @@ class _$StudyGroupImpl implements _StudyGroup {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description, category,
-      maxMembers, numMembers, attendance, meet, mood);
+  int get hashCode => Object.hash(runtimeType, id, title, thumbnail,
+      description, category, maxMembers, numMembers, attendance, meet, mood);
 
   /// Create a copy of StudyGroup
   /// with the given fields replaced by the non-null parameter values.
@@ -1177,6 +1217,7 @@ abstract class _StudyGroup implements StudyGroup {
   const factory _StudyGroup(
       {required final int id,
       required final String title,
+      required final String thumbnail,
       required final String description,
       required final String category,
       @JsonKey(name: 'max_members') required final int maxMembers,
@@ -1192,6 +1233,8 @@ abstract class _StudyGroup implements StudyGroup {
   int get id; // 모임 ID
   @override
   String get title; // 모임 제목
+  @override
+  String get thumbnail; // 모임 이미지 URL
   @override
   String get description; // 모임 설명
   @override

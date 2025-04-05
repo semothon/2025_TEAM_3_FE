@@ -54,11 +54,11 @@ class HomePage extends GetView<HomeController> {
                                   ),
                                 )),
                             const SizedBox(height: 4),
-                            Obx(() => Text(
-                                  controller.todayScheduleNames,
-                                  style: AppTypography.b1R14
-                                      .copyWith(color: AppColors.grayscale100),
-                                )),
+                            // Obx(() => Text(
+                            //       controller.todayScheduleNames,
+                            //       style: AppTypography.b1R14
+                            //           .copyWith(color: AppColors.grayscale100),
+                            //     )),
                           ],
                         ),
                       ),
@@ -85,23 +85,30 @@ class HomePage extends GetView<HomeController> {
                                         .entries
                                         .map((entry) {
                                       final schedule = entry.value;
-                                      return Container(
-                                        width: 300,
-                                        margin: entry.key <
-                                                controller.schedules.length - 1
-                                            ? const EdgeInsets.only(right: 12)
-                                            : EdgeInsets.zero,
-                                        child: UpcomingScheduleBox(
-                                          hoursLeft: (schedule.secondsLeft ~/
-                                                  3600)
-                                              .toString(), // Convert seconds to hours
-                                          meetingName: schedule.title,
-                                          time: schedule.startDatetime
-                                              .toLocal()
-                                              .toString()
-                                              .substring(
-                                                  11, 16), // HH:MM format
-                                          location: schedule.location,
+                                      return GestureDetector(
+                                        onTap: () => Get.toNamed(
+                                          Routes.scheduleDetail,
+                                          arguments: schedule,
+                                        ),
+                                        child: Container(
+                                          width: 300,
+                                          margin: entry.key <
+                                                  controller.schedules.length -
+                                                      1
+                                              ? const EdgeInsets.only(right: 12)
+                                              : EdgeInsets.zero,
+                                          child: UpcomingScheduleBox(
+                                            hoursLeft: (schedule.secondsLeft ~/
+                                                    3600)
+                                                .toString(), // Convert seconds to hours
+                                            meetingName: schedule.title,
+                                            time: schedule.startDatetime
+                                                .toLocal()
+                                                .toString()
+                                                .substring(
+                                                    11, 16), // HH:MM format
+                                            location: schedule.location,
+                                          ),
                                         ),
                                       );
                                     }).toList(),
@@ -143,10 +150,9 @@ class HomePage extends GetView<HomeController> {
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
                               final group = controller.filteredGroups[index];
-                              final memberCount = controller.studyMembers
-                                  .where((member) => member.groupId == group.id)
-                                  .length;
+                              final numMembers = group.numMembers;
                               final maxMembers = group.maxMembers;
+
                               final isMyStudy = controller.studyMembers.any(
                                 (member) =>
                                     member.groupId == group.id &&
@@ -154,6 +160,8 @@ class HomePage extends GetView<HomeController> {
                                         1 && // Hardcoded for now; replace with actual user ID
                                     member.role == MemberRole.leader,
                               );
+
+                              print(group);
 
                               return Padding(
                                 padding:
@@ -165,9 +173,9 @@ class HomePage extends GetView<HomeController> {
                                             title: group.title,
                                             subtitle: group.description,
                                             memberCount:
-                                                '$memberCount/$maxMembers',
-                                            thumbnail:
-                                                '', // No thumbnail in new model; use placeholder or remove
+                                                '$numMembers/$maxMembers',
+                                            thumbnail: group
+                                                .thumbnail, // No thumbnail in new model; use placeholder or remove
                                             onPressed: () => Get.toNamed(
                                               Routes.studyDetail,
                                               arguments: group.id,
@@ -177,9 +185,9 @@ class HomePage extends GetView<HomeController> {
                                             title: group.title,
                                             subtitle: group.description,
                                             memberCount:
-                                                '$memberCount/$maxMembers',
-                                            thumbnail:
-                                                '', // No thumbnail in new model; use placeholder or remove
+                                                '$numMembers/$maxMembers',
+                                            thumbnail: group
+                                                .thumbnail, // No thumbnail in new model; use placeholder or remove
                                             onPressed: () => Get.toNamed(
                                               Routes.studyDetail,
                                               arguments: group.id,

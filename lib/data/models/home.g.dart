@@ -44,6 +44,7 @@ _$UpcomingScheduleImpl _$$UpcomingScheduleImplFromJson(
     _$UpcomingScheduleImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
+      memo: json['memo'] as String,
       startDatetime: DateTime.parse(json['start_datetime'] as String),
       location: json['location'] as String,
       secondsLeft: (json['seconds_left'] as num).toInt(),
@@ -54,6 +55,7 @@ Map<String, dynamic> _$$UpcomingScheduleImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'memo': instance.memo,
       'start_datetime': instance.startDatetime.toIso8601String(),
       'location': instance.location,
       'seconds_left': instance.secondsLeft,
@@ -79,6 +81,7 @@ _$StudyGroupImpl _$$StudyGroupImplFromJson(Map<String, dynamic> json) =>
     _$StudyGroupImpl(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
+      thumbnail: json['thumbnail'] as String,
       description: json['description'] as String,
       category: json['category'] as String,
       maxMembers: (json['max_members'] as num).toInt(),
@@ -92,6 +95,7 @@ Map<String, dynamic> _$$StudyGroupImplToJson(_$StudyGroupImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'thumbnail': instance.thumbnail,
       'description': instance.description,
       'category': instance.category,
       'max_members': instance.maxMembers,

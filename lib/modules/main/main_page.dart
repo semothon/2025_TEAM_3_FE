@@ -13,7 +13,7 @@ class MainPage extends GetView<MainController> {
             children: controller.pages,
           )),
       bottomNavigationBar: Obx(
-            () => Theme(
+        () => Theme(
           data: Theme.of(context).copyWith(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,

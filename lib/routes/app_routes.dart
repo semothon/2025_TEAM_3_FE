@@ -12,4 +12,7 @@ class Routes {
   static const friend = '/friend';
   static const gift = '/gift';
   static const studyDetail = '/study-detail';
+  static const recordDetail = '/record-detail';
+  static const recordCreate = '/record-create';
+  static const scheduleDetail = '/schedule-detail';
 }

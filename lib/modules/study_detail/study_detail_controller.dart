@@ -1,30 +1,49 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:team_3_frontend/data/models/group_detail.dart';
-import 'package:team_3_frontend/data/services/api_service.dart';
 
-class StudyDetailController extends GetxController {
+import '../../data/models/group_detail.dart';
+import '../../data/services/api_service.dart';
+
+class StudyDetailController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   final ApiService apiService = ApiService();
-  final studyId = Get.arguments; // Group ID from navigation arguments
+  final studyId = Get.arguments;
 
-  // Reactive GroupDetail object
   Rx<GroupDetail?> groupDetail = Rx<GroupDetail?>(null);
-
-  // Reactive list of schedules (instead of records)
   RxList<Schedule> schedules = <Schedule>[].obs;
+  RxList<SharedRecord> sharedRecords = <SharedRecord>[].obs;
+  RxList<PersonalRecord> personalRecords = <PersonalRecord>[].obs;
+
+  late TabController tabController;
+  RxInt currentTabIndex = 0.obs; // Add this observable
 
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
-    await fetchGroupDetails();
+    tabController = TabController(
+      length: 3,
+      vsync: this,
+    );
+    // Add listener to update observable when tab changes
+    tabController.addListener(() {
+      currentTabIndex.value = tabController.index;
+    });
+    fetchGroupDetails();
+  }
+
+  @override
+  void onClose() {
+    tabController.dispose();
+    super.onClose();
   }
 
   Future<void> fetchGroupDetails() async {
     try {
-      // Fetch group details using the studyId (groupId)
       groupDetail.value = await apiService.groupDetails(studyId.toString());
       if (groupDetail.value != null) {
-        // Populate schedules from groupDetail
         schedules.value = groupDetail.value!.schedule;
+        sharedRecords.value = groupDetail.value!.sharedRecords;
+        personalRecords.value = groupDetail.value!.personalRecords;
       }
     } catch (e) {
       Get.snackbar('오류', e.toString());

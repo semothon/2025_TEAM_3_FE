@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
-import 'package:team_3_frontend/modules/register/register_controller.dart';
+import 'package:team_3_frontend/modules/create_record/create_record_page.dart';
+import 'package:team_3_frontend/modules/record_detail/record_detail_page.dart';
 import 'package:team_3_frontend/modules/register/register_input_info_page.dart';
+import 'package:team_3_frontend/modules/schedule_detail/schedule_detail_page.dart';
 import 'package:team_3_frontend/modules/study_detail/study_detail_page.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_page.dart';
@@ -34,6 +36,18 @@ class AppRoutes {
       name: Routes.studyDetail,
       page: () => StudyDetailPage(),
       binding: StudyDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.recordDetail,
+      page: () => RecordDetailPage(),
+    ),
+    GetPage(
+      name: Routes.recordCreate,
+      page: () => CreateRecordPage(),
+    ),
+    GetPage(
+      name: Routes.scheduleDetail,
+      page: () => ScheduleDetailPage(),
     ),
   ];
 }
