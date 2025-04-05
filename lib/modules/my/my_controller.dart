@@ -2,8 +2,12 @@
 import 'package:get/get.dart';
 import 'package:team_3_frontend/data/models/study_group.dart';
 import 'package:team_3_frontend/data/models/user.dart';
+import 'package:team_3_frontend/data/services/auth_service.dart';
+
+import '../../routes/app_routes.dart';
 
 class MyController extends GetxController {
+  AuthService authService = Get.find<AuthService>();
   final user = Rx<User>(User(
     id: 1,
     email: 'example@email.com',
@@ -72,8 +76,9 @@ class MyController extends GetxController {
     Get.snackbar('회원 탈퇴', '회원 탈퇴 처리 완료');
   }
 
-  void onLogout() {
-    // TODO: 로그아웃 처리 로직
+  Future<void> onLogout() async {
+    await authService.deleteToken();
+    Get.offAllNamed(Routes.login);
     Get.snackbar('로그아웃', '로그아웃 되었습니다');
   }
 }

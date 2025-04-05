@@ -21,4 +21,10 @@ class AuthService extends GetxController {
     await _storage.write(key: 'token', value: token);
     this.token = token;
   }
+
+  // 토큰 삭제하기
+  deleteToken() async {
+    await _storage.delete(key: 'token');
+    token = null;
+  }
 }

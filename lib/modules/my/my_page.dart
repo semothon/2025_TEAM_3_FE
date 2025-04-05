@@ -26,7 +26,8 @@ class MyPage extends GetView<MyController> {
               _buildToggleTile('마케팅 수신', controller.isMarketingOn),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
-                child: Divider(height: 1, thickness: 1, color: AppColors.grayscale50),
+                child: Divider(
+                    height: 1, thickness: 1, color: AppColors.grayscale50),
               ),
               _buildSectionTitle('계정'),
               _buildActionTile('회원 탈퇴', controller.onDeleteAccount),
@@ -101,14 +102,17 @@ class MyPage extends GetView<MyController> {
                             children: [
                               Text(
                                 user.value.name,
-                                style: AppTypography.t1B20.copyWith(fontSize: 20),
+                                style:
+                                    AppTypography.t1B20.copyWith(fontSize: 20),
                               ),
                               const SizedBox(height: 4),
                               Text(user.value.department,
-                                  style: AppTypography.b3R12.copyWith(color: AppColors.grayscale100)),
+                                  style: AppTypography.b3R12
+                                      .copyWith(color: AppColors.grayscale100)),
                               const SizedBox(height: 2),
                               Text(user.value.loginId,
-                                  style: AppTypography.b3R12.copyWith(color: AppColors.grayscale100)),
+                                  style: AppTypography.b3R12
+                                      .copyWith(color: AppColors.grayscale100)),
                             ],
                           ),
                         ),
@@ -127,7 +131,8 @@ class MyPage extends GetView<MyController> {
                 ],
               ),
               const SizedBox(height: 24),
-              const Divider(height: 1, thickness: 1, color: AppColors.grayscale50),
+              const Divider(
+                  height: 1, thickness: 1, color: AppColors.grayscale50),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -140,7 +145,8 @@ class MyPage extends GetView<MyController> {
                     onTap: () {
                       // 시간표 페이지로 이동
                     },
-                  ),                ],
+                  ),
+                ],
               )
             ],
           ),
@@ -163,7 +169,8 @@ class MyPage extends GetView<MyController> {
               ),
               TextSpan(
                 text: suffix,
-                style: AppTypography.b2R13.copyWith(color: AppColors.grayscale100),
+                style:
+                    AppTypography.b2R13.copyWith(color: AppColors.grayscale100),
               ),
             ],
           ),
@@ -172,7 +179,8 @@ class MyPage extends GetView<MyController> {
     );
   }
 
-  Widget _buildCountSvgIcon(String label, SvgGenImage icon, {VoidCallback? onTap}) {
+  Widget _buildCountSvgIcon(String label, SvgGenImage icon,
+      {VoidCallback? onTap}) {
     return Column(
       children: [
         Text(label, style: AppTypography.b3R12.copyWith(fontSize: 14)),
@@ -191,33 +199,36 @@ class MyPage extends GetView<MyController> {
       ],
     );
   }
+
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(title, style: AppTypography.t4SB12.copyWith(color: AppColors.grayscale100)),
+      child: Text(title,
+          style: AppTypography.t4SB12.copyWith(color: AppColors.grayscale100)),
     );
   }
 
   Widget _buildToggleTile(String label, RxBool toggleValue) {
     return Obx(() => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: AppTypography.b1R14.copyWith(fontSize: 16)),
-          Transform.scale(
-            scale: 0.9, // 조금 작게
-            child: CupertinoSwitch(
-              value: toggleValue.value,
-              onChanged: (value) => toggleValue.value = value,
-              activeColor: AppColors.point,
-              trackColor: AppColors.grayscale25,
-            ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(label, style: AppTypography.b1R14.copyWith(fontSize: 16)),
+              Transform.scale(
+                scale: 0.9, // 조금 작게
+                child: CupertinoSwitch(
+                  value: toggleValue.value,
+                  onChanged: (value) => toggleValue.value = value,
+                  activeColor: AppColors.point,
+                  trackColor: AppColors.grayscale25,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
+
   Widget _buildActionTile(String label, VoidCallback onTap) {
     return ListTile(
       title: Text(label, style: AppTypography.b1R14.copyWith(fontSize: 16)),

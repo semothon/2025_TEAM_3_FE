@@ -7,7 +7,11 @@ import 'theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Get.put(AuthService());
+  await Get.putAsync<AuthService>(() async {
+    final authService = AuthService();
+    await authService.onInit();
+    return authService;
+  });
   runApp(MyApp());
 }
 
