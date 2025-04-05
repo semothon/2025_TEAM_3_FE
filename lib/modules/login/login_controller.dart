@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:team_3_frontend/data/services/api_service.dart';
 import 'package:team_3_frontend/routes/app_routes.dart';
 
 class LoginController extends GetxController {
@@ -8,12 +9,16 @@ class LoginController extends GetxController {
 
   RxBool isLoading = false.obs;
 
+  ApiService apiService = ApiService();
+
   login() async {
     isLoading.value = true;
 
-    // 로그인 로직
     try {
-      await Future.delayed(const Duration(seconds: 1));
+      await apiService.login(
+        id.text,
+        password.text,
+      );
 
       Get.offAllNamed(Routes.main);
     } catch (e) {
