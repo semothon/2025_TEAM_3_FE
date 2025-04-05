@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
+import 'package:team_3_frontend/widgets/box.dart';
 import '../../gen/assets.gen.dart';
 import 'ranking_controller.dart';
 import '../../data/models/rank.dart';
@@ -29,74 +30,40 @@ class RankingPage extends GetView<RankingController> {
             return Center(child: Text('에러: ${snapshot.error}'));
           } else {
             final myGroups = snapshot.data!['myGroups'] as List<Rank>;
-            return Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    color: Colors.white, // 바깥쪽 배경을 흰색으로 설정
-                    child: Stack(
-                      children: [
-                        PageView.builder(
-                          controller: _pageController,
-                          itemCount: myGroups.length,
-                          onPageChanged: (int page) {
-                            currentPage.value = page; // 페이지 변경 시 현재 페이지 업데이트
-                          },
-                          itemBuilder: (context, index) {
-                            final rank = myGroups[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0), // 패딩 16
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xFFA3E6FF),
-                                      Color(0xFFD1FDFE)
-                                    ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                  ), // 카드 내부에 그라데이션 적용
-                                  borderRadius:
-                                      BorderRadius.circular(20), // 둥근 모서리 10
-                                ),
-                                child: _buildTreeCard(rank, index + 1),
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 420, // 원하는 높이로 조절 가능
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: myGroups.length,
+                      onPageChanged: (int page) {
+                        currentPage.value = page;
+                      },
+                      itemBuilder: (context, index) {
+                        final rank = myGroups[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF96DFFF), Color(0xFFD5FFFE)],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
                               ),
-                            );
-                          },
-                        ),
-                        // 페이지 인디케이터
-                        Positioned(
-                          bottom: 20,
-                          left: 0,
-                          right: 0,
-                          child: Obx(
-                            () => Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: List.generate(
-                                myGroups.length,
-                                (index) => Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  width: 8,
-                                  height: 8,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: index == currentPage.value
-                                        ? Colors.grey[700]
-                                        : Colors.grey[300],
-                                  ),
-                                ),
-                              ),
+                              borderRadius: BorderRadius.circular(20),
                             ),
+                            child: _buildTreeCard(rank, index + 1),
                           ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                _buildRankingList(myGroups),
-              ],
+                  const SizedBox(height: 16),
+                  _buildRankingList(myGroups),
+                ],
+              ),
             );
           }
         },
@@ -128,19 +95,22 @@ Widget _buildTreeCard(Rank rank, int rankPosition) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(width: 8),
             Container(
-              padding: const EdgeInsets.all(10), // 패딩 10
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 16, vertical: 6), // 패딩 10
               decoration: BoxDecoration(
-                color: const Color(0xFFE5FDFF), // 배경색을 BoxDecoration에서 설정
+                color: const Color(0xFFE5FDFF),
+
                 borderRadius: BorderRadius.circular(50), // 라운드 50
               ),
               child: Text(
-                rank.title,
+                rank.title ?? '',
                 style: AppTypography.t3SB16,
               ),
             ),
@@ -156,49 +126,54 @@ Widget _buildTreeCard(Rank rank, int rankPosition) {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: '성장까지 기록 ',
-                    style: AppTypography.b2R13.copyWith(
-                      color: AppColors.grayscale100,
-                    ),
-                  ),
-                  TextSpan(
-                    text: '${rank.recordNum}',
-                    style: AppTypography.t3SB16.copyWith(
-                      color: AppColors.point, // 블루 색상 적용
-                    ),
-                  ),
-                  TextSpan(
-                    text: '개!',
-                    style: AppTypography.b2R13.copyWith(
-                      color: AppColors.grayscale100,
-                    ),
-                  ),
-                ],
+            if (rank.fruitNum > 0) ...[
+              Text(
+                '모은 열매',
+                style: TextStyle(color: Colors.grey[700]), // 기본 텍스트 색
               ),
-            ),
+              const SizedBox(width: 4),
+              Assets.icons.rankApple.svg(width: 13),
+              const SizedBox(width: 4),
+              Text(
+                '${rank.recordNum}',
+                style: AppTypography.b2R13.copyWith(color: AppColors.point),
+              ),
+            ] else
+              Text.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(text: '성장까지 기록 '),
+                    TextSpan(
+                      text: '${rank.recordNum}',
+                      style: AppTypography.t3SB16
+                          .copyWith(color: AppColors.point), // 원하는 색!
+                    ),
+                    const TextSpan(text: '개!'),
+                  ],
+                  style: TextStyle(color: Colors.grey[700]), // 기본 텍스트 색
+                ),
+              ),
           ],
         ),
+        Expanded(child: SizedBox()),
         const SizedBox(height: 16),
-        _buildTreeImage(rank.tree),
+        _buildTreeImage(rank.tree ?? '', rank.fruitNum),
       ],
     ),
   );
 }
 
-Widget _buildTreeImage(String treeLevel) {
+Widget _buildTreeImage(String treeLevel, int fruitNum) {
+  if (fruitNum != 0) {}
   switch (treeLevel) {
     case "0":
-      return Assets.icons.tree0.svg(height: 200);
+      return Assets.icons.tree0.svg(width: 200);
     case "1":
-      return Assets.icons.tree1.svg(height: 200);
+      return Assets.icons.tree1.svg(width: 200);
     case "2":
-      return Assets.icons.tree2.svg(height: 200);
+      return Assets.icons.tree2.svg(width: 200);
     case "3":
-      return Assets.icons.tree3.svg(height: 200);
+      return Assets.icons.tree3.svg(width: 200);
     default:
       return const SizedBox.shrink();
   }
@@ -212,7 +187,7 @@ Widget _buildRankingList(List<Rank> ranks) {
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Text(
           '모임 랭킹',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: AppTypography.t3SB16,
         ),
       ),
       const SizedBox(height: 8),
@@ -220,49 +195,51 @@ Widget _buildRankingList(List<Rank> ranks) {
         final index = entry.key;
         final rank = entry.value;
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4.0),
-          child: Card(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: ListTile(
-              leading: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildRankIcon(index + 1),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.flag, size: 20, color: Colors.blue),
-                  const SizedBox(width: 8),
-                ],
-              ),
-              title: Text(
-                rank.title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Row(
-                children: [
-                  const Icon(Icons.eco, size: 20, color: Colors.green),
-                  const SizedBox(width: 4),
-                  Text(
-                    '${(rank.recordNum / 10 * 100).toInt()}%',
-                    style: const TextStyle(color: Colors.green),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
+          child: Row(
+            children: [
+              _buildRankIcon(index + 1),
+              SizedBox(width: 18),
+              Expanded(
+                child: Box(
+                  fillColor: Colors.white,
+                  strokeColor: Color(0xFFDFDFDF),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 4.0),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      title: Text(
+                        rank.title ?? '',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Assets.icons.rankTree.svg(width: 13),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${(rank.recordNum / 10 * 100).toInt()}%',
+                            style: AppTypography.b2R13
+                                .copyWith(color: AppColors.point),
+                          ),
+                          const SizedBox(width: 8),
+                          if (rank.fruitNum > 0) ...[
+                            Assets.icons.rankApple.svg(width: 13),
+                            const SizedBox(width: 4),
+                            Text(
+                              '${rank.recordNum}',
+                              style: AppTypography.b2R13
+                                  .copyWith(color: AppColors.point),
+                            ),
+                          ],
+                        ],
+                      ),
+                      trailing: Assets.icons.arrowRight.svg(),
+                    ),
                   ),
-                  const SizedBox(width: 8),
-                  Text('성장까지 기록 ${rank.recordNum}개!'),
-                ],
+                ),
               ),
-              trailing: rank.fruitNum > 0
-                  ? Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.apple, size: 20, color: Colors.red),
-                        const SizedBox(width: 4),
-                        Text('${rank.fruitNum}'),
-                      ],
-                    )
-                  : null,
-            ),
+            ],
           ),
         );
       }).toList(),
@@ -273,17 +250,23 @@ Widget _buildRankingList(List<Rank> ranks) {
 Widget _buildRankIcon(int rank) {
   switch (rank) {
     case 1:
-      return const Icon(Icons.emoji_events, color: Colors.amber, size: 30);
+      return Assets.icons.rank1.svg(width: 37);
+
     case 2:
-      return const Icon(Icons.emoji_events, color: Colors.grey, size: 30);
+      return Assets.icons.rank2.svg(width: 37);
+
     case 3:
-      return const Icon(Icons.emoji_events, color: Colors.brown, size: 30);
+      return Assets.icons.rank3.svg(width: 37);
+
     default:
-      return Text(
-        '$rank',
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: Text(
+          '$rank',
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       );
   }

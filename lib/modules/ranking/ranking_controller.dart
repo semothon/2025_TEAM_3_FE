@@ -6,6 +6,7 @@ class RankingController extends GetxController {
   final ApiService apiService = ApiService();
 
   Future<Map<String, List<Rank>>> fetchRankingData() async {
+    print('data: ${await apiService.fetchRanking()}');
     return await apiService.fetchRanking();
   }
 }

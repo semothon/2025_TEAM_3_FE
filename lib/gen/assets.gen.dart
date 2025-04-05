@@ -73,6 +73,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/rank_3.svg
   SvgGenImage get rank3 => const SvgGenImage('assets/icons/rank_3.svg');
 
+  /// File path: assets/icons/rank_apple.svg
+  SvgGenImage get rankApple => const SvgGenImage('assets/icons/rank_apple.svg');
+
+  /// File path: assets/icons/rank_tree.svg
+  SvgGenImage get rankTree => const SvgGenImage('assets/icons/rank_tree.svg');
+
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
@@ -128,6 +134,8 @@ class $AssetsIconsGen {
     rank1,
     rank2,
     rank3,
+    rankApple,
+    rankTree,
     search,
     setting,
     studyDetailChat,

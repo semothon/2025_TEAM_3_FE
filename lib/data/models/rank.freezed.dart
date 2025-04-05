@@ -22,12 +22,14 @@ Rank _$RankFromJson(Map<String, dynamic> json) {
 mixin _$Rank {
   @JsonKey(name: 'group_id')
   int get groupId => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'record_num')
   int get recordNum => throw _privateConstructorUsedError;
   @JsonKey(name: 'fruit_num')
   int get fruitNum => throw _privateConstructorUsedError;
-  String get tree => throw _privateConstructorUsedError;
+  String? get tree =>
+      throw _privateConstructorUsedError; // ✅ "0", "1", "2", "3"
+  String? get category => throw _privateConstructorUsedError;
 
   /// Serializes this Rank to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,10 +47,11 @@ abstract class $RankCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'group_id') int groupId,
-      String title,
+      String? title,
       @JsonKey(name: 'record_num') int recordNum,
       @JsonKey(name: 'fruit_num') int fruitNum,
-      String tree});
+      String? tree,
+      String? category});
 }
 
 /// @nodoc
@@ -67,20 +70,21 @@ class _$RankCopyWithImpl<$Res, $Val extends Rank>
   @override
   $Res call({
     Object? groupId = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? recordNum = null,
     Object? fruitNum = null,
-    Object? tree = null,
+    Object? tree = freezed,
+    Object? category = freezed,
   }) {
     return _then(_value.copyWith(
       groupId: null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       recordNum: null == recordNum
           ? _value.recordNum
           : recordNum // ignore: cast_nullable_to_non_nullable
@@ -89,10 +93,14 @@ class _$RankCopyWithImpl<$Res, $Val extends Rank>
           ? _value.fruitNum
           : fruitNum // ignore: cast_nullable_to_non_nullable
               as int,
-      tree: null == tree
+      tree: freezed == tree
           ? _value.tree
           : tree // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -106,10 +114,11 @@ abstract class _$$RankImplCopyWith<$Res> implements $RankCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'group_id') int groupId,
-      String title,
+      String? title,
       @JsonKey(name: 'record_num') int recordNum,
       @JsonKey(name: 'fruit_num') int fruitNum,
-      String tree});
+      String? tree,
+      String? category});
 }
 
 /// @nodoc
@@ -125,20 +134,21 @@ class __$$RankImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groupId = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? recordNum = null,
     Object? fruitNum = null,
-    Object? tree = null,
+    Object? tree = freezed,
+    Object? category = freezed,
   }) {
     return _then(_$RankImpl(
       groupId: null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       recordNum: null == recordNum
           ? _value.recordNum
           : recordNum // ignore: cast_nullable_to_non_nullable
@@ -147,10 +157,14 @@ class __$$RankImplCopyWithImpl<$Res>
           ? _value.fruitNum
           : fruitNum // ignore: cast_nullable_to_non_nullable
               as int,
-      tree: null == tree
+      tree: freezed == tree
           ? _value.tree
           : tree // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -160,10 +174,11 @@ class __$$RankImplCopyWithImpl<$Res>
 class _$RankImpl implements _Rank {
   const _$RankImpl(
       {@JsonKey(name: 'group_id') required this.groupId,
-      required this.title,
+      this.title,
       @JsonKey(name: 'record_num') required this.recordNum,
       @JsonKey(name: 'fruit_num') required this.fruitNum,
-      required this.tree});
+      this.tree,
+      this.category});
 
   factory _$RankImpl.fromJson(Map<String, dynamic> json) =>
       _$$RankImplFromJson(json);
@@ -172,7 +187,7 @@ class _$RankImpl implements _Rank {
   @JsonKey(name: 'group_id')
   final int groupId;
   @override
-  final String title;
+  final String? title;
   @override
   @JsonKey(name: 'record_num')
   final int recordNum;
@@ -180,11 +195,14 @@ class _$RankImpl implements _Rank {
   @JsonKey(name: 'fruit_num')
   final int fruitNum;
   @override
-  final String tree;
+  final String? tree;
+// ✅ "0", "1", "2", "3"
+  @override
+  final String? category;
 
   @override
   String toString() {
-    return 'Rank(groupId: $groupId, title: $title, recordNum: $recordNum, fruitNum: $fruitNum, tree: $tree)';
+    return 'Rank(groupId: $groupId, title: $title, recordNum: $recordNum, fruitNum: $fruitNum, tree: $tree, category: $category)';
   }
 
   @override
@@ -198,13 +216,15 @@ class _$RankImpl implements _Rank {
                 other.recordNum == recordNum) &&
             (identical(other.fruitNum, fruitNum) ||
                 other.fruitNum == fruitNum) &&
-            (identical(other.tree, tree) || other.tree == tree));
+            (identical(other.tree, tree) || other.tree == tree) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, groupId, title, recordNum, fruitNum, tree);
+  int get hashCode => Object.hash(
+      runtimeType, groupId, title, recordNum, fruitNum, tree, category);
 
   /// Create a copy of Rank
   /// with the given fields replaced by the non-null parameter values.
@@ -225,10 +245,11 @@ class _$RankImpl implements _Rank {
 abstract class _Rank implements Rank {
   const factory _Rank(
       {@JsonKey(name: 'group_id') required final int groupId,
-      required final String title,
+      final String? title,
       @JsonKey(name: 'record_num') required final int recordNum,
       @JsonKey(name: 'fruit_num') required final int fruitNum,
-      required final String tree}) = _$RankImpl;
+      final String? tree,
+      final String? category}) = _$RankImpl;
 
   factory _Rank.fromJson(Map<String, dynamic> json) = _$RankImpl.fromJson;
 
@@ -236,7 +257,7 @@ abstract class _Rank implements Rank {
   @JsonKey(name: 'group_id')
   int get groupId;
   @override
-  String get title;
+  String? get title;
   @override
   @JsonKey(name: 'record_num')
   int get recordNum;
@@ -244,7 +265,9 @@ abstract class _Rank implements Rank {
   @JsonKey(name: 'fruit_num')
   int get fruitNum;
   @override
-  String get tree;
+  String? get tree; // ✅ "0", "1", "2", "3"
+  @override
+  String? get category;
 
   /// Create a copy of Rank
   /// with the given fields replaced by the non-null parameter values.

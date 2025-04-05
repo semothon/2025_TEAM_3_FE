@@ -253,7 +253,9 @@ class ApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       final List groups = data['groups'];
-      return groups.map((e) => RecommendedGroup.fromJson(e)).toList(); // ✅ 타입 맞춤
+      return groups
+          .map((e) => RecommendedGroup.fromJson(e))
+          .toList(); // ✅ 타입 맞춤
     } else {
       throw Exception("추천 스터디 불러오기 실패");
     }

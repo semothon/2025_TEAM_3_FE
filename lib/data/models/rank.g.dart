@@ -8,10 +8,11 @@ part of 'rank.dart';
 
 _$RankImpl _$$RankImplFromJson(Map<String, dynamic> json) => _$RankImpl(
       groupId: (json['group_id'] as num).toInt(),
-      title: json['title'] as String,
+      title: json['title'] as String?,
       recordNum: (json['record_num'] as num).toInt(),
       fruitNum: (json['fruit_num'] as num).toInt(),
-      tree: json['tree'] as String,
+      tree: json['tree'] as String?,
+      category: json['category'] as String?,
     );
 
 Map<String, dynamic> _$$RankImplToJson(_$RankImpl instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$$RankImplToJson(_$RankImpl instance) =>
       'record_num': instance.recordNum,
       'fruit_num': instance.fruitNum,
       'tree': instance.tree,
+      'category': instance.category,
     };

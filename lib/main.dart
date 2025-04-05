@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:team_3_frontend/data/services/api_service.dart';
 import 'package:team_3_frontend/data/services/auth_service.dart';
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
