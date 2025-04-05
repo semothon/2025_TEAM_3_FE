@@ -36,6 +36,48 @@ class ApiService {
     }
   }
 
+  /// ✅ 회원가입
+  Future register({
+    String name = '',
+    String email = '',
+    String password = '',
+    String loginId = '',
+    List<String> hobby = const [],
+    List<String> interest = const [],
+    String department = '',
+    List<String> timetable = const [],
+  }) async {
+    final url = Uri.parse("$baseUrl/register");
+    // 요청
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        "name": name,
+        "email": email,
+        "password": password,
+        "login_id": loginId,
+        "hobby": hobby,
+        "interest": interest,
+        "department": department,
+        "timetable": timetable,
+      }),
+    );
+
+    // 응답
+    final data = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      await _authService.saveToken(data['token']);
+    } else {
+      if (data['error'] != null) {
+        throw data['error'];
+      }
+    }
+  }
+
   /// ✅ 헤더 정보
   Map<String, String> _authHeaders(String accessToken) => {
         "Content-Type": "application/json",

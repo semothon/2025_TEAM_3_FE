@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:team_3_frontend/data/services/api_service.dart';
 
 import '../../routes/app_routes.dart';
 
 class RegisterController extends GetxController {
+  ApiService _apiService = ApiService();
+
   RxBool isLoading = false.obs;
 
   // 첫번째 페이지
@@ -87,7 +90,35 @@ class RegisterController extends GetxController {
 
     // 회원가입 로직
     try {
-      await Future.delayed(const Duration(seconds: 1));
+      if (name.text.isEmpty ||
+          email.text.isEmpty ||
+          id.text.isEmpty ||
+          password.text.isEmpty) {
+        throw '모든 필드를 입력해주세요.';
+      }
+      if (selectedMajorIndex.value == -1) {
+        throw '전공을 선택해주세요.';
+      }
+      if (selectedHobbyNames.isEmpty) {
+        throw '취미를 선택해주세요.';
+      }
+      if (selectedInterestNames.isEmpty) {
+        throw '관심사를 선택해주세요.';
+      }
+      if (courses.isEmpty) {
+        throw '수업을 선택해주세요.';
+      }
+
+      await _apiService.register(
+        name: name.text,
+        email: email.text,
+        loginId: id.text,
+        password: password.text,
+        hobby: selectedHobbyNames,
+        interest: selectedInterestNames,
+        department: selectedMajorName!,
+        timetable: courses,
+      );
 
       Get.offAllNamed(Routes.main);
     } catch (e) {
