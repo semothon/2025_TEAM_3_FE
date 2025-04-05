@@ -9,6 +9,7 @@ import 'package:team_3_frontend/modules/explore/explore_controller.dart';
 import 'package:team_3_frontend/widgets/other_study_box.dart';
 import 'search/search_page.dart';
 import 'search/search_controller.dart';
+import 'package:team_3_frontend/widgets/apply_study.dart';
 
 class ExplorePage extends GetView<ExploreController> {
   const ExplorePage({super.key});
@@ -189,7 +190,9 @@ class ExplorePage extends GetView<ExploreController> {
               subtitle: group.description,
               memberCount: '${group.numMembers}/${group.maxMembers}',
               thumbnail: '',
-              onPressed: () {},
+              onPressed: () {
+                showStudyDetailDialog(context, group);
+              },
             );
           },
         ));

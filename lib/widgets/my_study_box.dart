@@ -27,7 +27,7 @@ class MyStudyBox extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFFFFF8F8), // Fill 색상
           border: Border.all(
-            color: AppColors.box1, // Stroke 색상 (#FFBDDB)
+            color: AppColors.box1Border, // Stroke 색상 (#FFBDDB)
             width: 1,
           ),
           borderRadius: BorderRadius.circular(10),

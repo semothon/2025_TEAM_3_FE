@@ -12,6 +12,7 @@ class MyPage extends GetView<MyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(),
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -33,6 +34,27 @@ class MyPage extends GetView<MyController> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors.background,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      titleSpacing: 20,
+      title: Row(
+        children: [
+          Assets.icons.logo.svg(height: 50),
+          const Spacer(),
+          IconButton(
+            icon: Assets.icons.notification.svg(height: 24),
+            onPressed: () {
+              // 알림
+            },
+          ),
+        ],
       ),
     );
   }
