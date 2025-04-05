@@ -21,10 +21,10 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   int get id => throw _privateConstructorUsedError; // 사용자 ID
-  String get email => throw _privateConstructorUsedError; // 이메일
-  String get password => throw _privateConstructorUsedError; // 비밀번호 (암호화)
+  String? get email => throw _privateConstructorUsedError; // 이메일
+  String? get password => throw _privateConstructorUsedError; // 비밀번호 (암호화)
   @JsonKey(name: 'login_id')
-  String get loginId => throw _privateConstructorUsedError; // 로그인 ID
+  String? get loginId => throw _privateConstructorUsedError; // 로그인 ID
   String get name => throw _privateConstructorUsedError; // 사용자 이름 (추가)
   String get department => throw _privateConstructorUsedError; // 학과
   @JsonKey(name: 'profile_img')
@@ -34,10 +34,10 @@ mixin _$User {
       throw _privateConstructorUsedError; // 관심사 (JSON)
   Map<String, dynamic> get hobby =>
       throw _privateConstructorUsedError; // 취미 (JSON)
-  Map<String, dynamic> get timetable =>
+  List<dynamic> get timetable =>
       throw _privateConstructorUsedError; // 시간표 (JSON)
   @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError; // 가입 일시
+  DateTime? get createdAt => throw _privateConstructorUsedError; // 가입 일시
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -57,16 +57,16 @@ abstract class $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String email,
-      String password,
-      @JsonKey(name: 'login_id') String loginId,
+      String? email,
+      String? password,
+      @JsonKey(name: 'login_id') String? loginId,
       String name,
       String department,
       @JsonKey(name: 'profile_img') String? profileImg,
       Map<String, dynamic> interest,
       Map<String, dynamic> hobby,
-      Map<String, dynamic> timetable,
-      @JsonKey(name: 'created_at') DateTime createdAt,
+      List<dynamic> timetable,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
@@ -86,16 +86,16 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
-    Object? password = null,
-    Object? loginId = null,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? loginId = freezed,
     Object? name = null,
     Object? department = null,
     Object? profileImg = freezed,
     Object? interest = null,
     Object? hobby = null,
     Object? timetable = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -103,18 +103,18 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      loginId: null == loginId
+              as String?,
+      loginId: freezed == loginId
           ? _value.loginId
           : loginId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -138,11 +138,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       timetable: null == timetable
           ? _value.timetable
           : timetable // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      createdAt: null == createdAt
+              as List<dynamic>,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -160,16 +160,16 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String email,
-      String password,
-      @JsonKey(name: 'login_id') String loginId,
+      String? email,
+      String? password,
+      @JsonKey(name: 'login_id') String? loginId,
       String name,
       String department,
       @JsonKey(name: 'profile_img') String? profileImg,
       Map<String, dynamic> interest,
       Map<String, dynamic> hobby,
-      Map<String, dynamic> timetable,
-      @JsonKey(name: 'created_at') DateTime createdAt,
+      List<dynamic> timetable,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
@@ -186,16 +186,16 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
-    Object? password = null,
-    Object? loginId = null,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? loginId = freezed,
     Object? name = null,
     Object? department = null,
     Object? profileImg = freezed,
     Object? interest = null,
     Object? hobby = null,
     Object? timetable = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$UserImpl(
@@ -203,18 +203,18 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      loginId: null == loginId
+              as String?,
+      loginId: freezed == loginId
           ? _value.loginId
           : loginId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -238,11 +238,11 @@ class __$$UserImplCopyWithImpl<$Res>
       timetable: null == timetable
           ? _value._timetable
           : timetable // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      createdAt: null == createdAt
+              as List<dynamic>,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -256,16 +256,16 @@ class __$$UserImplCopyWithImpl<$Res>
 class _$UserImpl implements _User {
   const _$UserImpl(
       {required this.id,
-      required this.email,
-      required this.password,
-      @JsonKey(name: 'login_id') required this.loginId,
+      this.email,
+      this.password,
+      @JsonKey(name: 'login_id') this.loginId,
       required this.name,
       required this.department,
       @JsonKey(name: 'profile_img') this.profileImg,
       final Map<String, dynamic> interest = const {},
       final Map<String, dynamic> hobby = const {},
-      final Map<String, dynamic> timetable = const {},
-      @JsonKey(name: 'created_at') required this.createdAt,
+      final List<dynamic> timetable = const [],
+      @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt})
       : _interest = interest,
         _hobby = hobby,
@@ -278,14 +278,14 @@ class _$UserImpl implements _User {
   final int id;
 // 사용자 ID
   @override
-  final String email;
+  final String? email;
 // 이메일
   @override
-  final String password;
+  final String? password;
 // 비밀번호 (암호화)
   @override
   @JsonKey(name: 'login_id')
-  final String loginId;
+  final String? loginId;
 // 로그인 ID
   @override
   final String name;
@@ -319,20 +319,20 @@ class _$UserImpl implements _User {
   }
 
 // 취미 (JSON)
-  final Map<String, dynamic> _timetable;
+  final List<dynamic> _timetable;
 // 취미 (JSON)
   @override
   @JsonKey()
-  Map<String, dynamic> get timetable {
-    if (_timetable is EqualUnmodifiableMapView) return _timetable;
+  List<dynamic> get timetable {
+    if (_timetable is EqualUnmodifiableListView) return _timetable;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_timetable);
+    return EqualUnmodifiableListView(_timetable);
   }
 
 // 시간표 (JSON)
   @override
   @JsonKey(name: 'created_at')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 // 가입 일시
   @override
   @JsonKey(name: 'updated_at')
@@ -404,16 +404,16 @@ class _$UserImpl implements _User {
 abstract class _User implements User {
   const factory _User(
       {required final int id,
-      required final String email,
-      required final String password,
-      @JsonKey(name: 'login_id') required final String loginId,
+      final String? email,
+      final String? password,
+      @JsonKey(name: 'login_id') final String? loginId,
       required final String name,
       required final String department,
       @JsonKey(name: 'profile_img') final String? profileImg,
       final Map<String, dynamic> interest,
       final Map<String, dynamic> hobby,
-      final Map<String, dynamic> timetable,
-      @JsonKey(name: 'created_at') required final DateTime createdAt,
+      final List<dynamic> timetable,
+      @JsonKey(name: 'created_at') final DateTime? createdAt,
       @JsonKey(name: 'updated_at') final DateTime? updatedAt}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -421,12 +421,12 @@ abstract class _User implements User {
   @override
   int get id; // 사용자 ID
   @override
-  String get email; // 이메일
+  String? get email; // 이메일
   @override
-  String get password; // 비밀번호 (암호화)
+  String? get password; // 비밀번호 (암호화)
   @override
   @JsonKey(name: 'login_id')
-  String get loginId; // 로그인 ID
+  String? get loginId; // 로그인 ID
   @override
   String get name; // 사용자 이름 (추가)
   @override
@@ -439,10 +439,10 @@ abstract class _User implements User {
   @override
   Map<String, dynamic> get hobby; // 취미 (JSON)
   @override
-  Map<String, dynamic> get timetable; // 시간표 (JSON)
+  List<dynamic> get timetable; // 시간표 (JSON)
   @override
   @JsonKey(name: 'created_at')
-  DateTime get createdAt; // 가입 일시
+  DateTime? get createdAt; // 가입 일시
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;

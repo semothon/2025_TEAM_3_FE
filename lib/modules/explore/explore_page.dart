@@ -6,10 +6,8 @@ import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
 import 'package:team_3_frontend/widgets/box.dart';
 import 'package:team_3_frontend/modules/explore/explore_controller.dart';
-import 'package:team_3_frontend/widgets/other_study_box.dart';
 import 'search/search_page.dart';
 import 'search/search_controller.dart';
-import 'package:team_3_frontend/widgets/apply_study.dart';
 
 class ExplorePage extends GetView<ExploreController> {
   const ExplorePage({super.key});
@@ -33,7 +31,7 @@ class ExplorePage extends GetView<ExploreController> {
                 endIndent: 16,
                 height: 24),
             _buildSectionTitle(),
-            Expanded(child: _buildStudyListView()),
+            // Expanded(child: _buildStudyListView()),
           ],
         ),
       ),
@@ -54,11 +52,11 @@ class ExplorePage extends GetView<ExploreController> {
           ),
           const Spacer(),
           IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/search.svg',
-              width: 24,
-              height: 24,
-            ),
+              icon: SvgPicture.asset(
+                'assets/icons/search.svg',
+                width: 24,
+                height: 24,
+              ),
               onPressed: () {
                 final controller = Get.isRegistered<Ex_SearchController>()
                     ? Get.find<Ex_SearchController>()
@@ -66,8 +64,7 @@ class ExplorePage extends GetView<ExploreController> {
 
                 controller.resetAll();
                 Get.to(() => const SearchPage());
-              }
-          ),
+              }),
           IconButton(
             icon: Assets.icons.notification.svg(height: 24),
             onPressed: () {
@@ -182,23 +179,23 @@ class ExplorePage extends GetView<ExploreController> {
     );
   }
 
-  Widget _buildStudyListView() {
-    return Obx(() => ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          itemCount: controller.filteredList.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
-          itemBuilder: (context, index) {
-            final group = controller.filteredList[index];
-            return OtherStudyBox(
-              title: group.title,
-              subtitle: group.description,
-              memberCount: '${group.numMembers}/${group.maxMembers}',
-              thumbnail: '',
-              onPressed: () {
-                showStudyDetailDialog(context, group);
-              },
-            );
-          },
-        ));
-  }
+  // Widget _buildStudyListView() {
+  //   return Obx(() => ListView.separated(
+  //         padding: const EdgeInsets.symmetric(horizontal: 20),
+  //         itemCount: controller.filteredList.length,
+  //         separatorBuilder: (_, __) => const SizedBox(height: 12),
+  //         itemBuilder: (context, index) {
+  //           final group = controller.filteredList[index];
+  //           return OtherStudyBox(
+  //             title: group.title,
+  //             subtitle: group.description,
+  //             memberCount: '${group.numMembers}/${group.maxMembers}',
+  //             thumbnail: '',
+  //             onPressed: () {
+  //               showStudyDetailDialog(context, group);
+  //             },
+  //           );
+  //         },
+  //       ));
+  // }
 }

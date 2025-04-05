@@ -7,7 +7,6 @@ import 'package:team_3_frontend/theme/app_typography.dart';
 import 'package:team_3_frontend/widgets/box.dart';
 import 'package:team_3_frontend/widgets/other_study_box.dart';
 import 'package:team_3_frontend/widgets/apply_study.dart';
-import '../../../data/models/study_group.dart';
 import 'search_controller.dart';
 
 class SearchPage extends GetView<Ex_SearchController> {
@@ -38,93 +37,93 @@ class SearchPage extends GetView<Ex_SearchController> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
               child: Obx(() => TextField(
-                controller: controller.textController,
-                onChanged: controller.onSearchTextChanged,
-                onSubmitted: (_) => controller.setSearchActive(true),
-                style: AppTypography.b1R14.copyWith(color: Colors.black),
-                decoration: InputDecoration(
-                  hintText: '키워드를 검색해보세요.',
-                  hintStyle:
-                  AppTypography.b1R14.copyWith(color: AppColors.grayscale50),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: controller.searching.value
-                        ? GestureDetector(
-                      onTap: controller.clearSearch,
-                      child:
-                      const Icon(Icons.close, color: AppColors.point),
-                    )
-                        : GestureDetector(
-                      onTap: () => controller.setSearchActive(true),
-                      child: SvgPicture.asset(
-                        'assets/icons/search.svg',
-                        width: 16,
-                        height: 16,
-                        fit: BoxFit.contain,
-                        colorFilter: const ColorFilter.mode(
-                            AppColors.point, BlendMode.srcIn),
+                    controller: controller.textController,
+                    onChanged: controller.onSearchTextChanged,
+                    onSubmitted: (_) => controller.setSearchActive(true),
+                    style: AppTypography.b1R14.copyWith(color: Colors.black),
+                    decoration: InputDecoration(
+                      hintText: '키워드를 검색해보세요.',
+                      hintStyle: AppTypography.b1R14
+                          .copyWith(color: AppColors.grayscale50),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: controller.searching.value
+                            ? GestureDetector(
+                                onTap: controller.clearSearch,
+                                child: const Icon(Icons.close,
+                                    color: AppColors.point),
+                              )
+                            : GestureDetector(
+                                onTap: () => controller.setSearchActive(true),
+                                child: SvgPicture.asset(
+                                  'assets/icons/search.svg',
+                                  width: 16,
+                                  height: 16,
+                                  fit: BoxFit.contain,
+                                  colorFilter: const ColorFilter.mode(
+                                      AppColors.point, BlendMode.srcIn),
+                                ),
+                              ),
                       ),
+                      suffixIconConstraints: const BoxConstraints(
+                        minWidth: 32,
+                        minHeight: 32,
+                        maxWidth: 32,
+                        maxHeight: 32,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: AppColors.box1Border),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: AppColors.box1Border),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: AppColors.box1Border),
+                      ),
+                      filled: true,
+                      fillColor: AppColors.box1,
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 16),
                     ),
-                  ),
-                  suffixIconConstraints: const BoxConstraints(
-                    minWidth: 32,
-                    minHeight: 32,
-                    maxWidth: 32,
-                    maxHeight: 32,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: AppColors.box1Border),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: AppColors.box1Border),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: AppColors.box1Border),
-                  ),
-                  filled: true,
-                  fillColor: AppColors.box1,
-                  contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16),
-                ),
-              )),
+                  )),
             ),
 
             // ✅ 선택된 필터 표시 (검색 결과 화면에서도 유지)
             Obx(() => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: controller.selectedFilters
-                    .map((filter) => Box(
-                  fillColor: AppColors.box2,
-                  strokeColor: AppColors.grayscale50,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        child: Text(filter,
-                            style: AppTypography.b5M14
-                                .copyWith(color: AppColors.point)),
-                      ),
-                      GestureDetector(
-                        onTap: () =>
-                            controller.toggleFilter(filter),
-                        child:
-                        const Icon(Icons.close, size: 16),
-                      ),
-                      const SizedBox(width: 4),
-                    ],
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: controller.selectedFilters
+                        .map((filter) => Box(
+                              fillColor: AppColors.box2,
+                              strokeColor: AppColors.grayscale50,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 4),
+                                    child: Text(filter,
+                                        style: AppTypography.b5M14
+                                            .copyWith(color: AppColors.point)),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () =>
+                                        controller.toggleFilter(filter),
+                                    child: const Icon(Icons.close, size: 16),
+                                  ),
+                                  const SizedBox(width: 4),
+                                ],
+                              ),
+                            ))
+                        .toList(),
                   ),
-                ))
-                    .toList(),
-              ),
-            )),
+                )),
 
             Obx(() {
               final isSearching = controller.searching.value;
@@ -157,25 +156,27 @@ class SearchPage extends GetView<Ex_SearchController> {
                                   style: AppTypography.b6SB14
                                       .copyWith(fontSize: 16)),
                               IconButton(
-                                icon: SvgPicture.asset(
-                                    'assets/icons/filter.svg'),
+                                icon:
+                                    SvgPicture.asset('assets/icons/filter.svg'),
                                 onPressed: () {},
                               ),
                             ],
                           ),
                         ),
-                        ...groups.map((group) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: OtherStudyBox(
-                            title: group.title,
-                            subtitle: group.description,
-                            memberCount:
-                            '${group.numMembers}/${group.maxMembers}',
-                            thumbnail: group.thumbnail,
-                            onPressed: () =>
-                                showStudyDetailDialog(context, group),
-                          ),
-                        )),
+                        // ...groups.map(
+                        //   (group) => Padding(
+                        //     padding: const EdgeInsets.only(bottom: 12),
+                        //     child: OtherStudyBox(
+                        //       title: group.title,
+                        //       subtitle: group.description,
+                        //       memberCount:
+                        //           '${group.numMembers}/${group.maxMembers}',
+                        //       thumbnail: group.thumbnail,
+                        //       onPressed: () =>
+                        //           showStudyDetailDialog(context, group),
+                        //     ),
+                        //   ),
+                        // ),
                       ]
                     ],
                   ),
@@ -204,54 +205,52 @@ class SearchPage extends GetView<Ex_SearchController> {
           ),
           SizedBox(height: title == '검색 필터' ? 18 : 14),
           Obx(() => Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: options.map((option) {
-              final isSelected =
-              controller.selectedFilters.contains(option);
-              return GestureDetector(
-                onTap: () => controller.toggleFilter(option),
-                child: Box(
-                  fillColor: isSelected
-                      ? AppColors.point
-                      : AppColors.background,
-                  strokeColor: isSelected
-                      ? AppColors.point
-                      : AppColors.grayscale50,
-                  child: SizedBox(
-                    width: buttonWidth,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Center(
-                        child: Text(
-                          option,
-                          style: isSelected
-                              ? AppTypography.b6SB14
-                              .copyWith(color: AppColors.grayscale0)
-                              : AppTypography.b1R14.copyWith(
-                              color: AppColors.grayscale100),
+                spacing: 8,
+                runSpacing: 8,
+                children: options.map((option) {
+                  final isSelected =
+                      controller.selectedFilters.contains(option);
+                  return GestureDetector(
+                    onTap: () => controller.toggleFilter(option),
+                    child: Box(
+                      fillColor:
+                          isSelected ? AppColors.point : AppColors.background,
+                      strokeColor:
+                          isSelected ? AppColors.point : AppColors.grayscale50,
+                      child: SizedBox(
+                        width: buttonWidth,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Center(
+                            child: Text(
+                              option,
+                              style: isSelected
+                                  ? AppTypography.b6SB14
+                                      .copyWith(color: AppColors.grayscale0)
+                                  : AppTypography.b1R14
+                                      .copyWith(color: AppColors.grayscale100),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              );
-            }).toList(),
-          )),
+                  );
+                }).toList(),
+              )),
         ],
       ),
     );
   }
 
-  String _getAttendanceText(AttendanceType type) {
-    switch (type) {
-      case AttendanceType.every:
-        return '매일 출석';
-      case AttendanceType.free:
-        return '자율 출석';
-      case AttendanceType.TBD:
-      default:
-        return '모임 내 협의';
-    }
-  }
+  // String _getAttendanceText(AttendanceType type) {
+  //   switch (type) {
+  //     case AttendanceType.every:
+  //       return '매일 출석';
+  //     case AttendanceType.free:
+  //       return '자율 출석';
+  //     case AttendanceType.TBD:
+  //     default:
+  //       return '모임 내 협의';
+  //   }
+  // }
 }

@@ -7,6 +7,7 @@ import '../modules/login/login_page.dart';
 import '../modules/main/main_binding.dart';
 import '../modules/main/main_page.dart';
 import '../modules/register/register_page.dart';
+import '../modules/study_detail/study_detail_binding.dart';
 import 'app_routes.dart';
 
 class AppRoutes {
@@ -32,6 +33,7 @@ class AppRoutes {
     GetPage(
       name: Routes.studyDetail,
       page: () => StudyDetailPage(),
+      binding: StudyDetailBinding(),
     ),
   ];
 }

@@ -1,14 +1,13 @@
 // search_controller.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:team_3_frontend/data/models/study_group.dart';
 
 class Ex_SearchController extends GetxController {
   final searchText = ''.obs;
   final searching = false.obs;
   final selectedFilters = <String>[].obs;
-  final allGroups = <StudyGroup>[].obs;
-  RxList<StudyGroup> filteredGroups = <StudyGroup>[].obs;
+  final allGroups = [].obs;
+  RxList filteredGroups = [].obs;
   late TextEditingController textController;
 
   final categories = ['스터디', '소모임'];
@@ -66,7 +65,7 @@ class Ex_SearchController extends GetxController {
     }).toList();
   }
 
-  void loadInitialData(List<StudyGroup> groups) {
+  void loadInitialData(List groups) {
     allGroups.value = groups;
     filteredGroups.value = groups;
   }

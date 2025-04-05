@@ -12,89 +12,82 @@ class StudyDetailPage extends GetView<StudyDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(StudyDetailController());
-
-    final study = controller.studyInfo;
-
-    return GetBuilder<StudyDetailController>(
-      init: StudyDetailController(),
-      builder: (controller) {
-        return DefaultTabController(
-          length: 3,
-          child: Builder(
-            builder: (BuildContext context) {
-              final TabController tabController =
-                  DefaultTabController.of(context);
-              tabController.addListener(() {
-                controller.update();
-              });
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text(
-                    study.title,
+    return DefaultTabController(
+      length: 3,
+      child: Builder(
+        builder: (BuildContext context) {
+          final TabController tabController = DefaultTabController.of(context);
+          tabController.addListener(() {
+            controller.update();
+          });
+          return Scaffold(
+            appBar: AppBar(
+              title: Obx(() => Text(
+                    controller.groupDetail.value?.group.title ?? '로딩 중...',
                     style: AppTypography.t3SB16,
-                  ),
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () => Get.back(),
-                  ),
-                  actions: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Assets.icons.studyDetailChat.svg(width: 24),
-                    ),
-                    const SizedBox(width: 16),
-                  ],
-                  bottom: TabBar(
+                  )),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () => Get.back(),
+              ),
+              actions: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Assets.icons.studyDetailChat.svg(width: 24),
+                ),
+                const SizedBox(width: 16),
+              ],
+              bottom: TabBar(
+                controller: tabController,
+                tabs: [
+                  Tab(text: '정보'),
+                  Tab(text: '공유 기록'),
+                  Tab(text: '개인 기록'),
+                ],
+                labelColor: AppColors.point,
+                unselectedLabelColor: AppColors.grayscale75,
+                indicatorColor: AppColors.point,
+                indicatorWeight: 3,
+              ),
+            ),
+            body: Obx(() => controller.groupDetail.value == null
+                ? Center(child: CircularProgressIndicator())
+                : TabBarView(
                     controller: tabController,
-                    tabs: [
-                      Tab(text: '정보'),
-                      Tab(text: '공유 기록'),
-                      Tab(text: '개인 기록'),
+                    children: [
+                      // 정보 탭
+                      _buildInfoTab(),
+                      // 공유 기록 탭
+                      _buildSharedRecordsTab(),
+                      // 개인 기록 탭
+                      _buildPersonalRecordsTab(),
                     ],
-                    labelColor: AppColors.point,
-                    unselectedLabelColor: AppColors.grayscale75,
-                    indicatorColor: AppColors.point,
-                    indicatorWeight: 3,
-                  ),
-                ),
-                body: TabBarView(
-                  controller: tabController,
-                  children: [
-                    // 정보 탭
-                    _buildInfoTab(),
-                    // 공유 기록 탭 (기본 구조만)
-                    _buildSharedRecordsTab(),
-                    // 개인 기록 탭 (기본 구조만)
-                    _buildPersonalRecordsTab(),
-                  ],
-                ),
-                floatingActionButton:
-                    tabController.index == 1 || tabController.index == 2
-                        ? FloatingActionButton(
-                            onPressed: () {
-                              // 글 작성 기능 (미구현)
-                            },
-                            child: Icon(
-                              Icons.edit,
-                              color: AppColors.grayscale0,
-                            ),
-                            backgroundColor: AppColors.point,
-                            elevation: 0, // 그림자 제거
-                            shape: CircleBorder(),
-                          )
-                        : null,
-              );
-            },
-          ),
-        );
-      },
+                  )),
+            floatingActionButton:
+                tabController.index == 1 || tabController.index == 2
+                    ? FloatingActionButton(
+                        onPressed: () {
+                          // 글 작성 기능 (미구현)
+                        },
+                        child: Icon(
+                          Icons.edit,
+                          color: AppColors.grayscale0,
+                        ),
+                        backgroundColor: AppColors.point,
+                        elevation: 0,
+                        shape: CircleBorder(),
+                      )
+                    : null,
+          );
+        },
+      ),
     );
+    ;
   }
 
   // 정보 탭 UI
   Widget _buildInfoTab() {
-    final study = controller.studyInfo; // Get.arguments로 전달된 StudyGroup 객체
+    final group = controller.groupDetail.value!.group;
 
     return SingleChildScrollView(
       child: Padding(
@@ -109,21 +102,22 @@ class StudyDetailPage extends GetView<StudyDetailController> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: NetworkImage(study.thumbnail),
+                  image: NetworkImage(group.thumbnail.isEmpty
+                      ? 'https://via.placeholder.com/150' // Placeholder if empty
+                      : group.thumbnail),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             SizedBox(height: 16),
-            // 스터디 제목
+            // 그룹 제목
             Row(
               children: [
                 Text(
-                  study.title,
+                  group.title,
                   style: AppTypography.t0B24,
                 ),
                 SizedBox(width: 18),
-                // 오른쪽 멤버 수 및 더보기 아이콘
                 Icon(
                   Icons.person,
                   size: 16,
@@ -131,7 +125,7 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  '${study.numMembers}/${study.maxMembers}',
+                  '${group.numMembers}/${group.maxMembers}',
                   style: AppTypography.b3R12.copyWith(
                     color: AppColors.grayscale75,
                   ),
@@ -139,29 +133,29 @@ class StudyDetailPage extends GetView<StudyDetailController> {
               ],
             ),
             SizedBox(height: 8),
-            // 카테고리 및 필드
+            // 모임 방식 및 출석 방식
             Row(
               children: [
-                _buildTag(study.category.toString().split('.').last),
+                _buildTag(group.meet),
                 SizedBox(width: 8),
-                _buildTag(study.field),
+                _buildTag(group.attendance),
               ],
             ),
             SizedBox(height: 16),
-            // 스터디 소개
+            // 그룹 소개
             Text(
-              '스터디 소개',
+              '그룹 소개',
               style: AppTypography.t4SB12.copyWith(
                 color: AppColors.grayscale100,
               ),
             ),
             SizedBox(height: 8),
             Text(
-              study.description,
+              group.description,
               style: AppTypography.b1R14,
             ),
             SizedBox(height: 20),
-            // 일정 및 장소
+            // 일정 및 장소 (최신 일정 표시)
             Text(
               '일정 및 장소',
               style: AppTypography.t4SB12.copyWith(
@@ -170,59 +164,48 @@ class StudyDetailPage extends GetView<StudyDetailController> {
             ),
             SizedBox(height: 8),
             Text(
-              '일정: ${study.schedule}',
+              '일정: ${controller.schedules.isNotEmpty ? DateFormat('M/d HH:mm').format(controller.schedules.first.startDatetime) : '미정'}',
               style: AppTypography.b1R14,
             ),
             Text(
-              '장소: ${study.location}',
+              '장소: ${controller.schedules.isNotEmpty ? controller.schedules.first.location : '미정'}',
               style: AppTypography.b1R14,
             ),
             SizedBox(height: 16),
-            // 목표
-            Text(
-              '목표',
-              style: AppTypography.t4SB12.copyWith(
-                color: AppColors.grayscale100,
-              ),
-            ),
-            SizedBox(height: 8),
-            Box(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
-                child: Row(
-                  children: [
-                    Assets.icons.studyDetailPin.svg(width: 10),
-                    SizedBox(width: 15),
-                    Text(
-                      study.goal,
-                      style: AppTypography.b1R14,
-                    ),
-                  ],
+            // 메모
+            if (group.memo != null && group.memo!.isNotEmpty) ...[
+              Text(
+                '메모',
+                style: AppTypography.t4SB12.copyWith(
+                  color: AppColors.grayscale100,
                 ),
               ),
-            ),
-            SizedBox(height: 16),
-            // 모임 소개
-            Text(
-              '모임 소개',
-              style: AppTypography.t4SB12.copyWith(
-                color: AppColors.grayscale100,
+              SizedBox(height: 8),
+              Box(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 15),
+                  child: Row(
+                    children: [
+                      Assets.icons.studyDetailPin.svg(width: 10),
+                      SizedBox(width: 15),
+                      Text(
+                        group.memo!,
+                        style: AppTypography.b1R14,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              study.memo,
-              style: AppTypography.b1R14,
-            ),
-            SizedBox(height: 16),
+              SizedBox(height: 16),
+            ],
             // 참여 버튼
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // 참여 기능 (미구현)
+                      // 친구 초대 기능 (미구현)
                     },
                     child: Text('친구 초대'),
                     style: ElevatedButton.styleFrom(
@@ -253,20 +236,20 @@ class StudyDetailPage extends GetView<StudyDetailController> {
     );
   }
 
-// 공유 기록 탭 UI
+  // 공유 기록 탭 UI
   Widget _buildSharedRecordsTab() {
-    return Obx(() => controller.sharedRecords.isEmpty
-        ? Center(child: Text('공유된 기록이 없습니다.', style: AppTypography.b1R14))
+    return Obx(() => controller.schedules.isEmpty
+        ? Center(child: Text('일정이 없습니다.', style: AppTypography.b1R14))
         : ListView.separated(
             padding: const EdgeInsets.all(16.0),
-            itemCount: controller.sharedRecords.length,
+            itemCount: controller.schedules.length,
             separatorBuilder: (context, index) => Divider(
               color: AppColors.grayscale50,
               thickness: 0.5,
-              height: 32, // 항목 간 간격 조정
+              height: 32,
             ),
             itemBuilder: (context, index) {
-              final record = controller.sharedRecords[index];
+              final schedule = controller.schedules[index];
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -277,120 +260,19 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                       color: AppColors.grayscale75,
                     ),
                   ),
-                  // Images (Horizontal scrollable list, 최대 3개 표시)
-                  if (record.imageUrls.isNotEmpty)
-                    SizedBox(
-                      height: 80,
-                      child: Row(
-                        children: [
-                          ...record.imageUrls.take(2).map((url) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  url,
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Container(
-                                      width: 80,
-                                      height: 80,
-                                      color: AppColors.grayscale50,
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.broken_image,
-                                          color: AppColors.grayscale75,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          // 이미지가 3개 초과일 경우 "+N" 표시
-                          if (record.imageUrls.length > 3)
-                            Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    record.imageUrls[2],
-                                    width: 80,
-                                    height: 80,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        width: 80,
-                                        height: 80,
-                                        color: AppColors.grayscale50,
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.broken_image,
-                                            color: AppColors.grayscale75,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Container(
-                                  width: 80,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withAlpha(100),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '+${record.imageUrls.length - 3}',
-                                      style: AppTypography.t2SB18
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          else
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                record.imageUrls[2],
-                                width: 80,
-                                height: 80,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    width: 80,
-                                    height: 80,
-                                    color: AppColors.grayscale50,
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.broken_image,
-                                        color: AppColors.grayscale75,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                  // No images in Schedule, so this section is omitted unless added later
                   SizedBox(height: 8),
                   // Title
                   Text(
-                    record.title,
+                    schedule.title,
                     style: AppTypography.t3SB16,
                   ),
                   SizedBox(height: 4),
-                  // Content
+                  // Memo as content
                   SizedBox(
                     width: 300,
                     child: Text(
-                      record.content,
+                      schedule.memo,
                       style: AppTypography.b1R14
                           .copyWith(color: AppColors.grayscale100),
                       maxLines: 1,
@@ -398,9 +280,9 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  // Created At
+                  // Start DateTime
                   Text(
-                    '${DateFormat('M/d HH:mm').format(record.createdAt)}',
+                    '${DateFormat('M/d HH:mm').format(schedule.startDatetime)}',
                     style: AppTypography.b3R12.copyWith(
                       color: AppColors.grayscale75,
                     ),
@@ -411,151 +293,45 @@ class StudyDetailPage extends GetView<StudyDetailController> {
           ));
   }
 
-// 개인 기록 탭 UI
+  // 개인 기록 탭 UI
   Widget _buildPersonalRecordsTab() {
-    return Obx(() => controller.personalRecords.isEmpty
-        ? Center(child: Text('개인 기록이 없습니다.', style: AppTypography.b1R14))
+    return Obx(() => controller.schedules.isEmpty
+        ? Center(child: Text('일정이 없습니다.', style: AppTypography.b1R14))
         : ListView.separated(
             padding: const EdgeInsets.all(16.0),
-            itemCount: controller.personalRecords.length,
+            itemCount: controller.schedules.length,
             separatorBuilder: (context, index) => Divider(
               color: AppColors.grayscale50,
               thickness: 0.5,
-              height: 32, // 항목 간 간격 조정
+              height: 32,
             ),
             itemBuilder: (context, index) {
-              final record = controller.personalRecords[index];
+              final schedule = controller.schedules[index];
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      if (!record.isPublic)
-                        Icon(
-                          Icons.lock,
-                          color: AppColors.grayscale75,
-                        ),
                       Icon(
                         Icons.more_vert_sharp,
                         color: AppColors.grayscale75,
                       ),
                     ],
                   ),
-                  // Images (Horizontal scrollable list, 최대 3개 표시)
-                  if (record.imageUrls.isNotEmpty)
-                    SizedBox(
-                      height: 80,
-                      child: Row(
-                        children: [
-                          ...record.imageUrls.take(2).map((url) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  url,
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Container(
-                                      width: 80,
-                                      height: 80,
-                                      color: AppColors.grayscale50,
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.broken_image,
-                                          color: AppColors.grayscale75,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          // 이미지가 3개 초과일 경우 "+N" 표시
-                          if (record.imageUrls.length > 3)
-                            Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    record.imageUrls[2],
-                                    width: 80,
-                                    height: 80,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        width: 80,
-                                        height: 80,
-                                        color: AppColors.grayscale50,
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.broken_image,
-                                            color: AppColors.grayscale75,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Container(
-                                  width: 80,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withAlpha(100),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '+${record.imageUrls.length - 3}',
-                                      style: AppTypography.t2SB18
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          else
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                record.imageUrls[2],
-                                width: 80,
-                                height: 80,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    width: 80,
-                                    height: 80,
-                                    color: AppColors.grayscale50,
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.broken_image,
-                                        color: AppColors.grayscale75,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                  // No images in Schedule, so this section is omitted unless added later
                   SizedBox(height: 8),
                   // Title
                   Text(
-                    record.title,
+                    schedule.title,
                     style: AppTypography.t3SB16,
                   ),
                   SizedBox(height: 4),
-                  // Content
+                  // Memo as content
                   SizedBox(
                     width: 300,
                     child: Text(
-                      record.content,
+                      schedule.memo,
                       style: AppTypography.b1R14
                           .copyWith(color: AppColors.grayscale100),
                       maxLines: 1,
@@ -563,9 +339,9 @@ class StudyDetailPage extends GetView<StudyDetailController> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  // Created At
+                  // Start DateTime
                   Text(
-                    '${DateFormat('M/d HH:mm').format(record.createdAt)}',
+                    '${DateFormat('M/d HH:mm').format(schedule.startDatetime)}',
                     style: AppTypography.b3R12.copyWith(
                       color: AppColors.grayscale75,
                     ),
