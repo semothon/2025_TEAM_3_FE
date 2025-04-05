@@ -5,22 +5,21 @@ import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
 
 import 'community_controller.dart';
+import 'package:team_3_frontend/modules/community/chat/chat_page.dart';
 
 class CommunityPage extends GetView<CommunityController> {
   const CommunityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Get.put()을 사용하여 CommunityController 초기화
     Get.put(CommunityController());
 
     return Scaffold(
       appBar: _buildAppBar(),
       body: Column(
         children: [
-          // 탭바
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             decoration: BoxDecoration(
               color: AppColors.grayscale25,
               borderRadius: BorderRadius.circular(10.0),
@@ -57,7 +56,7 @@ class CommunityPage extends GetView<CommunityController> {
                 ),
               ],
               indicator: BoxDecoration(
-                color: Colors.white, // 갈색 배경
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               indicatorPadding: const EdgeInsets.all(4.0),
@@ -134,16 +133,25 @@ class ChatRoomTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: chatRooms.length,
+      separatorBuilder: (context, index) =>
+      const Divider(
+        color: AppColors.grayscale25,
+        height: 1,
+        thickness: 1,
+      ),
       itemBuilder: (context, index) {
         final chatRoom = chatRooms[index];
         return ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16.0, vertical: 12.0),
+          // 높이 증가
           leading: ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(12.0),
             child: Container(
-              width: 48, // CircleAvatar의 radius 24와 동일한 크기 (24 * 2)
-              height: 48,
+              width: 56, // 기존보다 살짝 키움
+              height: 56,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(chatRoom['imageUrl']),
@@ -175,20 +183,20 @@ class ChatRoomTab extends StatelessWidget {
           ),
           trailing: chatRoom['unreadCount'] > 0
               ? CircleAvatar(
-                  radius: 10,
-                  backgroundColor: Colors.red,
-                  child: Text(
-                    '${chatRoom['unreadCount']}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
+            radius: 10,
+            backgroundColor: Colors.red,
+            child: Text(
+              '${chatRoom['unreadCount']}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
               : null,
           onTap: () {
-            // 채팅방 클릭 시 동작 (미구현)
+            Get.to(() => const ChatPage());
           },
         );
       },
