@@ -59,10 +59,14 @@ class ExplorePage extends GetView<ExploreController> {
               width: 24,
               height: 24,
             ),
-            onPressed: () {
-              Get.put(Ex_SearchController());
-              Get.to(() => const SearchPage());
-            },
+              onPressed: () {
+                final controller = Get.isRegistered<Ex_SearchController>()
+                    ? Get.find<Ex_SearchController>()
+                    : Get.put(Ex_SearchController());
+
+                controller.resetAll();
+                Get.to(() => const SearchPage());
+              }
           ),
           IconButton(
             icon: Assets.icons.notification.svg(height: 24),
