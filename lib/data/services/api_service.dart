@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:team_3_frontend/data/services/auth_service.dart';
-
 import '../../utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -75,6 +74,21 @@ class ApiService {
       if (data['error'] != null) {
         throw data['error'];
       }
+    }
+  }
+
+  /// 마이페이지 조회
+  Future<Map<String, dynamic>> fetchMyPage(String token) async {
+    final url = Uri.parse("$baseUrl/mypage");
+    final response = await http.get(
+      url,
+      headers: _authHeaders(token),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('마이페이지 조회 실패: ${response.body}');
     }
   }
 

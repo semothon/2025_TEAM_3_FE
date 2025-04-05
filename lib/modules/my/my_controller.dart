@@ -1,75 +1,51 @@
-// my_controller.dart
+// lib/modules/my/my_controller.dart
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:team_3_frontend/data/models/study_group.dart';
-import 'package:team_3_frontend/data/models/user.dart';
+import 'package:team_3_frontend/data/services/api_service.dart';
 import 'package:team_3_frontend/data/services/auth_service.dart';
-
 import '../../routes/app_routes.dart';
 
 class MyController extends GetxController {
-  AuthService authService = Get.find<AuthService>();
-  final user = Rx<User>(User(
-    id: 1,
-    email: 'example@email.com',
-    password: '',
-    loginId: '2022104767',
-    name: '이채서',
-    department: '경희대학교 시각디자인학과 재학',
-    profileImg: 'https://i.pravatar.cc/150?img=3',
-    interest: {"관심 분야": "개발, 디자인"},
-    hobby: {"취미": "헬스, 음악"},
-    timetable: {},
-    createdAt: DateTime.now(),
-  ));
+  final AuthService _authService = Get.find<AuthService>();
+  final ApiService _apiService = Get.find<ApiService>();
+
+  // 마이페이지용 사용자 정보
+  final name = ''.obs;
+  final department = ''.obs;
+  final profileImg = RxnString();
+
+  final groupCount = 0.obs;
+  final recordCount = 0.obs;
 
   final isAlarmOn = false.obs;
   final isMarketingOn = true.obs;
 
-  // 내 모임들 (샘플 데이터)
-  final studyGroups = <StudyGroup>[
-    StudyGroup(
-      id: 1,
-      title: 'UX/UI 디자인 스터디',
-      description: 'Figma로 실무 프로젝트 클론',
-      category: GroupCategory.study,
-      isPublic: true,
-      maxMembers: 10,
-      numMembers: 6,
-      field: '디자인',
-      attendance: AttendanceType.every,
-      meet: MeetType.offline,
-      mood: MoodType.focus,
-      approve: true,
-      leaderId: 1,
-      thumbnail: '',
-      schedule: '매주 수요일',
-      location: '경희대 중앙도서관',
-      goal: 'UX 포트폴리오 완성',
-      memo: '',
-      createdAt: DateTime.now(),
-    ),
-    StudyGroup(
-      id: 2,
-      title: 'Flutter 개발자 모임',
-      description: '앱 개발하면서 플러터 배우기',
-      category: GroupCategory.club,
-      isPublic: true,
-      maxMembers: 8,
-      numMembers: 5,
-      field: '개발',
-      attendance: AttendanceType.free,
-      meet: MeetType.both,
-      mood: MoodType.friend,
-      approve: true,
-      leaderId: 1,
-      thumbnail: '',
-      schedule: '격주 일요일',
-      location: '온라인 (Zoom)',
-      goal: 'Flutter 프로젝트 출시',
-      memo: '',
-      createdAt: DateTime.now(),
-    )
-  ].obs;
+  @override
+  void onInit() {
+    super.onInit();
+    loadMyPage();
+  }
+
+  Future<void> loadMyPage() async {
+    try {
+      await _authService.getToken();
+      final token = _authService.token;
+      if (token == null) return;
+
+      final data = await _apiService.fetchMyPage(token);
+      final info = data['myInfo'];
+
+      name.value = info['name'] ?? '';
+      department.value = info['department'] ?? '';
+      profileImg.value = info['profile_img'];
+
+      groupCount.value = data['groupCount'] ?? 0;
+      recordCount.value = data['recordCount'] ?? 0;
+    } catch (e) {
+      debugPrint('마이페이지 로딩 실패: $e');
+      Get.snackbar('오류', '마이페이지 정보를 불러오지 못했어요.');
+    }
+  }
 
   void onDeleteAccount() {
     // TODO: 회원 탈퇴 처리 로직
@@ -77,7 +53,7 @@ class MyController extends GetxController {
   }
 
   Future<void> onLogout() async {
-    await authService.deleteToken();
+    await _authService.deleteToken();
     Get.offAllNamed(Routes.login);
     Get.snackbar('로그아웃', '로그아웃 되었습니다');
   }
