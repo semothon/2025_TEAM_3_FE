@@ -81,6 +81,7 @@ class RegisterPage extends GetView<RegisterController> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                       ),
+                      obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
                     ),
                     SizedBox(height: 32),

@@ -119,6 +119,7 @@ class RegisterController extends GetxController {
         department: selectedMajorName!,
         timetable: courses,
       );
+      await _apiService.login(id.text, password.text);
 
       Get.offAllNamed(Routes.main);
     } catch (e) {

@@ -104,11 +104,15 @@ class CommunityPage extends GetView<CommunityController> {
 }
 
 // 채팅방 탭
-class ChatRoomTab extends StatelessWidget {
+class ChatRoomTab extends StatefulWidget {
   const ChatRoomTab({super.key});
 
-  // 더미 데이터: 채팅방 목록
-  final List<Map<String, dynamic>> chatRooms = const [
+  @override
+  State<ChatRoomTab> createState() => _ChatRoomTabState();
+}
+
+class _ChatRoomTabState extends State<ChatRoomTab> {
+  List<Map<String, dynamic>> chatRooms = [
     {
       'title': '토익 스터디',
       'memberCount': 14,
@@ -136,8 +140,7 @@ class ChatRoomTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: chatRooms.length,
-      separatorBuilder: (context, index) =>
-      const Divider(
+      separatorBuilder: (context, index) => const Divider(
         color: AppColors.grayscale25,
         height: 1,
         thickness: 1,
@@ -147,13 +150,11 @@ class ChatRoomTab extends StatelessWidget {
       itemBuilder: (context, index) {
         final chatRoom = chatRooms[index];
         return ListTile(
-          contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16.0, vertical: 12.0),
-          // 높이 증가
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(12.0),
             child: Container(
-              width: 56, // 기존보다 살짝 키움
+              width: 56,
               height: 56,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -165,16 +166,11 @@ class ChatRoomTab extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Text(
-                chatRoom['title'],
-                style: AppTypography.t3SB16,
-              ),
+              Text(chatRoom['title'], style: AppTypography.t3SB16),
               const SizedBox(width: 8),
               Text(
                 '${chatRoom['memberCount']}',
-                style: AppTypography.b3R12.copyWith(
-                  color: AppColors.grayscale75,
-                ),
+                style: AppTypography.b3R12.copyWith(color: AppColors.grayscale75),
               ),
             ],
           ),
@@ -199,6 +195,9 @@ class ChatRoomTab extends StatelessWidget {
           )
               : null,
           onTap: () {
+            setState(() {
+              chatRooms[index]['unreadCount'] = 0; // 0으로 초기화
+            });
             Get.to(() => const ChatPage());
           },
         );

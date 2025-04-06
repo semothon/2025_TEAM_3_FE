@@ -164,7 +164,9 @@ Widget _buildTreeCard(Rank rank, int rankPosition) {
 }
 
 Widget _buildTreeImage(String treeLevel, int fruitNum) {
-  if (fruitNum != 0) {}
+  if (fruitNum != 0) {
+    return Assets.icons.tree4.svg(width: 200);
+  }
   switch (treeLevel) {
     case "0":
       return Assets.icons.tree0.svg(width: 200);
