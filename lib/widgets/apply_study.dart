@@ -3,23 +3,30 @@ import 'package:team_3_frontend/theme/app_colors.dart';
 import 'package:team_3_frontend/theme/app_typography.dart';
 import 'package:team_3_frontend/widgets/box.dart';
 
-class StudyDetailDialog extends StatelessWidget {
+class StudyDetailDialog extends StatefulWidget {
   final Map<String, dynamic> study;
 
   const StudyDetailDialog({super.key, required this.study});
 
   @override
+  State<StudyDetailDialog> createState() => _StudyDetailDialogState();
+}
+
+class _StudyDetailDialogState extends State<StudyDetailDialog> {
+  bool isRequested = false;
+
+  @override
   Widget build(BuildContext context) {
-    final String title = study['title'] ?? '';
-    final String description = study['description'] ?? '';
-    final String thumbnail = study['thumbnail'] ?? '';
-    final int numMembers = study['num_members'] ?? 0;
-    final int maxMembers = study['max_members'] ?? 0;
-    final String goal = study['goal'] ?? '';
-    final String memo = study['memo'] ?? '';
-    final String attendance = study['attendance'] ?? '';
-    final String meet = study['meet'] ?? '';
-    final bool approve = study['approve'] ?? false;
+    final String title = widget.study['title'] ?? '';
+    final String description = widget.study['description'] ?? '';
+    final String thumbnail = widget.study['thumbnail'] ?? '';
+    final int numMembers = widget.study['num_members'] ?? 0;
+    final int maxMembers = widget.study['max_members'] ?? 0;
+    final String goal = widget.study['goal'] ?? '';
+    final String memo = widget.study['memo'] ?? '';
+    final String attendance = widget.study['attendance'] ?? '';
+    final String meet = widget.study['meet'] ?? '';
+    final bool approve = widget.study['approve'] ?? false;
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -52,18 +59,29 @@ class StudyDetailDialog extends StatelessWidget {
                   Row(
                     children: [
                       Text(title, style: AppTypography.t1B20),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Row(
                         children: [
                           const Icon(Icons.person, size: 14, color: AppColors.grayscale100),
                           const SizedBox(width: 4),
-                          Text('$numMembers/$maxMembers',
-                              style: AppTypography.b4R10.copyWith(color: AppColors.grayscale100, fontSize: 12)),
+                          Text(
+                            '$numMembers/$maxMembers',
+                            style: AppTypography.b4R10.copyWith(
+                              color: AppColors.grayscale100,
+                              fontSize: 12,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
-                  Text(description, style: AppTypography.b0L12.copyWith(color: AppColors.grayscale100, fontSize: 14)),
+                  Text(
+                    description,
+                    style: AppTypography.b0L12.copyWith(
+                      color: AppColors.grayscale100,
+                      fontSize: 14,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Wrap(
                     spacing: 8,
@@ -75,30 +93,45 @@ class StudyDetailDialog extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  Text('모임 소개', style: AppTypography.t4SB12.copyWith(color: AppColors.grayscale100, fontSize: 14)),
+                  Text(
+                    '모임 소개',
+                    style: AppTypography.t4SB12.copyWith(
+                      color: AppColors.grayscale100,
+                      fontSize: 14,
+                    ),
+                  ),
                   const SizedBox(height: 6),
                   Text(
                     goal.isNotEmpty ? goal : (memo ?? ''),
                     style: AppTypography.b3R12.copyWith(height: 1.4),
                   ),
                   const SizedBox(height: 24),
+
+                  // ✅ 참여 신청 버튼
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
+                      onPressed: () {
+                        if (isRequested) return;
+                        setState(() {
+                          isRequested = true;
+                        });
+                        // 참여 신청 로직 추가
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.point,
+                        backgroundColor: isRequested
+                            ? AppColors.grayscale50
+                            : AppColors.point,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      onPressed: () {
-                        // 참여 신청 버튼 동작
-                      },
                       child: Text(
-                        '참여 신청 보내기',
-                        style:
-                        AppTypography.t3SB16.copyWith(color: Colors.white),
+                        isRequested ? '신청 완료' : '참여 신청 보내기',
+                        style: AppTypography.t3SB16.copyWith(
+                          color: isRequested ? Colors.black : Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -174,7 +207,6 @@ class StudyDetailDialog extends StatelessWidget {
     }
   }
 }
-
 void showStudyDetailDialog(BuildContext context, Map<String, dynamic> study) {
   showDialog(
     context: context,

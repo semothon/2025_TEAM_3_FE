@@ -80,7 +80,7 @@ PreferredSizeWidget _buildAppBar() {
     titleSpacing: 20,
     title: Row(
       children: [
-        Assets.icons.logo.svg(height: 50),
+        Assets.icons.logo.svg(height: 45),
         const Spacer(),
         IconButton(
           icon: Assets.icons.notification.svg(height: 24),
